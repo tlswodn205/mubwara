@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "981583881750",
+    "project_id": "mubwara",
+    "storage_bucket": "mubwara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981583881750:android:21a03c44111876c2857737",
+        "android_client_info": {
+          "package_name": "site.metacoding.mubwara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981583881750-9r929ov3k52geu8vaqvcib2m35vvd03v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAxxoSGgKc1XkK1JiOVX2DaRSDaxhsRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981583881750-9r929ov3k52geu8vaqvcib2m35vvd03v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981583881750-q4lbcetbqklitsl973ja2msgji4s4enc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "site.metacoding.mubwara"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
