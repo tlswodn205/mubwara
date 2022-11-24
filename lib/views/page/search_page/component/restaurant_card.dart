@@ -20,10 +20,10 @@ class RestaurantCard extends StatelessWidget {
   // 전화번호
   final String telephone;
 
-  // 평균 평점
+  // 여는 시간
   final String open_time;
 
-  // 상세 카드 여부
+  // 닫는 시간
   final String close_time;
 
   // Hero 위젯 태그
@@ -69,13 +69,20 @@ class RestaurantCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                name,
+                shop_name,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 8.0),
+              Text(
+                information,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               Text(
                 tags.join(' · '),
                 style: TextStyle(
@@ -87,27 +94,27 @@ class RestaurantCard extends StatelessWidget {
               Row(
                 children: [
                   _IconText(
-                    icon: Icons.star,
-                    label: ratings.toString(),
+                    icon: Icons.home,
+                    label: address.toString(),
                   ),
                   renderDot(),
                   _IconText(
-                    icon: Icons.receipt,
-                    label: ratingsCount.toString(),
+                    icon: Icons.phone,
+                    label: telephone.toString(),
                   ),
                   renderDot(),
                   _IconText(
                     icon: Icons.timelapse_outlined,
-                    label: '$deliveryTime 분',
+                    label: '$open_time ',
                   ),
                   renderDot(),
                   _IconText(
                     icon: Icons.monetization_on,
-                    label: deliveryFee == 0 ? '무료' : deliveryFee.toString(),
+                    label: '$close_time ',
                   ),
                 ],
               ),
-              if (detail != null && isDetail)
+              if (detail != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(detail!),

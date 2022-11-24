@@ -49,7 +49,7 @@ class _RootTabState extends State<RootTab>
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        title: '코팩 딜리버리',
+        title: '무바라',
         child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
     controller: controller,
