@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'component/bottom_nav_bar.dart';
+import '../../component/bottom_nav_bar.dart';
 import 'component/main_body.dart';
 
 class MainPage extends StatefulWidget {
