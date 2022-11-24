@@ -20,10 +20,7 @@ class _mainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: MainBody(selectedIndex: _selectedIndex),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onIndexChanged: selectedIndexChanged,
-      ),
+      bottomNavigationBar: RootTab(),
     );
   }
 }
