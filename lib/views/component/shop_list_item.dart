@@ -37,22 +37,22 @@ class ShopListItem extends StatelessWidget {
                   children: [
                     Text(
                       shopList[listIndex].shop_name,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 19),
                     ),
                     Text(
                       "${shopList[listIndex].information}",
-                      style: TextStyle(fontSize: 10),
+                      style: TextStyle(fontSize: 12),
                     ),
                     Row(
                       children: [
                         Icon(
                           CupertinoIcons.star_fill,
-                          size: 15,
+                          size: 16,
                           color: Colors.yellow,
                         ),
                         Text(
                           "${shopList[listIndex].review_score}",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
@@ -60,21 +60,21 @@ class ShopListItem extends StatelessWidget {
                       children: [
                         Text(
                           "${shopList[listIndex].category}",
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 12),
                         ),
                         Text(
                           " ㆍ ",
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 12),
                         ),
                         Text(
                           "${shopList[listIndex].address}",
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 12),
                         ),
                       ],
                     ),
                     Text(
                       "${shopList[listIndex].price}원",
-                      style: TextStyle(fontSize: 10),
+                      style: TextStyle(fontSize: 12),
                     ),
                   ],
                 ),
