@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
-import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
 import 'package:mubwara/views/page/search_page/component/restaurant_card.dart';
+import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomNabBar.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_info.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_menu.dart';
 import '../../component/review_list.dart';
@@ -29,63 +28,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen>
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: '불타는 떡볶이',
-      bottomNavigationBar: Container(
-        height: 56,
-        child: Row(
-          children: <Widget>[
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: 66,
-                color: Colors.green,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.phone, color: Body_TEXT_COLOR1),
-                    Text(
-                      "연락하기",
-                      style: TextStyle(color: Body_TEXT_COLOR1),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: 66,
-                color: Colors.green,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.notifications_active, color: Body_TEXT_COLOR1),
-                    Text("구독하기", style: TextStyle(color: Body_TEXT_COLOR1))
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => reservationScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  color: PRIMARY_COLOR,
-                  child: Text("예약하러 가기",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Body_TEXT_COLOR1)),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: bottomNavBar(),
       child: Column(
         children: [
           RestaurantCard(
