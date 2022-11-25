@@ -28,10 +28,7 @@ class _mainPageState extends State<MainPage> {
         backgroundColor: Colors.grey,
       ),
       body: MainBody(selectedIndex: _selectedIndex),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onIndexChanged: selectedIndexChanged,
-      ),
+      bottomNavigationBar: RootTab(),
     );
   }
 }
