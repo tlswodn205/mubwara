@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../domain/review/review.dart';
+
+import '../search_page/component/restaurant_card.dart';
+import 'component/review_item.dart';
 
 class BoardPage extends StatelessWidget {
   const BoardPage({Key? key}) : super(key: key);
@@ -6,9 +10,11 @@ class BoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        "게시판입니다.",
-        style: TextStyle(color: Colors.black),
+      child: ListView.builder(
+        itemCount: reviewList.length,
+        itemBuilder: (context, index) {
+          return ReviewItem(listIndex: index);
+        },
       ),
     );
   }

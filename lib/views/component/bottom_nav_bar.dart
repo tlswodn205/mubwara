@@ -5,6 +5,7 @@ import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/board_page/board_page.dart';
 import 'package:mubwara/views/page/home_page/home_page.dart';
+import 'package:mubwara/views/page/login_page/login_page.dart';
 import 'package:mubwara/views/page/map_page/map_page.dart';
 import 'package:mubwara/views/page/my_page/my_page.dart';
 import 'package:mubwara/views/page/search_page/search_page.dart';
@@ -12,7 +13,7 @@ import 'package:mubwara/views/page/search_page/search_page.dart';
 class RootTab extends StatefulWidget {
   static String get routeName => 'home';
 
-  const RootTab({Key? key}) : super(key: key);
+  const RootTab({index, Key? key}) : super(key: key);
 
   @override
   State<RootTab> createState() => _RootTabState();
@@ -52,7 +53,13 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: controller,
-        children: [HomePage(), MapPage(), SearchPage(), BoardPage(), MyPage()],
+        children: [
+          HomePage(),
+          MapPage(),
+          SearchPage(),
+          BoardPage(),
+          MyPage(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: PRIMARY_COLOR,
