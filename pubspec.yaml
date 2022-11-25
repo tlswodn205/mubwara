@@ -39,6 +39,8 @@ dependencies:
   location: ^4.3.0
   syncfusion_flutter_datepicker: ^18.4.31-beta
   get: ^4.6.5
+  kpostal: ^0.5.1
+  remedi_kopo: ^0.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
