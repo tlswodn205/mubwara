@@ -37,7 +37,10 @@ class bottomNavBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Icon(Icons.notifications_active, color: Body_TEXT_COLOR1),
-                  Text("구독하기", style: TextStyle(color: Body_TEXT_COLOR1))
+                  Text(
+                    "구독하기",
+                    style: TextStyle(color: Body_TEXT_COLOR1),
+                  ),
                 ],
               ),
             ),
