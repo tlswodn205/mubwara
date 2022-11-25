@@ -18,8 +18,7 @@ class RootTab extends StatefulWidget {
   State<RootTab> createState() => _RootTabState();
 }
 
-class _RootTabState extends State<RootTab>
-    with SingleTickerProviderStateMixin {
+class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   late TabController controller;
 
   int index = 0;
@@ -40,8 +39,8 @@ class _RootTabState extends State<RootTab>
     super.dispose();
   }
 
-  void tabListener(){
-    setState((){
+  void tabListener() {
+    setState(() {
       index = controller.index;
     });
   }
@@ -49,30 +48,30 @@ class _RootTabState extends State<RootTab>
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        title: '무바라',
-        child: TabBarView(
+      title: '무바라',
+      child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
-    controller: controller,
-    children: [HomePage(), MapPage(), SearchPage(), BoardPage(), MyPage()],
-    ),
-    bottomNavigationBar: BottomNavigationBar(
-    selectedItemColor: PRIMARY_COLOR,
-    unselectedItemColor: Body_TEXT_COLOR,
-    selectedFontSize: 10,
-    unselectedFontSize: 10,
-    type: BottomNavigationBarType.fixed,
-    onTap: (int index) {
-    controller.animateTo(index);
-    },
-    currentIndex: index,
-    items: [
-        _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
-        _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
-        _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
-        _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
-        _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
-      ],
-    ),
+        controller: controller,
+        children: [HomePage(), MapPage(), SearchPage(), BoardPage(), MyPage()],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: PRIMARY_COLOR,
+        unselectedItemColor: Body_TEXT_COLOR,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
+        type: BottomNavigationBarType.fixed,
+        onTap: (int index) {
+          controller.animateTo(index);
+        },
+        currentIndex: index,
+        items: [
+          _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
+          _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
+          _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
+          _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
+          _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
+        ],
+      ),
     );
   }
 

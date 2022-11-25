@@ -19,6 +19,13 @@ class _mainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "메인",
+          style: TextStyle(fontSize: 25),
+        ),
+        backgroundColor: Colors.grey,
+      ),
       body: MainBody(selectedIndex: _selectedIndex),
       bottomNavigationBar: RootTab(),
     );

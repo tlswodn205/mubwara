@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mubwara/domain/review/review.dart';
-import 'package:mubwara/views/component/review_list_item.dart';
+import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/component/shop_list_item.dart';
 
-class ReviewList extends StatelessWidget {
-  const ReviewList({Key? key}) : super(key: key);
+class ShopList extends StatelessWidget {
+  const ShopList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: reviewList.length,
+      itemCount: shopList.length,
       itemBuilder: (context, index) {
-        return ReviewListItem(listIndex: index);
+        return ShopListItem(listIndex: index);
       },
     );
   }
