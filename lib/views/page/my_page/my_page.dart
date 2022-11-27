@@ -4,6 +4,7 @@ import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
 import '../profile_update_page/profile_update_page.dart';
+import '../review_write_page/review_write_page.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProfileUpdatePage(),
+              builder: (context) => ReviewWritePage(),
             ),
           );
         },
