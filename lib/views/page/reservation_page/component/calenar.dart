@@ -7,11 +7,12 @@ class Calendar extends StatelessWidget {
   final DateTime? selectedDay;
   final DateTime focusedDay;
   final OnDaySelected? onDaySelected;
-  const Calendar({
-    required this.onDaySelected,
-    required this.selectedDay,
-    required this.focusedDay,
-    Key? key}) : super(key: key);
+  const Calendar(
+      {required this.onDaySelected,
+      required this.selectedDay,
+      required this.focusedDay,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,8 @@ class Calendar extends StatelessWidget {
     return TableCalendar(
       locale: 'ko_KR',
       focusedDay: focusedDay,
-      firstDay: DateTime(2022),
-      lastDay: DateTime(2024),
+      firstDay: DateTime.now(),
+      lastDay: DateTime.utc(DateTime.now().year, DateTime.now().month + 1, 31),
       headerStyle: HeaderStyle(
         formatButtonVisible: false,
         titleCentered: true,

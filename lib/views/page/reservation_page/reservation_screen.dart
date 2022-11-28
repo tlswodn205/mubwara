@@ -88,9 +88,9 @@ class _reservationScreenState extends State<reservationScreen> {
 
   onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(
-          () {
+      () {
         this.selectedDay = selectedDay;
-        this.focusedDay = selectedDay;
+        this.focusedDay = focusedDay;
       },
     );
   }

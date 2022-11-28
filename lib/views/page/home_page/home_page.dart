@@ -45,7 +45,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMainPageButton({required String icon, required String text}) {
+  Widget _buildMainPageButton({
+    required String icon,
+    required String text,
+  }) {
     return Container(
       height: 70,
       width: 70,

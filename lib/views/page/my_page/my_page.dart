@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/page/shop_my_page/shop_my_page.dart';
 
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
+import '../profile_update_page/profile_update_page.dart';
+import '../review_write_page/review_write_page.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -24,9 +27,9 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildButton(buttonName: "프로필 수정", Color: Colors.red),
+        _buildButton(buttonName: "프로필 수정", buttonBackgroundColor: Colors.red),
         SizedBox(height: 30),
-        _buildButton(buttonName: "내 가게 등록", Color: Colors.blue),
+        _buildButton(buttonName: "내 가게 등록", buttonBackgroundColor: Colors.blue),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
@@ -40,17 +43,27 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildButton({required String buttonName, required Color Color}) {
+  Widget _buildButton(
+      {required String buttonName, required Color buttonBackgroundColor}) {
     return Container(
       width: double.infinity,
       height: 50,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: Color,
+          backgroundColor: buttonBackgroundColor,
         ),
-        onPressed: () {},
-        child: Text("${buttonName}",
-            style: TextStyle(fontSize: 20, color: Colors.white)),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ShopMyPage(),
+            ),
+          );
+        },
+        child: Text(
+          "${buttonName}",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }

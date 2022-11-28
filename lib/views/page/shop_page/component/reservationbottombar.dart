@@ -19,7 +19,7 @@ class reservationBottomBar extends StatelessWidget {
         height: 56,
         alignment: Alignment.center,
             color: PRIMARY_COLOR,
-            child: Text("결제하기",
+            child: Text("예약하러 가기",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,

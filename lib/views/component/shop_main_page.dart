@@ -3,23 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
-import 'package:mubwara/views/page/board_page/board_page.dart';
-import 'package:mubwara/views/page/home_page/home_page.dart';
-import 'package:mubwara/views/page/login_page/login_page.dart';
-import 'package:mubwara/views/page/map_page/map_page.dart';
-import 'package:mubwara/views/page/my_page/my_page.dart';
-import 'package:mubwara/views/page/search_page/search_page.dart';
+import 'package:mubwara/views/page/alarm_page/alarm_page.dart';
+import 'package:mubwara/views/page/reservation_management_page/reservation_management_page.dart';
+import 'package:mubwara/views/page/shop_analysis_page/shop_analysis_page.dart';
+import 'package:mubwara/views/page/shop_management_page/shop_management_page.dart';
+import 'package:mubwara/views/page/shop_my_page/shop_my_page.dart';
 
-class RootTab extends StatefulWidget {
+class ShopMainPage extends StatefulWidget {
   static String get routeName => 'home';
-
-  RootTab({Key? key}) : super(key: key);
+  const ShopMainPage({Key? key}) : super(key: key);
 
   @override
-  State<RootTab> createState() => _RootTabState();
+  State<ShopMainPage> createState() => _ShopMainPageState();
 }
 
-class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
+class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderStateMixin{
   late TabController controller;
   int index = 0;
 
@@ -48,16 +46,16 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      title: '무바라',
+      title: '내 가게 관리',
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
-          HomePage(),
-          MapPage(),
-          SearchPage(),
-          BoardPage(),
-          MyPage(),
+          ShopManagementPage(),
+          ReservationManagementPage(),
+          ShopAnalysisPage(),
+          AlarmPage(),
+          ShopMyPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -71,10 +69,10 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         },
         currentIndex: index,
         items: [
-          _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
-          _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
-          _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
-          _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
+          _buildButtomNavigatorBarButton("가게 관리", CupertinoIcons.home),
+          _buildButtomNavigatorBarButton("예약 관리", CupertinoIcons.table_badge_more),
+          _buildButtomNavigatorBarButton("예약 분석", CupertinoIcons.chart_bar_alt_fill),
+          _buildButtomNavigatorBarButton("알림", CupertinoIcons.alarm),
           _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
         ],
       ),
