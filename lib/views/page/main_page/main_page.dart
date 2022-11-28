@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mubwara/views/component/basic_appbar.dart';
 import '../../component/bottom_nav_bar.dart';
 import 'component/main_body.dart';
 
