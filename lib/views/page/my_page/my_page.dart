@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/page/home_page/home_page.dart';
 
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
@@ -26,9 +27,15 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildButton(buttonName: "프로필 수정", buttonBackgroundColor: Colors.red),
+        _buildButton(
+            buttonName: "프로필 수정",
+            buttonBackgroundColor: Colors.red,
+            pageName: ProfileUpdatePage()),
         SizedBox(height: 30),
-        _buildButton(buttonName: "내 가게 등록", buttonBackgroundColor: Colors.blue),
+        _buildButton(
+            buttonName: "내 가게 등록",
+            buttonBackgroundColor: Colors.blue,
+            pageName: HomePage()),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
@@ -43,7 +50,9 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildButton(
-      {required String buttonName, required Color buttonBackgroundColor}) {
+      {required String buttonName,
+      required Color buttonBackgroundColor,
+      required Widget pageName}) {
     return Container(
       width: double.infinity,
       height: 50,
@@ -55,7 +64,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ReviewWritePage(),
+              builder: (context) => pageName,
             ),
           );
         },
