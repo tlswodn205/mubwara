@@ -42,8 +42,11 @@ dependencies:
   table_calendar: ^3.0.8
   kpostal: ^0.5.1
   remedi_kopo: ^0.0.1
+<<<<<<< HEAD
   iamport_flutter: ^0.10.3
   file_picker: ^5.2.2
+=======
+>>>>>>> 29c1474f9aa90d84d74d53fa5ba38bb9aafb9f78
 
 
   # The following adds the Cupertino Icons font to your application.
