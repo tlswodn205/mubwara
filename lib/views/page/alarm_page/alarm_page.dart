@@ -12,21 +12,21 @@ class AlarmPage extends StatelessWidget {
         children: [
           Center(
             child: SingleChildScrollView(
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1,
-                          color: Body_TEXT_COLOR2
-                      )
-                  ),
-                child: AlramCard(
-                customer_name: '박동훈',
-                customer_phone: '01024102957',
-                reservation_date: '2022.11.29',
-                reservation_time: '19:00',
-                table_max_people: 5
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                      width: 1,
+                      color: PRIMARY_COLOR,
+                    ),
                 ),
+                child: AlramCard(
+                    customer_name: '박동훈',
+                    customer_phone: '01024102957',
+                    reservation_date: '2022.11.29',
+                    reservation_time: '19:00',
+                    table_max_people: 5),
               ),
             ),
           ),

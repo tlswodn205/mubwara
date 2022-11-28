@@ -37,7 +37,14 @@ class AlramCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                customer_name,
+                '예약자 성함 : $customer_name',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                '전화번호 : $customer_phone',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w500,
@@ -47,18 +54,13 @@ class AlramCard extends StatelessWidget {
               Row(
                 children: [
                   _IconText(
-                    icon: Icons.phone,
-                    label: customer_phone.toString(),
-                  ),
-                  renderDot(),
-                  _IconText(
                     icon: Icons.calendar_month_outlined,
-                    label: reservation_date.toString(),
+                    label: '예약 날짜 : $reservation_date',
                   ),
                   renderDot(),
                   _IconText(
                     icon: Icons.timelapse_outlined,
-                    label: '$reservation_time ',
+                    label: '예약 시간 : $reservation_time ',
                   ),
                   renderDot(),
                   _IconText(

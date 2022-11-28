@@ -25,7 +25,7 @@ class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    controller = TabController(length: 5, vsync: this);
+    controller = TabController(length: 4, vsync: this);
 
     controller.addListener(tabListener);
   }
@@ -51,7 +51,6 @@ class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderSt
         physics: NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
-          ShopManagementPage(),
           ReservationManagementPage(),
           ShopAnalysisPage(),
           AlarmPage(),
@@ -69,7 +68,6 @@ class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderSt
         },
         currentIndex: index,
         items: [
-          _buildButtomNavigatorBarButton("가게 관리", CupertinoIcons.home),
           _buildButtomNavigatorBarButton("예약 관리", CupertinoIcons.table_badge_more),
           _buildButtomNavigatorBarButton("예약 분석", CupertinoIcons.chart_bar_alt_fill),
           _buildButtomNavigatorBarButton("알림", CupertinoIcons.alarm),

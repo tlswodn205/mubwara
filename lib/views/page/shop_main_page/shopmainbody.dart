@@ -14,7 +14,6 @@ class ShopMainBody extends StatelessWidget {
     return IndexedStack(
       index: selectedIndex,
       children: [
-        ShopManagementPage(),
         ReservationManagementPage(),
         ShopAnalysisPage(),
         AlarmPage(),
