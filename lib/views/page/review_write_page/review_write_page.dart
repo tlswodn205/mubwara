@@ -8,21 +8,29 @@ class ReviewWritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: Column(
-      children: [
-        SizedBox(height: 60),
-        Text("${shopList[0].shop_name} 리뷰 작성하기",),
-        SizedBox(height: 30),
-        _buildTextFeild("리뷰내용", "null"),
-        SizedBox(height: 30),
-        _buildButton(
-            buttonName: "회원 수정 하기",
-            buttonBackgroundColor: Colors.grey,
-            fontColor: Colors.white)
-      ],
-    ),
-  );
+      body: Column(
+        children: [
+          SizedBox(height: 60),
+          Text("${shopList[0].shop_name} 리뷰 작성하기",
+              style: TextStyle(fontSize: 20)),
+          _buildButton(
+              buttonName: "이미지 추가 하기",
+              buttonBackgroundColor: Colors.grey,
+              fontColor: Colors.white,
+              widthSize: 120),
+          SizedBox(height: 30),
+          _buildTextFeild("리뷰내용", "null"),
+          SizedBox(height: 30),
+          _buildButton(
+              buttonName: "리뷰 작성 완료",
+              buttonBackgroundColor: Colors.grey,
+              fontColor: Colors.white,
+              widthSize: 330)
+        ],
+      ),
+    );
   }
+
   Widget _buildTextFeild(String feildName, String defaultText) {
     return Center(
       child: SizedBox(
@@ -42,10 +50,11 @@ class ReviewWritePage extends StatelessWidget {
 
   Widget _buildButton(
       {required String buttonName,
-        required Color buttonBackgroundColor,
-        required Color fontColor}) {
+      required Color buttonBackgroundColor,
+      required Color fontColor,
+      required double widthSize}) {
     return Container(
-      width: 330,
+      width: widthSize,
       height: 50,
       child: TextButton(
         style: TextButton.styleFrom(
