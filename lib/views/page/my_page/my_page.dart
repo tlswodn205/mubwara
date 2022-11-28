@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
-import 'package:mubwara/views/page/home_page/home_page.dart';
+import 'package:mubwara/views/page/shop_main_page/shop_main_page.dart';
+import 'package:mubwara/views/page/shop_my_page/shop_my_page.dart';
 
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
@@ -35,7 +36,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
         _buildButton(
             buttonName: "내 가게 등록",
             buttonBackgroundColor: Colors.blue,
-            pageName: HomePage()),
+            pageName: ShopMain()),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
