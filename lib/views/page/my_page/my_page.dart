@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/page/shop_main_page/shop_main_page.dart';
 import 'package:mubwara/views/page/shop_my_page/shop_my_page.dart';
 
 import '../../component/review_list.dart';
@@ -56,7 +57,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ShopMyPage(),
+              builder: (context) => ShopMain(),
             ),
           );
         },
