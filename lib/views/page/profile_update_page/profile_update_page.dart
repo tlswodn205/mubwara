@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
 class ProfileUpdatePage extends StatefulWidget {
@@ -14,21 +15,24 @@ class _profileUpdatePage extends State<ProfileUpdatePage> {
   TextEditingController _AddressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 60),
-          _buildTextFeild("소비자명", "null"),
-          SizedBox(height: 30),
-          AddressText(),
-          SizedBox(height: 10),
-          _buildTextFeild("전화번호", "null"),
-          SizedBox(height: 30),
-          _buildButton(
-              buttonName: "회원 수정 하기",
-              buttonBackgroundColor: Colors.grey,
-              fontColor: Colors.white)
-        ],
+    return DefaultLayout(
+      title: '내 정보 수정',
+      child: Scaffold(
+        body: Column(
+          children: [
+            SizedBox(height: 60),
+            _buildTextFeild("소비자명", "null"),
+            SizedBox(height: 30),
+            AddressText(),
+            SizedBox(height: 10),
+            _buildTextFeild("전화번호", "null"),
+            SizedBox(height: 30),
+            _buildButton(
+                buttonName: "회원 수정 하기",
+                buttonBackgroundColor: Colors.grey,
+                fontColor: Colors.white)
+          ],
+        ),
       ),
     );
   }

@@ -6,8 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? errorText;
   final bool obscureText;
   final bool autofocus;
-  final ValueChanged<String?> onChanged;
-  const CustomTextFormField({this.hintText, this.errorText,required this.onChanged,
+  const CustomTextFormField({this.hintText, this.errorText,
     this.autofocus = false, this.obscureText = false,
     Key? key}) : super(key: key);
 
@@ -24,7 +23,6 @@ class CustomTextFormField extends StatelessWidget {
       // 비밀번호 입력할때만 사용 obscureText\
       obscureText: obscureText,
       autofocus: autofocus,
-      onChanged: onChanged, //값이 바뀔때 마다 콜백
       decoration: InputDecoration( // 입력폼 데코레이션
         contentPadding: EdgeInsets.all(20),
         hintText: hintText,

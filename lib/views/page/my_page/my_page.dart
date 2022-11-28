@@ -28,9 +28,15 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildButton(buttonName: "프로필 수정", buttonBackgroundColor: Colors.red),
+        _buildButton(
+            buttonName: "프로필 수정",
+            buttonBackgroundColor: Colors.red,
+            pageName: ProfileUpdatePage()),
         SizedBox(height: 30),
-        _buildButton(buttonName: "내 가게 등록", buttonBackgroundColor: Colors.blue),
+        _buildButton(
+            buttonName: "내 가게 등록",
+            buttonBackgroundColor: Colors.blue,
+            pageName: ShopMain()),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
@@ -45,7 +51,9 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildButton(
-      {required String buttonName, required Color buttonBackgroundColor}) {
+      {required String buttonName,
+      required Color buttonBackgroundColor,
+      required Widget pageName}) {
     return Container(
       width: double.infinity,
       height: 50,
@@ -57,7 +65,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ShopMain(),
+              builder: (context) => pageName,
             ),
           );
         },

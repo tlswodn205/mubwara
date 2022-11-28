@@ -38,7 +38,7 @@ AppBar searchBar() {
           borderSide: BorderSide(color: INPUT_BORDER_COLOR,)
         ),
         filled: true,
-        prefixIcon: Icon(Icons.person_pin, color: Body_TEXT_COLOR2, size: 30),
+        prefixIcon: Icon(Icons.search_rounded, color: Body_TEXT_COLOR2, size: 30),
         suffixIcon: IconButton(icon: Icon(Icons.clear, color: Body_TEXT_COLOR,),
   onPressed: emptyTheTextFormField)
         ),

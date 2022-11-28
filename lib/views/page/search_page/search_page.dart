@@ -23,8 +23,7 @@ class _SearchPageState extends State<SearchPage> {
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child:
-                GestureDetector(
+                child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => ShopDetailScreen(),

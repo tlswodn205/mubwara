@@ -8,25 +8,34 @@ class ReviewWritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 60),
-          Text("${shopList[0].shop_name} 리뷰 작성하기",
-              style: TextStyle(fontSize: 20)),
-          _buildButton(
-              buttonName: "이미지 추가 하기",
-              buttonBackgroundColor: Colors.grey,
-              fontColor: Colors.white,
-              widthSize: 120),
-          SizedBox(height: 30),
-          _buildTextFeild("리뷰내용", "null"),
-          SizedBox(height: 30),
-          _buildButton(
-              buttonName: "리뷰 작성 완료",
-              buttonBackgroundColor: Colors.grey,
-              fontColor: Colors.white,
-              widthSize: 330)
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            Text("${shopList[0].shop_name} 리뷰 작성하기",
+                style: TextStyle(fontSize: 20)),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _buildButton(
+                    buttonName: "이미지 추가 하기",
+                    buttonBackgroundColor: Colors.grey,
+                    fontColor: Colors.white,
+                    widthSize: 120),
+              ],
+            ),
+            SizedBox(height: 10),
+            _buildTextFeild("리뷰내용", "null"),
+            SizedBox(height: 30),
+            _buildButton(
+                buttonName: "리뷰 작성 완료",
+                buttonBackgroundColor: Colors.grey,
+                fontColor: Colors.white,
+                widthSize: 330)
+          ],
+        ),
       ),
     );
   }
