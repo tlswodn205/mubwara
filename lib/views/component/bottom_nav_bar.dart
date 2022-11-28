@@ -13,7 +13,7 @@ import 'package:mubwara/views/page/search_page/search_page.dart';
 class RootTab extends StatefulWidget {
   static String get routeName => 'home';
 
-  const RootTab({index, Key? key}) : super(key: key);
+  RootTab({Key? key}) : super(key: key);
 
   @override
   State<RootTab> createState() => _RootTabState();
@@ -21,7 +21,6 @@ class RootTab extends StatefulWidget {
 
 class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   late TabController controller;
-
   int index = 0;
 
   @override

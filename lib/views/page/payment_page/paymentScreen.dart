@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mubwara/views/common/const/color.dart';
+import 'package:mubwara/views/component/bottom_nav_bar.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/main_page/main_page.dart';
 import 'package:mubwara/views/page/shop_page/shop_detail.dart';
@@ -29,6 +31,8 @@ class paymentScreen extends StatelessWidget {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => RootTab()));
               },
               style: ElevatedButton.styleFrom(
                 primary: PRIMARY_COLOR,

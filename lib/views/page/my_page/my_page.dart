@@ -59,8 +59,10 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
             ),
           );
         },
-        child: Text("${buttonName}",
-            style: TextStyle(fontSize: 20, color: Colors.white)),
+        child: Text(
+          "${buttonName}",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }
