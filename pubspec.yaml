@@ -37,13 +37,15 @@ dependencies:
   google_maps_flutter: ^2.2.1
   geolocator: ^8.1.1
   location: ^4.3.0
-  syncfusion_flutter_datepicker: ^18.4.31-beta
+  syncfusion_flutter_datepicker: ^20.3.59
   get: ^4.6.5
   table_calendar: ^3.0.8
   kpostal: ^0.5.1
   remedi_kopo: ^0.0.1
   iamport_flutter: ^0.10.3
   image_picker: ^0.8.6
+  flutter_plot: ^0.1.0
+  syncfusion_flutter_charts: ^20.3.59
 
 
 
