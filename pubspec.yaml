@@ -43,7 +43,8 @@ dependencies:
   kpostal: ^0.5.1
   remedi_kopo: ^0.0.1
   iamport_flutter: ^0.10.3
-  file_picker: ^5.2.2
+  image_picker: ^0.8.6
+
 
 
 
