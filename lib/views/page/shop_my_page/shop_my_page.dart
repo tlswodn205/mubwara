@@ -22,6 +22,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 16.0),
                 CustomTextFormField(

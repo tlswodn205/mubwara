@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
 
@@ -92,8 +93,8 @@ class _HomeScreenState extends State<MapPage> {
                       circle: choolCheckDone
                           ? checkDoneCircle
                           : isWithinRange
-                          ? withinDistanceCircle
-                          : notWithinDistanceCircle,
+                              ? withinDistanceCircle
+                              : notWithinDistanceCircle,
                       marker: marker,
                       onMapCreated: onMapCreated,
                     ),
@@ -114,7 +115,6 @@ class _HomeScreenState extends State<MapPage> {
   onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
 
   Future<String> checkPermission() async {
     final isLocationEnabled = await Geolocator.isLocationServiceEnabled();
@@ -139,8 +139,6 @@ class _HomeScreenState extends State<MapPage> {
 
     return '위치 권한이 허가 되었습니다.';
   }
-
-
 }
 
 class _CustomGoogleMap extends StatelessWidget {
