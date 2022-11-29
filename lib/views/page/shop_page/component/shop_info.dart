@@ -27,4 +27,12 @@ class ShopInfo extends StatelessWidget {
         ),
       );
   }
+
+  // Widget changeText(){
+  //   if(){
+  //     return Image.asset(name)
+  //   }else{
+  //     return Text();
+  //   }
+  // }
 }
