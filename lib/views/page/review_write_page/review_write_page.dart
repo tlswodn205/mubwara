@@ -1,9 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'dart:io';
 
-class ReviewWritePage extends StatelessWidget {
+class ReviewWritePage extends StatefulWidget {
   const ReviewWritePage({Key? key}) : super(key: key);
+
+  @override
+  State<ReviewWritePage> createState() => _ReviewWritePageState();
+}
+
+class _ReviewWritePageState extends State<ReviewWritePage> {
+  final ImagePicker imgpicker = ImagePicker();
+  List<XFile>? imagefiles;
+
+  openImages() async {
+    try {
+      var pickedfiles = await imgpicker.pickMultiImage();
+      //you can use ImageCourse.camera for Camera capture
+      if (pickedfiles != null) {
+        imagefiles = pickedfiles;
+        setState(() {});
+      } else {
+        print("No image is selected.");
+      }
+    } catch (e) {
+      print("error while picking file.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +41,7 @@ class ReviewWritePage extends StatelessWidget {
             Text("${shopList[0].shop_name} 리뷰 작성하기",
                 style: TextStyle(fontSize: 20)),
             SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                _buildButton(
-                    buttonName: "이미지 추가 하기",
-                    buttonBackgroundColor: Colors.grey,
-                    fontColor: Colors.white,
-                    widthSize: 120),
-              ],
-            ),
+            _builderImageUploader(),
             SizedBox(height: 10),
             _buildTextFeild("리뷰내용", "null"),
             SizedBox(height: 30),
@@ -72,6 +88,44 @@ class ReviewWritePage extends StatelessWidget {
         onPressed: () {},
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),
+      ),
+    );
+  }
+
+  Widget _builderImageUploader() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          //open button ----------------
+
+          Text("선택한 이미지:"),
+          Divider(),
+
+          imagefiles != null
+              ? Wrap(
+                  children: imagefiles!.map((imageone) {
+                    return Container(
+                        child: Card(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(
+                          File(imageone.path),
+                        ),
+                      ),
+                    ));
+                  }).toList(),
+                )
+              : Container(),
+          Divider(),
+          ElevatedButton(
+              onPressed: () {
+                openImages();
+              },
+              child: Text("Open Images")),
+        ],
       ),
     );
   }

@@ -35,7 +35,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
         _buildButton(
             buttonName: "내 가게 등록",
             buttonBackgroundColor: Colors.blue,
-            pageName: HomePage()),
+            pageName: ReviewWritePage()),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
