@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
+import 'page/reservation_cancle_page.dart';
+import 'page/reservation_now_page.dart';
+import 'page/schedule_page.dart';
+
 class ReservationManagementPage extends StatelessWidget {
   const ReservationManagementPage({
 
@@ -14,6 +18,13 @@ class ReservationManagementPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => SchedulePage(),
+                  ),
+                );
+              },
               child: Container(
                 height: 56,
                 width: 300,
@@ -27,6 +38,13 @@ class ReservationManagementPage extends StatelessWidget {
               ),
             ),
             InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => ReservationNowPage(),
+                  ),
+                );
+              },
               child: Container(
                 height: 56,
                 width: 300,
@@ -40,6 +58,13 @@ class ReservationManagementPage extends StatelessWidget {
               ),
             ),
             InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => ReservationCanclePage(),
+                  ),
+                );
+              },
               child: Container(
                 height: 56,
                 width: 300,

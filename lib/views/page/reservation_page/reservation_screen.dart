@@ -14,10 +14,10 @@ class reservationScreen extends StatefulWidget {
 }
 
 class _reservationScreenState extends State<reservationScreen> {
-  DateTime selectedDay = DateTime(
+  DateTime selectedDay = DateTime.utc(
     DateTime.now().year,
     DateTime.now().month,
-    DateTime.now().day
+    DateTime.now().day,
   );
   DateTime focusedDay = DateTime.now();
   @override
@@ -58,7 +58,7 @@ class _reservationScreenState extends State<reservationScreen> {
                     SceduleCard(reservation_time: '24:00',),
                     SceduleCard(reservation_time: '01:00',),
                     SceduleCard(reservation_time: '02:00',),
-                  ]
+                  ],
               ),
           ),
           SizedBox(height: 8.0,),
@@ -90,7 +90,7 @@ class _reservationScreenState extends State<reservationScreen> {
     setState(
       () {
         this.selectedDay = selectedDay;
-        this.focusedDay = focusedDay;
+        this.focusedDay = selectedDay;
       },
     );
   }

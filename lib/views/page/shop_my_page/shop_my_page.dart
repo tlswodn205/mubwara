@@ -22,7 +22,6 @@ class _ShopMyPageState extends State<ShopMyPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 16.0),
                 CustomTextFormField(
@@ -43,25 +42,35 @@ class _ShopMyPageState extends State<ShopMyPage> {
                   hintText: '가게의 주소를 입력해주세요.',
                   obscureText: false,
                 ),
-                CustomTextFormField(
-                  hintText: '가게 오픈시간을 입력해주세요.',
-                  obscureText: false,
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextFormField(
+                        hintText: '오픈시간',
+                        obscureText: false,
+                      ),
+                    ),
+                    Expanded(
+                      child: CustomTextFormField(
+                        hintText: '마감시간',
+                        obscureText: false,
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 16.0),
-
-                CustomTextFormField(
-                  hintText: '가게 마감시간을 입력해주세요.',
-                  obscureText: false,
-                ),
-                const SizedBox(height: 16.0),
-                TextButton(
-                  onPressed: () async {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: PRIMARY_COLOR,
-                    primary: Body_TEXT_COLOR1,
-                  ),
-                  child: Text(
-                    '정보 저장하기',
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () async {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: PRIMARY_COLOR,
+                      primary: Body_TEXT_COLOR1,
+                    ),
+                    child: Text(
+                      '정보 저장하기',
+                    ),
                   ),
                 ),
               ],
@@ -72,5 +81,3 @@ class _ShopMyPageState extends State<ShopMyPage> {
     );
   }
 }
-
-
