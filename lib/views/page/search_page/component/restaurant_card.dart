@@ -26,9 +26,6 @@ class RestaurantCard extends StatelessWidget {
   // 닫는 시간
   final String close_time;
 
-  // Hero 위젯 태그
-  final String? heroKey;
-
   // 상세 내용
   final String? detail;
 
@@ -42,26 +39,16 @@ class RestaurantCard extends StatelessWidget {
     required this.close_time,
     required this.information,
     this.detail,
-    this.heroKey,
     Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (heroKey != null)
-          Hero(
-            tag: ObjectKey(heroKey),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: image,
-            ),
-          ),
-        if (heroKey == null)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: image,
-          ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(16.0),
+          child: image,
+        ),
         const SizedBox(height: 16.0),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
