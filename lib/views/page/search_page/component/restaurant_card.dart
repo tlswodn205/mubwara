@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
@@ -29,6 +30,10 @@ class RestaurantCard extends StatelessWidget {
   // 상세 내용
   final String? detail;
 
+  final double review_score;
+
+  final int review_count;
+
   const RestaurantCard({
     required this.image,
     required this.shop_name,
@@ -38,6 +43,8 @@ class RestaurantCard extends StatelessWidget {
     required this.open_time,
     required this.close_time,
     required this.information,
+    required this.review_score,
+    required this.review_count,
     this.detail,
     Key? key,
   }) : super(key: key);
@@ -55,12 +62,25 @@ class RestaurantCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                shop_name,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                children: [
+                  Text(
+                    shop_name,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Icon(
+                    CupertinoIcons.star_fill,
+                    size: 16,
+                    color: Colors.yellow,
+                  ),
+                  Text(
+                    '${review_score}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
               const SizedBox(height: 8.0),
               Text(

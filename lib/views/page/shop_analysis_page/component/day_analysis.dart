@@ -31,23 +31,20 @@ class _DayAnalysisState extends State<DayAnalysis> {
       children: [
         //Initialize the chart widget
         SfCartesianChart(
-          primaryXAxis: CategoryAxis(),
-          // Chart title
-          title: ChartTitle(text: '일일 예약수(차트)'),
-          // Enable legend
-          legend: Legend(isVisible: true),
-          // Enable tooltip
-          tooltipBehavior: TooltipBehavior(enable: true),
-          series: <ChartSeries<_SalesData, String>>[
-            LineSeries<_SalesData, String>(
-                dataSource: data,
-                xValueMapper: (_SalesData sales, _) => sales.hour,
-                yValueMapper: (_SalesData sales, _) => sales.sales,
-                name: 'Sales',
-                // Enable data label
-                dataLabelSettings: DataLabelSettings(isVisible: true))
-          ],
-        ),
+            primaryXAxis: CategoryAxis(),
+            // Chart title
+            title: ChartTitle(text: '일일 예약수(차트)'),
+            // Enable tooltip
+            tooltipBehavior: TooltipBehavior(enable: true),
+            series: <ChartSeries<_SalesData, String>>[
+              LineSeries<_SalesData, String>(
+                  dataSource: data,
+                  xValueMapper: (_SalesData sales, _) => sales.hour,
+                  yValueMapper: (_SalesData sales, _) => sales.sales,
+                  name: 'Sales',
+                  // Enable data label
+                  dataLabelSettings: DataLabelSettings(isVisible: true))
+            ]),
         SizedBox(height: 20),
         Expanded(
           child: ListView(children: <Widget>[

@@ -29,8 +29,6 @@ class _WeekAnalysisState extends State<WeekAnalysis> {
           primaryXAxis: CategoryAxis(),
           // Chart title
           title: ChartTitle(text: '주간 예약수(차트)'),
-          // Enable legend
-          legend: Legend(isVisible: true),
           // Enable tooltip
           tooltipBehavior: TooltipBehavior(enable: true),
           series: <ChartSeries<_SalesData, String>>[

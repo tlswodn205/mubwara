@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mubwara/views/component/review_star_make.dart';
 
 import '../../dto/response/shop_resp_dto.dart';
+import '../page/search_page/component/restaurant_card.dart';
+import '../page/shop_page/shop_detail.dart';
 
 class ShopListItem extends StatelessWidget {
   const ShopListItem({required this.listIndex, Key? key}) : super(key: key);
@@ -13,73 +14,38 @@ class ShopListItem extends StatelessWidget {
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Container(
-          child: Row(
-            children: [
-              Container(
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/shop/${shopList[listIndex].image}',
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+        child: _buildShop(listIndex, context),
+      ),
+    );
+  }
+
+  Widget _buildShop(int ListIndex, BuildContext context) {
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    ShopDetailScreen(shopId: shopList[ListIndex].shop_id),
               ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      shopList[listIndex].shop_name,
-                      style: TextStyle(fontSize: 19),
-                    ),
-                    Text(
-                      "${shopList[listIndex].information}",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          CupertinoIcons.star_fill,
-                          size: 16,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          "${shopList[listIndex].review_score}",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "${shopList[listIndex].category}",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        Text(
-                          " ㆍ ",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        Text(
-                          "${shopList[listIndex].address}",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "${shopList[listIndex].price}원",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            );
+          },
+          child: RestaurantCard(
+            image: Image.asset(
+              'assets/images/shop/${shopList[ListIndex].image}',
+              fit: BoxFit.cover,
+            ),
+            shop_name: '${shopList[ListIndex].shop_name}',
+            tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
+            address: '${shopList[ListIndex].address}',
+            telephone: '${shopList[ListIndex].telephone}',
+            open_time: '10:00',
+            close_time: '22:00',
+            review_score: shopList[ListIndex].review_score,
+            review_count: shopList[ListIndex].reviewer_count,
+            information: '${shopList[ListIndex].information}',
           ),
         ),
       ),

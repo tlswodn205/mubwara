@@ -28,8 +28,6 @@ class _MonthAnalysisState extends State<MonthAnalysis> {
           title: ChartTitle(
             text: '월간 예약수(차트)',
           ),
-          // Enable legend
-          legend: Legend(isVisible: true),
           // Enable tooltip
           tooltipBehavior: TooltipBehavior(enable: true),
           series: <ChartSeries<_SalesData, String>>[

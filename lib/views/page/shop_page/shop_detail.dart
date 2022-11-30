@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/search_page/component/restaurant_card.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomNabBar.dart';
@@ -8,8 +9,8 @@ import 'package:mubwara/views/page/shop_page/component/shop_menu.dart';
 import '../../component/review_list.dart';
 
 class ShopDetailScreen extends StatefulWidget {
-  const ShopDetailScreen({Key? key}) : super(key: key);
-
+  const ShopDetailScreen({required this.shopId, Key? key}) : super(key: key);
+  final int shopId;
   @override
   State<ShopDetailScreen> createState() => _ShopDetailScreenState();
 }
@@ -26,37 +27,25 @@ class _ShopDetailScreenState extends State<ShopDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    int ListIndex =
+        shopList.indexWhere((element) => element.shop_id == widget.shopId);
     return DefaultLayout(
-      title: '불타는 떡볶이',
-      bottomNavigationBar: bottomNavBar(),
-      child: Column(
-        children: [
-          RestaurantCard(
-            image: Image.asset(
-              'assets/images/review/ddeok_bok_gi.jpg',
-              width: 300,
-              fit: BoxFit.cover,
+        title: '${shopList[ListIndex].shop_name}',
+        bottomNavigationBar: bottomNavBar(),
+        child: Column(
+          children: [
+            _buildShop(ListIndex),
+            SizedBox(height: 30),
+            PreferredSize(
+              preferredSize: _buildTabBar().preferredSize,
+              child: ColoredBox(
+                color: Colors.grey,
+                child: _buildTabBar(),
+              ),
             ),
-            shop_name: '쉐프의 떡볶이',
-            tags: ['떡볶이', '치즈', '매운맛'],
-            address: '화명동',
-            telephone: '01024102957',
-            open_time: '10:00',
-            close_time: '22:00',
-            information: '어린이 간식, 아빠 술 안주로 좋아요!',
-          ),
-          SizedBox(height: 30),
-          PreferredSize(
-            preferredSize: _buildTabBar().preferredSize,
-            child: ColoredBox(
-              color: Colors.grey,
-              child: _buildTabBar(),
-            ),
-          ),
-          Expanded(child: _buildTabBarView()),
-        ],
-      ),
-    );
+            Expanded(child: _buildTabBarView()),
+          ],
+        ));
   }
 
   Widget _buildButton({required String buttonName, required Color Color}) {
@@ -111,6 +100,32 @@ class _ShopDetailScreenState extends State<ShopDetailScreen>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildShop(int ListIndex) {
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GestureDetector(
+          child: RestaurantCard(
+            image: Image.asset(
+              'assets/images/shop/${shopList[ListIndex].image}',
+              width: 300,
+              fit: BoxFit.cover,
+            ),
+            shop_name: '${shopList[ListIndex].shop_name}',
+            tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
+            address: '${shopList[ListIndex].address}',
+            telephone: '${shopList[ListIndex].telephone}',
+            open_time: '10:00',
+            close_time: '22:00',
+            review_score: shopList[ListIndex].review_score,
+            review_count: shopList[ListIndex].reviewer_count,
+            information: '${shopList[ListIndex].information}',
+          ),
+        ),
+      ),
     );
   }
 }
