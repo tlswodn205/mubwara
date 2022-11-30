@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
@@ -29,7 +30,7 @@ class _profileUpdatePage extends State<ProfileUpdatePage> {
             SizedBox(height: 30),
             _buildButton(
                 buttonName: "회원 수정 하기",
-                buttonBackgroundColor: Colors.grey,
+                buttonBackgroundColor: PRIMARY_COLOR,
                 fontColor: Colors.white)
           ],
         ),
@@ -71,7 +72,7 @@ class _profileUpdatePage extends State<ProfileUpdatePage> {
                   _addressAPI();
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: PRIMARY_COLOR,
                 ),
                 child: Text(
                   '주소 검색',

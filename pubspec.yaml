@@ -46,7 +46,7 @@ dependencies:
   image_picker: ^0.8.6
   flutter_plot: ^0.1.0
   syncfusion_flutter_charts: ^20.3.59
-
+  carousel_slider: ^4.1.1
 
 
 
@@ -81,6 +81,7 @@ flutter:
   assets:
     - assets/images/review/
     - assets/images/shop/
+    - assets/images/notice/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
