@@ -3,7 +3,7 @@ import 'package:mubwara/views/common/const/color.dart';
 
 class RestaurantCard extends StatelessWidget {
   // 이미지
-  final Widget image;
+  final Image image;
 
   // 레스토랑 이름
   final String shop_name;
