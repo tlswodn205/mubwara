@@ -83,6 +83,7 @@ flutter:
     - assets/images/review/
     - assets/images/shop/
     - assets/images/notice/
+    - assets/images/feature/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
