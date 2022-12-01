@@ -21,6 +21,9 @@ class _joinPage extends State<JoinPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
             _buildTextFeild("아이디", "null"),
             Row(
               children: [
@@ -30,7 +33,7 @@ class _joinPage extends State<JoinPage> {
                 TextButton(
                   onPressed: () {},
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.blue,
                   ),
                   child: Text(
                     '아이디 중복 체크',
@@ -52,7 +55,7 @@ class _joinPage extends State<JoinPage> {
             SizedBox(height: 30),
             _buildButton(
                 buttonName: "회원 정보 변경",
-                buttonBackgroundColor: Colors.grey,
+                buttonBackgroundColor: Colors.blue,
                 fontColor: Colors.white),
           ],
         ),
@@ -94,7 +97,7 @@ class _joinPage extends State<JoinPage> {
                   _addressAPI();
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.blue,
                 ),
                 child: Text(
                   '주소 검색',

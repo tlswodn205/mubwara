@@ -14,6 +14,7 @@ class ReviewWritePage extends StatefulWidget {
 class _ReviewWritePageState extends State<ReviewWritePage> {
   final ImagePicker imgpicker = ImagePicker();
   List<XFile>? imagefiles;
+  late int starCount = 1;
 
   openImages() async {
     try {
@@ -43,6 +44,8 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
             SizedBox(height: 10),
             _builderImageUploader(),
             SizedBox(height: 10),
+            _buildStar(),
+            SizedBox(height: 10),
             _buildTextFeild("리뷰내용", "null"),
             SizedBox(height: 30),
             _buildButton(
@@ -52,6 +55,31 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
                 widthSize: 330)
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildStar() {
+    return Container(
+      child: Row(
+        children: [
+          for (int i = 1; i <= 5; i++)
+            (IconButton(
+                onPressed: () {
+                  setState(() {
+                    starCount = i;
+                  });
+                },
+                icon: ((starCount >= i)
+                    ? Icon(
+                        CupertinoIcons.star_fill,
+                        color: Colors.yellow,
+                      )
+                    : Icon(
+                        CupertinoIcons.star,
+                        color: Colors.yellow,
+                      ))))
+        ],
       ),
     );
   }
