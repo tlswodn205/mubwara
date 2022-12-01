@@ -130,7 +130,6 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
 
           Text("선택한 이미지:"),
           Divider(),
-
           imagefiles != null
               ? Wrap(
                   children: imagefiles!.map((imageone) {
