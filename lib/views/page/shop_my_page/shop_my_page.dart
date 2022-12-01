@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/views/common/components/custom_text_form_field.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
+import 'package:mubwara/views/page/shop_my_page/checkbox/checkbox.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
 class ShopMyPage extends StatefulWidget {
@@ -82,6 +83,12 @@ class _ShopMyPageState extends State<ShopMyPage> {
                   ],
                 ),
                 const SizedBox(height: 16.0),
+                _buildButton(
+                    buttonName: "편의시설 수정하기",
+                    buttonBackgroundColor: Colors.blue,
+                    pageName: CheckBoxListTileDemo()),
+                const SizedBox(height: 16.0),
+
                 _builderImageUploader(),
                 const SizedBox(height: 16.0),
                 SizedBox(
@@ -101,6 +108,33 @@ class _ShopMyPageState extends State<ShopMyPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+  
+  Widget _buildButton(
+      {required String buttonName,
+        required Color buttonBackgroundColor,
+        required Widget pageName}) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: buttonBackgroundColor,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => pageName,
+            ),
+          );
+        },
+        child: Text(
+          "${buttonName}",
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
     );
