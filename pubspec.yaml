@@ -47,6 +47,7 @@ dependencies:
   flutter_plot: ^0.1.0
   syncfusion_flutter_charts: ^20.3.59
   carousel_slider: ^4.1.1
+  badges: ^2.0.3
 
 
 
