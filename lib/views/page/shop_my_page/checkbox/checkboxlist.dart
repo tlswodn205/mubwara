@@ -6,8 +6,11 @@ class CheckBoxListTileModel {
   String title;
   bool isCheck;
 
-  CheckBoxListTileModel({required this.userId,required this.img,
-    required this.title,required this.isCheck});
+  CheckBoxListTileModel(
+      {required this.userId,
+      required this.img,
+      required this.title,
+      required this.isCheck});
 
   static List<CheckBoxListTileModel> getUsers() {
     return <CheckBoxListTileModel>[

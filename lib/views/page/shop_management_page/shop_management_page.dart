@@ -7,9 +7,7 @@ class ShopManagementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          '샵 매니지먼트'
-        ),
+        child: Text('샵 매니지먼트'),
       ),
     );
   }
