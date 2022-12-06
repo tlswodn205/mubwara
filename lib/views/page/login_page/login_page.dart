@@ -4,6 +4,7 @@ import 'package:mubwara/controller/user_controller.dart';
 import 'package:mubwara/views/page/login_page/login_page_model.dart';
 
 import '../join_page/join_page.dart';
+import 'component/kakao_login.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -37,12 +38,7 @@ class _loginPage extends ConsumerState<LoginPage> {
               buttonBackgroundColor: Colors.grey,
               fontColor: Colors.white),
           SizedBox(height: 30),
-          _buildLoginTestButton(
-            buttonName: "카카오로 로그인하기",
-            buttonBackgroundColor: Colors.yellow,
-            fontColor: Colors.black,
-            userController: uc,
-          ),
+          Kakaobutton(),
         ],
       ),
     );

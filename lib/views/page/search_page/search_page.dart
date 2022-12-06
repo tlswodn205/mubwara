@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -27,11 +28,14 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return Scaffold(
       appBar: searchBar(),
       body: Center(
-        child: ListView.builder(
-          itemCount: sm.length,
-          itemBuilder: (context, index) {
-            return _buildShop(index, sm, sc);
-          },
+        child: RefreshIndicator(
+          onRefresh: () => sc.refresh(),
+          child: ListView.builder(
+            itemCount: sm.length,
+            itemBuilder: (context, index) {
+              return _buildShop(index, sm, sc);
+            },
+          ),
         ),
       ),
     );
@@ -54,15 +58,14 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 );
               },
               child: RestaurantCard(
-                image: Image.file(
-                  File(sm[ListIndex].imageFileDto.image),
-                ),
+                image: Image.memory(
+                    base64.decode(sm[ListIndex].imageFileDto.image)),
                 shop_name: '${sm[ListIndex].shopName}',
-                tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
+                tags: [sm[ListIndex].category],
                 address: '${sm[ListIndex].address}',
                 telephone: '${shopList[ListIndex].telephone}',
-                open_time: '10:00',
-                close_time: '22:00',
+                open_time: '${sm[ListIndex].openTime}:00',
+                close_time: '${sm[ListIndex].closeTime}:00',
                 review_score: shopList[ListIndex].review_score,
                 review_count: shopList[ListIndex].reviewer_count,
                 information: '${sm[ListIndex].information}',
