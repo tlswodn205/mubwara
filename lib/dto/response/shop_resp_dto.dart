@@ -1,3 +1,5 @@
+import 'image_file_dto.dart';
+
 class shopListRespDto {
   int shop_id;
   String image;
@@ -69,3 +71,45 @@ List<shopListRespDto> shopList = [
       telephone: 01022222222,
       price: 40000),
 ];
+
+class ShopSearchListDto {
+  ShopSearchListDto({
+    required this.shopName,
+    required this.address,
+    required this.category,
+    required this.information,
+    required this.openTime,
+    required this.closeTime,
+    required this.imageFileDto,
+  });
+
+  String shopName;
+  String address;
+  String category;
+  String information;
+  String openTime;
+  String closeTime;
+  ImageFileDto imageFileDto;
+
+  factory ShopSearchListDto.fromJson(Map<String, dynamic> json) =>
+      ShopSearchListDto(
+        shopName: json["shopName"],
+        address: json["address"],
+        category: json["category"],
+        information: json["information"],
+        openTime: json["openTime"],
+        closeTime: json["closeTime"],
+        imageFileDto: ImageFileDto.fromJson(
+            Map<String, dynamic>.from(json["imageFileDto"])),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "shopName": shopName,
+        "address": address,
+        "category": category,
+        "information": information,
+        "openTime": openTime,
+        "closeTime": closeTime,
+        "imageFileDto": imageFileDto.toJson(),
+      };
+}

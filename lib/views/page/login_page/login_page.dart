@@ -1,22 +1,22 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mubwara/views/page/join_page/join_page.dart';
-import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/controller/user_controller.dart';
+import 'package:mubwara/views/page/login_page/login_page_model.dart';
 
-import '../../common/const/color.dart';
+import '../join_page/join_page.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends ConsumerStatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _loginPage createState() => _loginPage();
+  ConsumerState<LoginPage> createState() => _loginPage();
 }
 
-class _loginPage extends State<LoginPage> {
-  TextEditingController _AddressController = TextEditingController();
+class _loginPage extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    final us = ref.watch(loginPageModel);
+    final uc = ref.read(userController);
     return Container(
       child: Column(
         children: [
@@ -25,29 +25,76 @@ class _loginPage extends State<LoginPage> {
           SizedBox(height: 20),
           _buildTextFeild(feildName: "비밀번호"),
           SizedBox(height: 60),
-          _buildButton(
-              buttonName: "로그인 ",
-              buttonBackgroundColor: Colors.blue,
-              fontColor: Colors.white),
+          _buildLoginButton(
+            buttonName: "로그인 ",
+            buttonBackgroundColor: Colors.blue,
+            fontColor: Colors.white,
+            userController: uc,
+          ),
           SizedBox(height: 20),
           _buildButton(
               buttonName: "회원 가입",
               buttonBackgroundColor: Colors.grey,
               fontColor: Colors.white),
           SizedBox(height: 30),
-          _buildButton(
-              buttonName: "카카오로 로그인하기",
-              buttonBackgroundColor: Colors.yellow,
-              fontColor: Colors.black),
+          _buildLoginTestButton(
+            buttonName: "카카오로 로그인하기",
+            buttonBackgroundColor: Colors.yellow,
+            fontColor: Colors.black,
+            userController: uc,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildButton(
+  Widget _buildLoginButton(
       {required String buttonName,
       required Color buttonBackgroundColor,
-      required Color fontColor}) {
+      required Color fontColor,
+      required UserController userController}) {
+    return Container(
+      width: 330,
+      height: 50,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: buttonBackgroundColor,
+        ),
+        onPressed: () {
+          userController.Login();
+        },
+        child: Text("${buttonName}",
+            style: TextStyle(fontSize: 20, color: fontColor)),
+      ),
+    );
+  }
+
+  Widget _buildLoginTestButton(
+      {required String buttonName,
+      required Color buttonBackgroundColor,
+      required Color fontColor,
+      required UserController userController}) {
+    return Container(
+      width: 330,
+      height: 50,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: buttonBackgroundColor,
+        ),
+        onPressed: () {
+          userController.LoginTest();
+        },
+        child: Text("${buttonName}",
+            style: TextStyle(fontSize: 20, color: fontColor)),
+      ),
+    );
+  }
+
+  Widget _buildButton({
+    required String buttonName,
+    required Color buttonBackgroundColor,
+    required Color fontColor,
+  }) {
     return Container(
       width: 330,
       height: 50,
