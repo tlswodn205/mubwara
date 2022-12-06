@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/shop_controller.dart';
@@ -35,7 +37,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     );
   }
 
-  Widget _buildShop(int ListIndex, List<ShopSearchList> sm, ShopController sc) {
+  Widget _buildShop(
+      int ListIndex, List<ShopSearchListDto> sm, ShopController sc) {
     return GestureDetector(
       child: Column(
         children: [
@@ -51,9 +54,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 );
               },
               child: RestaurantCard(
-                image: Image.asset(
-                  'assets/images/shop/${shopList[ListIndex].image}',
-                  fit: BoxFit.cover,
+                image: Image.file(
+                  File(sm[ListIndex].imageFileDto.image),
                 ),
                 shop_name: '${sm[ListIndex].shopName}',
                 tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],

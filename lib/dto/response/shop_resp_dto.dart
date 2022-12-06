@@ -72,8 +72,8 @@ List<shopListRespDto> shopList = [
       price: 40000),
 ];
 
-class ShopSearchList {
-  ShopSearchList({
+class ShopSearchListDto {
+  ShopSearchListDto({
     required this.shopName,
     required this.address,
     required this.category,
@@ -91,7 +91,8 @@ class ShopSearchList {
   String closeTime;
   ImageFileDto imageFileDto;
 
-  factory ShopSearchList.fromJson(Map<String, dynamic> json) => ShopSearchList(
+  factory ShopSearchListDto.fromJson(Map<String, dynamic> json) =>
+      ShopSearchListDto(
         shopName: json["shopName"],
         address: json["address"],
         category: json["category"],

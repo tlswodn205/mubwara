@@ -17,7 +17,7 @@ class ShopController {
   ShopController(this._ref);
 
   void searchShopList() async {
-    List<ShopSearchList> shopSearchList =
+    List<ShopSearchListDto> shopSearchList =
         await _ref.read(shopHttpRepository).searchShopList();
     _ref.read(searchPageModel.notifier).initViewModel();
   }

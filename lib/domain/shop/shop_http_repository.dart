@@ -10,46 +10,26 @@ final shopHttpRepository = Provider<ShopHttpRepository>((ref) {
   return ShopHttpRepository(ref);
 });
 
-//
 class ShopHttpRepository {
   Ref _ref;
   ShopHttpRepository(this._ref);
-//
-//   Future<Product> findById(int id) async {
-//     Response response =
-//         await _ref.read(httpConnector).get("/api/product/${id}");
-//     Product product = Product.fromJson(jsonDecode(response.body));
-//     return product;
-//   }
-//
-  Future<List<ShopSearchList>> searchShopList() async {
+
+  Future<List<ShopSearchListDto>> searchShopList() async {
     Response response = await _ref.read(httpConnector).get("/shop/list");
-    ResponseDto responseDto = jsonDecode(response.body);
-    print("몰?루 : " + responseDto.msg);
-    List<ShopSearchList> dataList =
-        responseDto.data.map((x) => ShopSearchList.fromJson(x)).toList();
-    return dataList;
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    List<ShopSearchListDto> ShopSearchDtoList =
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+    return ShopSearchDtoList;
   }
+
+//   await _ref.read(httpConnector).get("/api/product/${id}");
+//   Product product = Product.fromJson(jsonDecode(response.body));
+//   return product;
+// }
 //
-//   Future<Product> insert(Product productReqDto) async {
-//     String body = jsonEncode(productReqDto.toJson());
-//     Response response =
-//         await _ref.read(httpConnector).post("/api/product", body);
-//     Product product = Product.fromJson(jsonDecode(response.body)["data"]);
-//     return product;
-//   }
-//
-//   Future<int> deleteById(int id) async {
-//     Response response =
-//         await _ref.read(httpConnector).delete("/api/product/${id}");
-//     return jsonDecode(response.body)["code"];
-//   }
-//
-//   Future<Product> updateById(int id, Product productReqDto) async {
-//     String body = jsonEncode(productReqDto.toJson());
-//     Response response =
-//         await _ref.read(httpConnector).put("/api/product/${id}", body);
-//     Product product = Product.fromJson(jsonDecode(response.body)["data"]);
-//     return product;
-//   }
+// Future<List<Product>> findAll() async {
+//   Response response = await _ref.read(httpConnector).get("/api/product");
+//   List<dynamic> dataList = jsonDecode(response.body)["data"];
+//   return dataList.map((e) => Product.fromJson(e)).toList();
 }

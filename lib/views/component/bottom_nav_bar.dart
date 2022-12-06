@@ -58,7 +58,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
           MapPage(),
           SearchPage(),
           BoardPage(),
-          MyPage(),
+          LoginPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

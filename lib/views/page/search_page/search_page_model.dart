@@ -3,19 +3,19 @@ import 'package:mubwara/domain/shop/shop_http_repository.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 
 final searchPageModel =
-    StateNotifierProvider<SearchPageModel, List<ShopSearchList>>((ref) {
+    StateNotifierProvider<SearchPageModel, List<ShopSearchListDto>>((ref) {
   return SearchPageModel([], ref)..initViewModel();
 });
 
-class SearchPageModel extends StateNotifier<List<ShopSearchList>> {
+class SearchPageModel extends StateNotifier<List<ShopSearchListDto>> {
   Ref _ref;
   SearchPageModel(super.state, this._ref);
 
   void initViewModel() async {
-    List<ShopSearchList> shopSearchList =
+    List<ShopSearchListDto> shopSearchDtoList =
         await _ref.read(shopHttpRepository).searchShopList();
-    state = shopSearchList;
-    print(shopSearchList[0].shopName);
+    state = shopSearchDtoList;
+    print("몰루" + shopSearchDtoList[0].imageFileDto.image);
   }
   //
   // void refresh(List<Product> productsDto) {
