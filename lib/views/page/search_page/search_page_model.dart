@@ -15,12 +15,12 @@ class SearchPageModel extends StateNotifier<List<ShopSearchListDto>> {
     List<ShopSearchListDto> shopSearchDtoList =
         await _ref.read(shopHttpRepository).searchShopList();
     state = shopSearchDtoList;
-    print("몰루" + shopSearchDtoList[0].imageFileDto.image);
   }
+
   //
-  // void refresh(List<Product> productsDto) {
-  //   state = productsDto;
-  // }
+  void refresh(List<ShopSearchListDto> shopSearchDtoList) {
+    state = shopSearchDtoList;
+  }
   //
   // void addProduct(Product productRespDto) {
   //   state = [...state, productRespDto];

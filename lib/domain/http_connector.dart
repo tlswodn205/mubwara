@@ -22,7 +22,6 @@ class HttpConnector {
   Future<Response> get(String path) async {
     Uri uri = Uri.parse("${host}${path}");
     Response response = await _client.get(uri, headers: headers);
-    print(headers);
     return response;
   }
 

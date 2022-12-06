@@ -19,7 +19,6 @@ class UserHttpRepository {
         jsonEncode(LoginReqDto(username: "cos", password: "123").toJson());
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
-    print("아루!" + responseDto.msg);
     _ref
         .read(httpConnector)
         .AddJWT(response.headers.putIfAbsent('authorization', () => ''));

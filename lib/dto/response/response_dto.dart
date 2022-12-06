@@ -3,11 +3,6 @@ import 'dart:convert';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 
-ResponseDto responseDtoFromJson(String str) =>
-    ResponseDto.fromJson(json.decode(str));
-
-String responseDtoToJson(ResponseDto data) => json.encode(data.toJson());
-
 class ResponseDto<T> {
   String code;
   String msg;
@@ -24,6 +19,4 @@ class ResponseDto<T> {
         msg: json["msg"],
         data: json["data"],
       );
-
-  Map<String, dynamic> toJson() => {"code": code, "msg": msg, "data": data};
 }
