@@ -1,23 +1,30 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/search_page/component/restaurant_card.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomNabBar.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_info.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_menu.dart';
+import 'package:mubwara/views/page/search_page/search_page_model.dart';
+
 import '../../component/review_list.dart';
 
-class ShopDetailScreen extends StatefulWidget {
+class ShopDetailScreen extends ConsumerStatefulWidget {
   const ShopDetailScreen({required this.shopId, Key? key}) : super(key: key);
   final int shopId;
   @override
-  State<ShopDetailScreen> createState() => _ShopDetailScreenState();
+  ConsumerState<ShopDetailScreen> createState() => _ShopDetailScreenState();
 }
 
-class _ShopDetailScreenState extends State<ShopDetailScreen>
+class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
     with SingleTickerProviderStateMixin {
+
   TabController? _tabController;
+
 
   @override
   void initState() {
@@ -104,25 +111,24 @@ class _ShopDetailScreenState extends State<ShopDetailScreen>
   }
 
   Widget _buildShop(int ListIndex) {
+    final sm = ref.watch(searchPageModel);
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GestureDetector(
           child: RestaurantCard(
-            image: Image.asset(
-              'assets/images/shop/${shopList[ListIndex].image}',
-              width: 300,
-              fit: BoxFit.cover,
+            image: Image.file(
+              File(sm[ListIndex].imageFileDto.image),
             ),
-            shop_name: '${shopList[ListIndex].shop_name}',
+            shop_name: '${sm[ListIndex].shopName}',
             tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
-            address: '${shopList[ListIndex].address}',
+            address: '${sm[ListIndex].address}',
             telephone: '${shopList[ListIndex].telephone}',
             open_time: '10:00',
             close_time: '22:00',
             review_score: shopList[ListIndex].review_score,
             review_count: shopList[ListIndex].reviewer_count,
-            information: '${shopList[ListIndex].information}',
+            information: '${sm[ListIndex].information}',
           ),
         ),
       ),

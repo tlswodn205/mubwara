@@ -51,10 +51,10 @@ class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderSt
         physics: NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
-          ReservationManagementPage(),
+          ShopMyPage(),
           ShopAnalysisPage(),
           AlarmPage(),
-          ShopMyPage(),
+          ReservationManagementPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -68,10 +68,10 @@ class _ShopMainPageState extends State<ShopMainPage> with SingleTickerProviderSt
         },
         currentIndex: index,
         items: [
-          _buildButtomNavigatorBarButton("예약 관리", CupertinoIcons.table_badge_more),
+          _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
           _buildButtomNavigatorBarButton("예약 분석", CupertinoIcons.chart_bar_alt_fill),
           _buildButtomNavigatorBarButton("알림", CupertinoIcons.alarm),
-          _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
+          _buildButtomNavigatorBarButton("예약 관리", CupertinoIcons.table_badge_more),
         ],
       ),
     );
