@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
+import 'package:mubwara/views/page/reservation_management_page/component/table_bottom_sheet.dart';
 
 class TableManagementPage extends StatefulWidget {
   const TableManagementPage({Key? key}) : super(key: key);
@@ -75,7 +76,15 @@ class _TableManagementPageState extends State<TableManagementPage> {
 
   FloatingActionButton tableaddbutton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) {
+            return TableBottomSheet();
+          },
+        );
+      },
       child: Icon(Icons.add),
     );
   }

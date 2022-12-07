@@ -10,5 +10,7 @@ const Body_TEXT_COLOR2 = Color(0xFF0d0d0d);
 const INPUT_BG_COLOR = Color(0xFFFBFBFB);
 const INPUT_BORDER_COLOR = Color(0xFFFBFBFB);
 
+
+const TEXT_FIELD_COLOR = Color(0xFFdcdedd);
 const CALENDAR_PRIMARY_COLOR = Color(0xFF0DB282);
 const CALENDAR_BOX_COLOR = Color(0xFFf0eeeb);

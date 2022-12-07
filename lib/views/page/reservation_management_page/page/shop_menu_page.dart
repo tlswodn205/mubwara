@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
+import 'package:mubwara/views/page/reservation_management_page/component/menu_bottom_sheet.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/menucard.dart';
 
 class ShopMenuPage extends StatefulWidget {
@@ -38,8 +39,18 @@ class _ShopMenuPageState extends State<ShopMenuPage> {
       ),
     );
   }
-  FloatingActionButton menuaddbutton(){
-    return FloatingActionButton(onPressed: (){},
+
+  FloatingActionButton menuaddbutton() {
+    return FloatingActionButton(
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) {
+            return ReservationBottomSheet();
+          },
+        );
+      },
       child: Icon(Icons.add),
     );
   }

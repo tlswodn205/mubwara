@@ -10,7 +10,7 @@ class CheckBoxListTileDemo extends StatefulWidget {
 
 class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
   List<CheckBoxListTileModel> checkBoxListTileModel =
-  CheckBoxListTileModel.getUsers();
+      CheckBoxListTileModel.getUsers();
 
   @override
   Widget build(BuildContext context) {
@@ -20,28 +20,32 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text('편의시설', style: TextStyle(color: Body_TEXT_COLOR2,
-        fontSize: 18),),
-        leading:  IconButton(
+        title: Text(
+          '편의시설',
+          style: TextStyle(color: Body_TEXT_COLOR2, fontSize: 18),
+        ),
+        leading: IconButton(
             onPressed: () {
-              Navigator.pop(context); //뒤로가기
+              Navigator.of(context).pop(
+                  itemChange
+              ); //뒤로가기
             },
             color: Body_TEXT_COLOR2,
             icon: Icon(Icons.arrow_back)),
       ),
-      body: new ListView.builder(
+      body: ListView.builder(
           itemCount: checkBoxListTileModel.length,
           itemBuilder: (BuildContext context, int index) {
-            return new Card(
-              child: new Container(
-                padding: new EdgeInsets.all(10.0),
+            return Card(
+              child: Container(
+                padding: EdgeInsets.all(10.0),
                 child: Column(
-                  children: <Widget>[
-                    new CheckboxListTile(
+                  children:[
+                    CheckboxListTile(
                         activeColor: PRIMARY_COLOR,
                         dense: true,
                         //font change
-                        title: new Text(
+                        title: Text(
                           checkBoxListTileModel[index].title,
                           style: TextStyle(
                               fontSize: 14,
@@ -59,7 +63,7 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
                         ),
                         onChanged: (bool? val) {
                           itemChange(val!, index);
-                        })
+                        }),
                   ],
                 ),
               ),
