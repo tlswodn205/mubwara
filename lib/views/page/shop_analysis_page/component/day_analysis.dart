@@ -50,11 +50,11 @@ class _DayAnalysisState extends State<DayAnalysis> {
           child: ListView(children: <Widget>[
             Center(
                 child: Text(
-              '일일 예약수(도표)',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            )),
+                  '일일 예약수(도표)',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )),
             DataTable(
               columns: const <DataColumn>[
                 DataColumn(

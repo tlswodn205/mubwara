@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/views/common/components/custom_text_form_field.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
+import 'package:mubwara/views/page/reservation_management_page/page/shop_menu_page.dart';
 import 'package:mubwara/views/page/shop_my_page/checkbox/checkbox.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
@@ -50,6 +51,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                _builderImageUploader(),
                 const SizedBox(height: 16.0),
                 CustomTextFormField(
                   hintText: '사장님의 이름을 입력해주세요.',
@@ -66,30 +68,18 @@ class _ShopMyPageState extends State<ShopMyPage> {
                 ),
                 const SizedBox(height: 16.0),
                 AddressText(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomTextFormField(
-                        hintText: '오픈시간',
-                        obscureText: false,
-                      ),
-                    ),
-                    Expanded(
-                      child: CustomTextFormField(
-                        hintText: '마감시간',
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
+
                 const SizedBox(height: 16.0),
                 _buildButton(
                     buttonName: "편의시설 수정하기",
-                    buttonBackgroundColor: Colors.blue,
+                    buttonBackgroundColor: PRIMARY_COLOR,
                     pageName: CheckBoxListTileDemo()),
                 const SizedBox(height: 16.0),
-
-                _builderImageUploader(),
+                _buildButton(
+                    buttonName: "메뉴 추가하기",
+                    buttonBackgroundColor: PRIMARY_COLOR,
+                    pageName: ShopMenuPage()),
+                const SizedBox(height: 16.0),
                 const SizedBox(height: 16.0),
                 SizedBox(
                   width: double.infinity,
@@ -101,7 +91,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
                       primary: Body_TEXT_COLOR1,
                     ),
                     child: Text(
-                      '정보 저장하기',
+                      '가게 신청하기',
                     ),
                   ),
                 ),
@@ -251,9 +241,9 @@ class _ShopMyPageState extends State<ShopMyPage> {
                 ))
               : Container(),
           Divider(),
+
           SizedBox(
             height: 50,
-            width: double.infinity,
             child: ElevatedButton(
                 onPressed: () {
                   openImages();
