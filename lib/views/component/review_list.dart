@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/controller/customer/review_controller.dart';
 import 'package:mubwara/domain/review/review.dart';
+import 'package:mubwara/views/component/model/review_list_model.dart';
 import 'package:mubwara/views/component/review_list_item.dart';
 
-class ReviewList extends StatelessWidget {
+class ReviewList extends ConsumerStatefulWidget {
   const ReviewList({Key? key}) : super(key: key);
 
   @override
+  ConsumerState<ReviewList> createState() => _ReviewListState();
+}
+
+class _ReviewListState extends ConsumerState<ReviewList> {
+  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: reviewList.length,
-      itemBuilder: (context, index) {
-        return ReviewListItem(listIndex: index);
-      },
+    final sm = ref.watch(reviewListModel);
+    final sc = ref.read(reviewController);
+    return RefreshIndicator(
+      onRefresh: () => sc.refresh(),
+      child: ListView.builder(
+        itemCount: sm.length,
+        itemBuilder: (context, index) {
+          return ReviewListItem(listIndex: index, sm: [],);
+        },
+      ),
     );
   }
 }

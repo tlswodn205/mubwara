@@ -1,15 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/review_star_make.dart';
 
 import '../../domain/review/review.dart';
 
-class ReviewListItem extends StatelessWidget {
-  const ReviewListItem({required this.listIndex, Key? key}) : super(key: key);
+class ReviewListItem extends ConsumerWidget {
+  const ReviewListItem({required this.listIndex,required this.sm, Key? key}) : super(key: key);
   final int listIndex;
+  final List<CustomerMyPageReviewRespDto> sm;
+
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -18,12 +24,11 @@ class ReviewListItem extends StatelessWidget {
             children: [
               Container(
                 child: Center(
-                  child: Image.asset(
-                    'assets/images/review/${reviewList[listIndex].image}',
+                  child: Image.memory(
+                    base64.decode(sm[listIndex].imageFileDto.image),
                     width: 100,
                     height: 100,
-                    fit: BoxFit.fill,
-                  ),
+                    fit: BoxFit.fill,),
                 ),
               ),
               SizedBox(
@@ -36,9 +41,9 @@ class ReviewListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ReviewStarMake(
-                        review_score: reviewList[listIndex].review_score),
+                        review_score: sm[listIndex].score),
                     Text(
-                      reviewList[listIndex].content,
+                      sm[listIndex].content,
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
