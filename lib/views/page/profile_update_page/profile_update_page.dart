@@ -19,20 +19,23 @@ class _profileUpdatePage extends State<ProfileUpdatePage> {
     return DefaultLayout(
       title: '내 정보 수정',
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: 60),
-            _buildTextFeild("소비자명", "null"),
-            SizedBox(height: 30),
-            AddressText(),
-            SizedBox(height: 10),
-            _buildTextFeild("전화번호", "null"),
-            SizedBox(height: 30),
-            _buildButton(
-                buttonName: "회원 수정 하기",
-                buttonBackgroundColor: PRIMARY_COLOR,
-                fontColor: Colors.white)
-          ],
+        body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Column(
+            children: [
+              SizedBox(height: 60),
+              _buildTextFeild("소비자명", "null"),
+              SizedBox(height: 30),
+              AddressText(),
+              SizedBox(height: 10),
+              _buildTextFeild("전화번호", "null"),
+              SizedBox(height: 30),
+              _buildButton(
+                  buttonName: "회원 수정 하기",
+                  buttonBackgroundColor: PRIMARY_COLOR,
+                  fontColor: Colors.white)
+            ],
+          ),
         ),
       ),
     );
