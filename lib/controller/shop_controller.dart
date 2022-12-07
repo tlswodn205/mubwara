@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../dto/response/shop_resp_dto.dart';
 import '../main.dart';
+import '../views/page/shop_page/shop_detail_model.dart';
 
 final shopController = Provider<ShopController>((ref) {
   return ShopController(ref);
@@ -20,7 +21,7 @@ class ShopController {
     _ref.read(searchPageModel.notifier).initViewModel();
   }
 
-  Future<void> refresh() async {
+  Future<void> searchShopListRefresh() async {
     List<ShopSearchListDto> shopSearchDtoList =
         await _ref.read(shopHttpRepository).searchShopList();
     _ref.read(searchPageModel.notifier).refresh(shopSearchDtoList);

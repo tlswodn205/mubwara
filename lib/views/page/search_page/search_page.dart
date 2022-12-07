@@ -29,7 +29,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       appBar: searchBar(),
       body: Center(
         child: RefreshIndicator(
-          onRefresh: () => sc.refresh(),
+          onRefresh: () => sc.searchShopListRefresh(),
           child: ListView.builder(
             itemCount: sm.length,
             itemBuilder: (context, index) {
@@ -52,8 +52,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) =>
-                        ShopDetailScreen(shopId: shopList[ListIndex].shop_id),
+                    builder: (_) => ShopDetailScreen(shopId: sm[ListIndex].id),
                   ),
                 );
               },
@@ -63,10 +62,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 shop_name: '${sm[ListIndex].shopName}',
                 tags: [sm[ListIndex].category],
                 address: '${sm[ListIndex].address}',
-                telephone: '${shopList[ListIndex].telephone}',
+                telephone: '${sm[ListIndex].phoneNumber}',
                 open_time: '${sm[ListIndex].openTime}:00',
                 close_time: '${sm[ListIndex].closeTime}:00',
-                review_score: shopList[ListIndex].review_score,
+                review_score: sm[ListIndex].scoreAvg,
                 review_count: shopList[ListIndex].reviewer_count,
                 information: '${sm[ListIndex].information}',
               ),

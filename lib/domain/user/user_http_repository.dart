@@ -16,9 +16,10 @@ class UserHttpRepository {
 
   Future<String> login() async {
     String body =
-        jsonEncode(LoginReqDto(username: "cos", password: "123").toJson());
+        jsonEncode(LoginReqDto(username: "ssar", password: "123").toJson());
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    print(response.headers.putIfAbsent('authorization', () => ''));
     _ref
         .read(httpConnector)
         .AddJWT(response.headers.putIfAbsent('authorization', () => ''));

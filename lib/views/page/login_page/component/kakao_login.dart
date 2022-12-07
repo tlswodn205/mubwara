@@ -42,7 +42,9 @@ class Kakaobutton extends StatelessWidget {
               }
             } else {
               try {
-                await UserApi.instance.loginWithKakaoAccount();
+                OAuthToken token =
+                    await UserApi.instance.loginWithKakaoAccount();
+                print(token.accessToken);
                 print('카카오계정으로 로그인 성공');
                 _get_user_info();
               } catch (error) {

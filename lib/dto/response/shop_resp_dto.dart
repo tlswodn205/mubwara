@@ -1,3 +1,5 @@
+import 'package:mubwara/dto/response/review_resp_dto.dart';
+
 import 'image_file_dto.dart';
 
 class shopListRespDto {
@@ -74,42 +76,86 @@ List<shopListRespDto> shopList = [
 
 class ShopSearchListDto {
   ShopSearchListDto({
+    required this.id,
     required this.shopName,
     required this.address,
     required this.category,
     required this.information,
     required this.openTime,
     required this.closeTime,
+    required this.phoneNumber,
     required this.imageFileDto,
+    required this.scoreAvg,
   });
 
+  int id;
   String shopName;
   String address;
   String category;
   String information;
   String openTime;
   String closeTime;
+  String phoneNumber;
   ImageFileDto imageFileDto;
+  double scoreAvg;
 
   factory ShopSearchListDto.fromJson(Map<String, dynamic> json) =>
       ShopSearchListDto(
+        id: json["id"],
         shopName: json["shopName"],
         address: json["address"],
         category: json["category"],
         information: json["information"],
         openTime: json["openTime"],
         closeTime: json["closeTime"],
+        phoneNumber: json["phoneNumber"],
         imageFileDto: ImageFileDto.fromJson(
-            Map<String, dynamic>.from(json["imageFileDto"])),
+          Map<String, dynamic>.from(json["imageFileDto"]),
+        ),
+        scoreAvg: json["scoreAvg"],
       );
+}
 
-  Map<String, dynamic> toJson() => {
-        "shopName": shopName,
-        "address": address,
-        "category": category,
-        "information": information,
-        "openTime": openTime,
-        "closeTime": closeTime,
-        "imageFileDto": imageFileDto.toJson(),
-      };
+class ShopDetailRespDto {
+  ShopDetailRespDto({
+    required this.id,
+    required this.shopName,
+    required this.address,
+    required this.category,
+    required this.information,
+    required this.openTime,
+    required this.closeTime,
+    required this.phoneNumber,
+    required this.imageFileDto,
+    required this.review,
+    required this.scoreAvg,
+  });
+
+  int? id;
+  String shopName;
+  String address;
+  String category;
+  String information;
+  String openTime;
+  String closeTime;
+  String phoneNumber;
+  ImageFileDto imageFileDto;
+  List<ReviewRespDto> review;
+  double scoreAvg;
+
+  factory ShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
+      ShopDetailRespDto(
+        id: json["id"],
+        shopName: json["shopName"],
+        address: json["address"],
+        category: json["category"],
+        information: json["information"],
+        openTime: json["openTime"],
+        closeTime: json["closeTime"],
+        phoneNumber: json["phoneNumber"],
+        imageFileDto: ImageFileDto.fromJson(json["imageFile"]),
+        review: List<ReviewRespDto>.from(
+            json["review"].map((x) => ReviewRespDto.fromJson(x))),
+        scoreAvg: json["scoreAvg"].toDouble(),
+      );
 }

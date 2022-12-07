@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,9 @@ import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomNabBar.
 import 'package:mubwara/views/page/shop_page/component/shop_info.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_menu.dart';
 import 'package:mubwara/views/page/search_page/search_page_model.dart';
+import 'package:mubwara/views/page/shop_page/shop_detail_model.dart';
 
+import '../../../controller/shop_controller.dart';
 import '../../component/review_list.dart';
 
 class ShopDetailScreen extends ConsumerStatefulWidget {
@@ -22,9 +25,7 @@ class ShopDetailScreen extends ConsumerStatefulWidget {
 
 class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
     with SingleTickerProviderStateMixin {
-
   TabController? _tabController;
-
 
   @override
   void initState() {
@@ -34,25 +35,30 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    int ListIndex =
-        shopList.indexWhere((element) => element.shop_id == widget.shopId);
-    return DefaultLayout(
-        title: '${shopList[ListIndex].shop_name}',
-        bottomNavigationBar: bottomNavBar(),
-        child: Column(
-          children: [
-            _buildShop(ListIndex),
-            SizedBox(height: 30),
-            PreferredSize(
-              preferredSize: _buildTabBar().preferredSize,
-              child: ColoredBox(
-                color: Colors.grey,
-                child: _buildTabBar(),
+    final sm = ref.watch(shopDetailPageModel(widget.shopId));
+    if (sm == null) {
+      return Container(
+        child: Center(),
+      );
+    } else {
+      return DefaultLayout(
+          title: '${sm!.shopName}',
+          bottomNavigationBar: bottomNavBar(),
+          child: Column(
+            children: [
+              _buildShop(sm),
+              SizedBox(height: 30),
+              PreferredSize(
+                preferredSize: _buildTabBar().preferredSize,
+                child: ColoredBox(
+                  color: Colors.grey,
+                  child: _buildTabBar(),
+                ),
               ),
-            ),
-            Expanded(child: _buildTabBarView()),
-          ],
-        ));
+              Expanded(child: _buildTabBarView()),
+            ],
+          ));
+    }
   }
 
   Widget _buildButton({required String buttonName, required Color Color}) {
@@ -110,28 +116,29 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
     );
   }
 
-  Widget _buildShop(int ListIndex) {
-    final sm = ref.watch(searchPageModel);
-    return GestureDetector(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GestureDetector(
-          child: RestaurantCard(
-            image: Image.file(
-              File(sm[ListIndex].imageFileDto.image),
+  Widget _buildShop(ShopDetailRespDto sm) {
+    if (sm.imageFileDto == null) {
+      return Center(child: CircularProgressIndicator());
+    } else {
+      return GestureDetector(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: GestureDetector(
+            child: RestaurantCard(
+              image: Image.memory(base64Decode(sm.imageFileDto.image)),
+              shop_name: '${sm.shopName}',
+              tags: [sm.category],
+              address: '${sm.address}',
+              telephone: '${sm.phoneNumber}',
+              open_time: '10:00',
+              close_time: '22:00',
+              review_score: sm.scoreAvg,
+              review_count: 1,
+              information: '${sm.information}',
             ),
-            shop_name: '${sm[ListIndex].shopName}',
-            tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
-            address: '${sm[ListIndex].address}',
-            telephone: '${shopList[ListIndex].telephone}',
-            open_time: '10:00',
-            close_time: '22:00',
-            review_score: shopList[ListIndex].review_score,
-            review_count: shopList[ListIndex].reviewer_count,
-            information: '${sm[ListIndex].information}',
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
