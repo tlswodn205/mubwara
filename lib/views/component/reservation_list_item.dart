@@ -1,18 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/boundary.dart';
-import 'package:mubwara/views/component/review_star_make.dart';
+
 
 import '../../dto/response/shop_resp_dto.dart';
 import '../common/const/color.dart';
 
-class ReservationListItem extends StatelessWidget {
-  const ReservationListItem({required this.listIndex, Key? key})
+class ReservationListItem extends ConsumerWidget {
+  const ReservationListItem({required this.listIndex,
+    required this.sm, Key? key})
       : super(key: key);
   final int listIndex;
+  final List<CustomerMyPageReservationRespDto> sm;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       child: Column(
         children: [
@@ -22,12 +28,11 @@ class ReservationListItem extends StatelessWidget {
               children: [
                 Container(
                   child: Center(
-                    child: Image.asset(
-                      'assets/images/shop/${shopList[listIndex].image}',
+                    child: Image.memory(
+                        base64.decode(sm[listIndex].shop.imageFileDto.image),
                       width: 100,
                       height: 100,
-                      fit: BoxFit.fill,
-                    ),
+                      fit: BoxFit.fill,),
                   ),
                 ),
                 SizedBox(
@@ -40,7 +45,7 @@ class ReservationListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        shopList[listIndex].shop_name,
+                        sm[listIndex].shop.shopName,
                         style: TextStyle(fontSize: 19),
                       ),
                       SizedBox(height: 7),
@@ -48,12 +53,12 @@ class ReservationListItem extends StatelessWidget {
                         children: [
                           _IconText(
                             icon: Icons.timelapse_outlined,
-                            label: '11:00',
+                            label: sm[listIndex].reservationTime,
                           ),
                           renderDot(),
                           _IconText(
-                            icon: Icons.person,
-                            label: '5명',
+                            icon: Icons.calendar_month,
+                            label: sm[listIndex].reservationDate,
                           ),
                         ],
                       ),
@@ -62,19 +67,14 @@ class ReservationListItem extends StatelessWidget {
                         children: [
                           _IconText(
                             icon: Icons.home,
-                            label: '${shopList[listIndex].address}',
+                            label: sm[listIndex].shop.address,
                           ),
                           renderDot(),
                           _IconText(
                             icon: Icons.phone,
-                            label: '${shopList[listIndex].telephone}',
+                            label: sm[listIndex].shop.category,
                           ),
                         ],
-                      ),
-                      SizedBox(height: 7),
-                      _IconText(
-                        icon: Icons.monetization_on,
-                        label: '${shopList[listIndex].price}',
                       ),
                     ],
                   ),

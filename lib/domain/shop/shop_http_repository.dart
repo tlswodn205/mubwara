@@ -20,9 +20,6 @@ class ShopHttpRepository {
     List<dynamic> dataList = responseDto.data;
     List<ShopSearchListDto> ShopSearchDtoList =
         dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
-    print("몰루");
-    print(base64.decode(ShopSearchDtoList[0].imageFileDto.image));
-
     return ShopSearchDtoList;
   }
 
