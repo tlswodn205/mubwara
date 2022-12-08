@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
 class SceduleCard extends StatelessWidget {
@@ -24,22 +25,28 @@ class _Time extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonTextStyle = TextStyle(
+      fontSize: 17,
+      color: Body_TEXT_COLOR1,
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 1.0, color: CALENDAR_PRIMARY_COLOR),
-        ),
-        width: 80,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              '${reservation_time}',
-              style: TextStyle(
-                fontSize: 25,
-                color: Body_TEXT_COLOR2,
-              ),
+            AnimatedButton(
+              selectedBackgroundColor: SELECTED_COLOR,
+              width: 100,
+              text: '${reservation_time}',
+              isReverse: true,
+              selectedTextColor: Body_TEXT_COLOR1,
+              transitionType: TransitionType.LEFT_TO_RIGHT,
+              textStyle: buttonTextStyle,
+              backgroundColor: PRIMARY_COLOR,
+              borderColor: INPUT_BORDER_COLOR,
+              borderWidth: 2,
+              onPress: () {},
             ),
           ],
         ),

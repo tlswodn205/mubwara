@@ -85,7 +85,9 @@ class _ShopMyPageState extends State<ShopMyPage> {
                   width: double.infinity,
                   height: 50,
                   child: TextButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      _showDialog();
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: PRIMARY_COLOR,
                       primary: Body_TEXT_COLOR1,
@@ -256,6 +258,32 @@ class _ShopMyPageState extends State<ShopMyPage> {
           ),
         ],
       ),
+    );
+  }
+  void _showDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("확인창"),
+          content: SingleChildScrollView(child:Text("가게 신청을 하시겠습니까?")),
+          actions: [
+             ElevatedButton(
+              child: Text("닫기"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            ElevatedButton(
+              child: Text("신청하기"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

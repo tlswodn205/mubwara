@@ -2,11 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
 
-class bottomNavBar extends StatelessWidget {
-  const bottomNavBar({Key? key}) : super(key: key);
+class bottomNavBar extends StatefulWidget {
+  const bottomNavBar({
+    Key? key}) : super(key: key);
 
   @override
+  State<bottomNavBar> createState() => _bottomNavBarState();
+
+}
+
+class _bottomNavBarState extends State<bottomNavBar> {
+  @override
   Widget build(BuildContext context) {
+    bool _isSelected = false;
+    @override
+    void initState() {
+      super.initState();
+    }
+
     return Container(
       height: 56,
       child: Row(
@@ -29,17 +42,24 @@ class bottomNavBar extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+
+            onTap: () {
+              setState(() {
+                _isSelected = !_isSelected;
+              });
+            },
             child: Container(
               width: 66,
-              color: Colors.green,
+              color: _isSelected ? Colors.red : Colors.green,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Icon(Icons.notifications_active, color: Body_TEXT_COLOR1),
                   Text(
-                    "구독하기",
-                    style: TextStyle(color: Body_TEXT_COLOR1),
+                    _isSelected ? "구독취소" : "구독하기",
+                    style: TextStyle(
+                      color: Body_TEXT_COLOR1,
+                    ),
                   ),
                 ],
               ),
