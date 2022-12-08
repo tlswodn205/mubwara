@@ -27,7 +27,7 @@ class _Time extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonTextStyle = TextStyle(
       fontSize: 17,
-      color: Body_TEXT_COLOR1,
+      color: Body_TEXT_COLOR2,
     );
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -36,15 +36,15 @@ class _Time extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AnimatedButton(
-              selectedBackgroundColor: SELECTED_COLOR,
+              selectedBackgroundColor: PRIMARY_COLOR,
               width: 100,
               text: '${reservation_time}',
               isReverse: true,
               selectedTextColor: Body_TEXT_COLOR1,
               transitionType: TransitionType.LEFT_TO_RIGHT,
               textStyle: buttonTextStyle,
-              backgroundColor: PRIMARY_COLOR,
-              borderColor: INPUT_BORDER_COLOR,
+              backgroundColor: Body_TEXT_COLOR1,
+              borderColor: PRIMARY_COLOR,
               borderWidth: 2,
               onPress: () {},
             ),

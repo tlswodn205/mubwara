@@ -6,10 +6,12 @@ class CustomTextFormField extends StatelessWidget {
   final String? errorText;
   final bool obscureText;
   final bool autofocus;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextFormField(
       {this.hintText,
       this.errorText,
+      this.onChanged,
       this.autofocus = false,
       this.obscureText = false,
       Key? key})
@@ -22,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       cursorColor: PRIMARY_COLOR,
       // 비밀번호 입력할때만 사용 obscureText\
+      onChanged: onChanged,
       obscureText: obscureText,
       autofocus: autofocus,
       decoration: InputDecoration(
@@ -38,7 +41,8 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         // baseBorder = 모든 Input 상태의 기본 스타일 세팅
         border: baseBorder,
-        enabledBorder: baseBorder, // 선택되지 않는 폼을 색 옅게 하기
+        enabledBorder: baseBorder,
+        // 선택되지 않는 폼을 색 옅게 하기
         focusedBorder: baseBorder.copyWith(
           // copyWith 대상의 모든 속성을 복사하고 이어받음
           borderSide: baseBorder.borderSide.copyWith(

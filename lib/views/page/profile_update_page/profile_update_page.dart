@@ -99,7 +99,9 @@ class _profileUpdatePage extends State<ProfileUpdatePage> {
     _AddressController.text = '${model.address!} ${model.buildingName!}';
   }
 
-  Widget _buildTextFeild(String feildName, String defaultText) {
+  Widget _buildTextFeild(
+      String feildName,
+      String defaultText,) {
     return Center(
       child: SizedBox(
         width: 330,
