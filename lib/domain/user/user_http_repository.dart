@@ -22,7 +22,8 @@ class UserHttpRepository {
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     String token = response.headers.putIfAbsent('authorization', () => '');
-    if (token == null) {
+    print(token);
+    if (token == "") {
       return "";
     }
     _ref.read(httpConnector).AddJWT(token);

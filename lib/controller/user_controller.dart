@@ -20,7 +20,6 @@ class UserController {
   UserController(this._ref);
 
   void Login({required LoginReqDto loginReqDto}) async {
-    print(loginReqDto.username);
     await _ref.read(userHttpRepository).login(loginReqDto: loginReqDto);
   }
 

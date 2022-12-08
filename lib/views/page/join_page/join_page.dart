@@ -1,21 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/controller/customer/customer_controller.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
+import '../../../dto/request/customer_req_dto.dart';
 import '../../layout/default_layout.dart';
 
-class JoinPage extends StatefulWidget {
+class JoinPage extends ConsumerStatefulWidget {
   JoinPage({Key? key}) : super(key: key);
 
   @override
-  _joinPage createState() => _joinPage();
+  ConsumerState<JoinPage> createState() => _joinPage();
 }
 
-class _joinPage extends State<JoinPage> {
+class _joinPage extends ConsumerState<JoinPage> {
   TextEditingController _AddressController = TextEditingController();
+  JoinCustomerReqDto joinCustomerReqDto = JoinCustomerReqDto.origin();
   @override
   Widget build(BuildContext context) {
+    final cc = ref.read(customerController);
     return DefaultLayout(
       title: "회원가입",
       child: SingleChildScrollView(
@@ -24,7 +29,12 @@ class _joinPage extends State<JoinPage> {
             SizedBox(
               height: 10,
             ),
-            _buildTextFeild("아이디", "null"),
+            _buildTextFeild(
+                feildName: "아이디",
+                onChanged: (value) {
+                  joinCustomerReqDto.username = value;
+                },
+                defaultText: "null"),
             Row(
               children: [
                 SizedBox(
@@ -43,20 +53,40 @@ class _joinPage extends State<JoinPage> {
               ],
             ),
             SizedBox(height: 10),
-            _buildTextFeild("비밀번호", "null"),
+            _buildTextFeild(
+                feildName: "비밀번호",
+                onChanged: (value) {
+                  joinCustomerReqDto.password = value;
+                },
+                defaultText: "null"),
             SizedBox(height: 30),
-            _buildTextFeild("비밀번호 확인", "null"),
+            _buildTextFeild(
+                feildName: "비밀번호 확인",
+                onChanged: (value) {},
+                defaultText: "null"),
             SizedBox(height: 30),
-            _buildTextFeild("이름", "null"),
+            _buildTextFeild(
+                feildName: "이름",
+                onChanged: (value) {
+                  joinCustomerReqDto.name = value;
+                },
+                defaultText: "null"),
             SizedBox(height: 30),
             AddressText(),
             SizedBox(height: 10),
-            _buildTextFeild("전화번호", "null"),
+            _buildTextFeild(
+                feildName: "전화번호",
+                onChanged: (value) {
+                  joinCustomerReqDto.phoneNumber = value;
+                },
+                defaultText: ""
+                    "null"),
             SizedBox(height: 30),
             _buildButton(
-                buttonName: "회원 정보 변경",
+                buttonName: "회원 가입",
                 buttonBackgroundColor: Colors.blue,
-                fontColor: Colors.white),
+                fontColor: Colors.white,
+                customerController: cc),
           ],
         ),
       ),
@@ -81,6 +111,7 @@ class _joinPage extends State<JoinPage> {
                   border: OutlineInputBorder(),
                   isDense: false,
                 ),
+                readOnly: true,
                 controller: _AddressController,
                 style: TextStyle(fontSize: 20),
               ),
@@ -121,11 +152,15 @@ class _joinPage extends State<JoinPage> {
     _AddressController.text = '${model.address!} ${model.buildingName!}';
   }
 
-  Widget _buildTextFeild(String feildName, String defaultText) {
+  Widget _buildTextFeild(
+      {required String feildName,
+      required ValueChanged<String>? onChanged,
+      required String defaultText}) {
     return Center(
       child: SizedBox(
         width: 330,
         child: TextField(
+          onChanged: onChanged,
           decoration: InputDecoration(
             labelText: '${feildName}',
             hintText: '${feildName}를 입력하세요',
@@ -139,7 +174,8 @@ class _joinPage extends State<JoinPage> {
   Widget _buildButton(
       {required String buttonName,
       required Color buttonBackgroundColor,
-      required Color fontColor}) {
+      required Color fontColor,
+      required CustomerController customerController}) {
     return Container(
       width: 330,
       height: 50,
@@ -148,12 +184,7 @@ class _joinPage extends State<JoinPage> {
           backgroundColor: buttonBackgroundColor,
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => JoinPage(),
-            ),
-          );
+          customerController.joinCustomer(joinCustomerReqDto);
         },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),

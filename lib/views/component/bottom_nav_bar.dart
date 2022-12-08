@@ -9,6 +9,11 @@ import 'package:mubwara/views/page/map_page/map_page.dart';
 import 'package:mubwara/views/page/my_page/my_page.dart';
 import 'package:mubwara/views/page/search_page/search_page.dart';
 
+import '../common/components/address_component.dart';
+import '../common/components/multi_image_uploader.dart';
+import '../common/components/single_image_uploader.dart';
+import '../page/login_page/login_page.dart';
+
 class RootTab extends StatefulWidget {
   static String get routeName => 'home';
 
@@ -56,7 +61,9 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
           MapPage(),
           SearchPage(),
           BoardPage(),
-          LoginPage(),
+          //MyPage(),
+          MultiImageUploader(),
+          //AddressComponent(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

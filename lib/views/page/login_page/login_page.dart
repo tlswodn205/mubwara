@@ -99,11 +99,10 @@ class _loginPage extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _buildButton({
-    required String buttonName,
-    required Color buttonBackgroundColor,
-    required Color fontColor,
-  }) {
+  Widget _buildButton(
+      {required String buttonName,
+      required Color buttonBackgroundColor,
+      required Color fontColor}) {
     return Container(
       width: 330,
       height: 50,
