@@ -4,19 +4,18 @@ import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'package:mubwara/dto/response/user_resp_dto.dart';
 
 final loginPageModel =
-    StateNotifierProvider<LoginPageModel, LoginRespDto>((ref) {
-  return LoginPageModel(LoginRespDto(username: "cos", password: "123"), ref)
-    ..initViewModel();
+    StateNotifierProvider<LoginPageModel, LoginRespDto?>((ref) {
+  return LoginPageModel(null, ref)..initViewModel();
 });
 
-class LoginPageModel extends StateNotifier<LoginRespDto> {
+class LoginPageModel extends StateNotifier<LoginRespDto?> {
   Ref _ref;
   LoginPageModel(super.state, this._ref);
 
   void initViewModel() async {}
 
-  void login(String data) async {
-    state.username = data;
+  void login(LoginRespDto data) async {
+    state = data;
   }
 //
 // void refresh(List<Product> productsDto) {

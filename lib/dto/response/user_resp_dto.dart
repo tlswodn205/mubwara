@@ -1,11 +1,11 @@
 class LoginRespDto {
   String username;
-  String password;
+  String role;
 
-  LoginRespDto({required this.username, required this.password});
+  LoginRespDto({required this.username, required this.role});
 
   factory LoginRespDto.fromJson(Map<String, dynamic> json) => LoginRespDto(
         username: json["username"],
-        password: json["password"],
+        role: json["role"],
       );
 }

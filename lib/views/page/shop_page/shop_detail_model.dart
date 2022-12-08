@@ -5,13 +5,13 @@ import 'package:mubwara/dto/response/shop_resp_dto.dart';
 final shopDetailPageModel =
     StateNotifierProvider.family<ShopDetailPageModel, ShopDetailRespDto?, int>(
         (ref, id) {
-  return ShopDetailPageModel(ref)..initViewModel(id);
+  return ShopDetailPageModel(null, ref)..initViewModel(id);
 });
 
 class ShopDetailPageModel extends StateNotifier<ShopDetailRespDto?> {
   Ref _ref;
 
-  ShopDetailPageModel(this._ref) : super(null);
+  ShopDetailPageModel(super.state, this._ref);
 
   void initViewModel(int id) async {
     ShopDetailRespDto shopDetailRespDto =
