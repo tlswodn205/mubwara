@@ -42,7 +42,7 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
       );
     } else {
       return DefaultLayout(
-          title: '${sm!.shopName}',
+          title: '${sm.shopName}',
           bottomNavigationBar: bottomNavBar(),
           child: Column(
             children: [

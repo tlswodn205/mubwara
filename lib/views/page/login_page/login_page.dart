@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/user_controller.dart';
+import 'package:mubwara/dto/request/user_req_dto.dart';
 import 'package:mubwara/views/page/login_page/login_page_model.dart';
 
 import '../join_page/join_page.dart';
@@ -15,6 +16,7 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _loginPage extends ConsumerState<LoginPage> {
   @override
+  late LoginReqDto loginReqDto = LoginReqDto.origin();
   Widget build(BuildContext context) {
     final us = ref.watch(loginPageModel);
     final uc = ref.read(userController);
@@ -22,16 +24,26 @@ class _loginPage extends ConsumerState<LoginPage> {
       child: Column(
         children: [
           SizedBox(height: 20),
-          _buildTextFeild(feildName: "아이디"),
+          _buildTextFeild(
+              feildName: "아이디",
+              onChanged: (value) {
+                loginReqDto.username = value;
+              },
+              hideText: false),
           SizedBox(height: 20),
-          _buildTextFeild(feildName: "비밀번호"),
+          _buildTextFeild(
+              feildName: "비밀번호",
+              onChanged: (value) {
+                loginReqDto.password = value;
+              },
+              hideText: true),
           SizedBox(height: 60),
           _buildLoginButton(
-            buttonName: "로그인 ",
-            buttonBackgroundColor: Colors.blue,
-            fontColor: Colors.white,
-            userController: uc,
-          ),
+              buttonName: "로그인 ",
+              buttonBackgroundColor: Colors.blue,
+              fontColor: Colors.white,
+              userController: uc,
+              loginReqDto: loginReqDto),
           SizedBox(height: 20),
           _buildButton(
               buttonName: "회원 가입",
@@ -48,7 +60,8 @@ class _loginPage extends ConsumerState<LoginPage> {
       {required String buttonName,
       required Color buttonBackgroundColor,
       required Color fontColor,
-      required UserController userController}) {
+      required UserController userController,
+      required LoginReqDto loginReqDto}) {
     return Container(
       width: 330,
       height: 50,
@@ -57,7 +70,7 @@ class _loginPage extends ConsumerState<LoginPage> {
           backgroundColor: buttonBackgroundColor,
         ),
         onPressed: () {
-          userController.Login();
+          userController.Login(loginReqDto: loginReqDto);
         },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),
@@ -112,11 +125,16 @@ class _loginPage extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _buildTextFeild({required String feildName}) {
+  Widget _buildTextFeild(
+      {required String feildName,
+      required ValueChanged<String>? onChanged,
+      required bool hideText}) {
     return Center(
       child: SizedBox(
         width: 330,
         child: TextField(
+          onChanged: onChanged,
+          obscureText: hideText,
           decoration: InputDecoration(
             labelText: '${feildName}',
             hintText: '${feildName}를 입력하세요',

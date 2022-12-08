@@ -17,6 +17,7 @@ class HttpConnector {
       "Content-Type": "application/json; charset=utf-8",
       "authorization": "${authorization}",
     };
+    print(headers);
   }
 
   Future<Response> get(String path) async {
@@ -40,7 +41,6 @@ class HttpConnector {
   Future<Response> post(String path, String body) async {
     Uri uri = Uri.parse("${host}${path}");
     Response response = await _client.post(uri, body: body, headers: headers);
-    print(headers);
     return response;
   }
 }
