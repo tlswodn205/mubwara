@@ -55,10 +55,10 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         controller: controller,
         children: [
           HomePage(),
-          LoginPage(),
+          MapPage(),
           SearchPage(),
           BoardPage(),
-          LoginPage(),
+          MyPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
