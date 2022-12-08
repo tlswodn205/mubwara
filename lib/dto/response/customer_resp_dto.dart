@@ -25,12 +25,13 @@ class CustomerMyPageSubscribeRespDto {
 
 class CustomerMyPageReviewRespDto {
   CustomerMyPageReviewRespDto({
+    required this.id,
     required this.score,
     required this.content,
     required this.imageFileDto,
     required this.shop,
   });
-
+  int id;
   int score;
   String content;
   ImageFileDto imageFileDto;
@@ -38,6 +39,7 @@ class CustomerMyPageReviewRespDto {
 
   factory CustomerMyPageReviewRespDto.fromJson(Map<String, dynamic> json) =>
       CustomerMyPageReviewRespDto(
+        id: json["id"],
         score: json["score"],
         content: json["content"],
         shop: LiviewShopDto.fromJson(Map<String, dynamic>.from(json["shop"])),

@@ -5,10 +5,8 @@ import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/board_page/board_page.dart';
 import 'package:mubwara/views/page/home_page/home_page.dart';
-import 'package:mubwara/views/page/login_page/login_page.dart';
 import 'package:mubwara/views/page/map_page/map_page.dart';
 import 'package:mubwara/views/page/my_page/my_page.dart';
-import 'package:mubwara/views/page/review_write_page/review_write_page.dart';
 import 'package:mubwara/views/page/search_page/search_page.dart';
 
 class RootTab extends StatefulWidget {

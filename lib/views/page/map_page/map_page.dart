@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_webservice/places.dart';
+
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -13,8 +13,6 @@ class MapPage extends StatefulWidget {
 class _HomeScreenState extends State<MapPage> {
   bool choolCheckDone = false;
   GoogleMapController? mapController;
-  final places =
-  GoogleMapsPlaces(apiKey: "AIzaSyCysssUgmni5owAOoABB8busqeOQ1caG1Q");
   // latitude - 위도 , longitude - 경도
   static final LatLng companyLatLng = LatLng(
     35.159548442035664,

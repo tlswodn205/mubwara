@@ -13,6 +13,7 @@ emptyTheTextFormField() {
 }
 
 // 검색어 입력후 submit하게 되면 DB에서 검색어와 일치하거나 포함하는 결과 가져와서 future변수에 저장
+// 파이어베이스
 // controlSearching(str) {
 //   print(str);
 //   Future<QuerySnapshot> allUsers = userReferece.where('profileName', isGreaterThanOrEqulalTo: str).get();

@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? errorText;
   final bool obscureText;
   final bool autofocus;
+
   const CustomTextFormField(
       {this.hintText,
       this.errorText,

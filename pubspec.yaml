@@ -60,7 +60,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   json_serializable: ^6.5.4
-  google_maps_webservice: ^0.0.19
+  flutter_google_places_hoc081098: ^1.1.0
+  uuid: ^3.0.7
+  flutter_animated_button: ^2.0.2
 
 dev_dependencies:
   flutter_test:
