@@ -28,6 +28,7 @@ class ShopHttpRepository {
         await _ref.read(httpConnector).get("/shop/detail/${id}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     dynamic data = responseDto.data;
+    print(data);
     return ShopDetailRespDto.fromJson(data);
   }
 

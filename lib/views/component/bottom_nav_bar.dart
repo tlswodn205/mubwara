@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mubwara/provider/auth_provider.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/board_page/board_page.dart';
@@ -15,16 +17,17 @@ import '../common/components/multi_image_uploader.dart';
 import '../common/components/single_image_uploader.dart';
 import '../page/login_page/login_page.dart';
 
-class RootTab extends StatefulWidget {
+class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'home';
 
   RootTab({Key? key}) : super(key: key);
 
   @override
-  State<RootTab> createState() => _RootTabState();
+  ConsumerState<RootTab> createState() => _RootTabState();
 }
 
-class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
+class _RootTabState extends ConsumerState<RootTab>
+    with SingleTickerProviderStateMixin {
   late TabController controller;
   int index = 0;
 
@@ -52,40 +55,75 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
-      title: '캐치테이블',
-      child: TabBarView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: controller,
-        children: [
-          HomePage(),
-          MapPage(),
-          SearchPage(),
-          BoardPage(),
-          //MyPage(),
-          MultiImageUploader(),
-          //AddressComponent(),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: PRIMARY_COLOR,
-        unselectedItemColor: Body_TEXT_COLOR,
-        selectedFontSize: 10,
-        unselectedFontSize: 10,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          controller.animateTo(index);
-        },
-        currentIndex: index,
-        items: [
-          _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
-          _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
-          _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
-          _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
-          _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
-        ],
-      ),
-    );
+    if (ref.watch(authProvider).isLogin) {
+      print(ref.watch(authProvider).isLogin);
+      return DefaultLayout(
+        title: '캐치테이블',
+        child: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: controller,
+          children: [
+            HomePage(),
+            MapPage(),
+            SearchPage(),
+            BoardPage(),
+            MyPage(),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: PRIMARY_COLOR,
+          unselectedItemColor: Body_TEXT_COLOR,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
+          type: BottomNavigationBarType.fixed,
+          onTap: (int index) {
+            controller.animateTo(index);
+          },
+          currentIndex: index,
+          items: [
+            _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
+            _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
+            _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
+            _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
+            _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
+          ],
+        ),
+      );
+    } else {
+      print(ref.watch(authProvider).isLogin);
+      return DefaultLayout(
+        title: '캐치테이블',
+        child: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: controller,
+          children: [
+            HomePage(),
+            MapPage(),
+            SearchPage(),
+            BoardPage(),
+            LoginPage(),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: PRIMARY_COLOR,
+          unselectedItemColor: Body_TEXT_COLOR,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
+          type: BottomNavigationBarType.fixed,
+          onTap: (int index) {
+            controller.animateTo(index);
+          },
+          currentIndex: index,
+          items: [
+            _buildButtomNavigatorBarButton("홈", CupertinoIcons.home),
+            _buildButtomNavigatorBarButton("지도", CupertinoIcons.map),
+            _buildButtomNavigatorBarButton("검색", CupertinoIcons.search),
+            _buildButtomNavigatorBarButton("게시판", FontAwesomeIcons.table),
+            _buildButtomNavigatorBarButton("마이페이지", FontAwesomeIcons.user),
+          ],
+        ),
+      );
+    }
   }
 
   BottomNavigationBarItem _buildButtomNavigatorBarButton(text, IconData icons) {
