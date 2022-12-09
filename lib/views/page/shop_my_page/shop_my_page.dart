@@ -3,26 +3,28 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mubwara/controller/shop_controller.dart';
+import 'package:mubwara/dto/request/shop_req_dto.dart';
 import 'package:mubwara/views/common/components/custom_text_form_field.dart';
+import 'package:mubwara/views/common/components/number_text_from_field.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
-import 'package:mubwara/views/page/reservation_management_page/page/shop_menu_page.dart';
-import 'package:mubwara/views/page/shop_my_page/checkbox/checkbox.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
-class ShopMyPage extends StatefulWidget {
-  const ShopMyPage({Key? key}) : super(key: key);
+class ShopMyPage extends ConsumerStatefulWidget {
+  ShopMyPage({Key? key}) : super(key: key);
 
   @override
-  State<ShopMyPage> createState() => _ShopMyPageState();
+  ConsumerState<ShopMyPage> createState() => _ShopMyPageState();
 }
 
-class _ShopMyPageState extends State<ShopMyPage> {
+class _ShopMyPageState extends ConsumerState<ShopMyPage> {
   final ImagePicker imgpicker = ImagePicker();
   XFile? imagefile;
   TextEditingController _AddressController = TextEditingController();
-
+  JoinShopReqDto joinShopReqDto = JoinShopReqDto.origin();
   openImages() async {
     try {
       var pickedfile = await imgpicker.pickImage(source: ImageSource.gallery);
@@ -54,49 +56,80 @@ class _ShopMyPageState extends State<ShopMyPage> {
                 _builderImageUploader(),
                 const SizedBox(height: 16.0),
                 CustomTextFormField(
-                  hintText: '사장님의 이름을 입력해주세요.',
-                ),
-                const SizedBox(height: 16.0),
-                CustomTextFormField(
+                  onChanged: (value){
+                    joinShopReqDto.shop_name = value;
+                  },
                   hintText: '가게의 상호명을 입력해주세요.',
                   obscureText: false,
                 ),
                 const SizedBox(height: 16.0),
-                CustomTextFormField(
+                NumberCustomTextFormField(
+                  onChanged: (value){
+                    joinShopReqDto.phoneNumber = value;
+                  },
                   hintText: '가게의 전화번호를 입력해주세요.',
                   obscureText: false,
                 ),
                 const SizedBox(height: 16.0),
                 AddressText(),
-
                 const SizedBox(height: 16.0),
-                _buildButton(
-                    buttonName: "편의시설 수정하기",
-                    buttonBackgroundColor: PRIMARY_COLOR,
-                    pageName: CheckBoxListTileDemo()),
-                const SizedBox(height: 16.0),
-                _buildButton(
-                    buttonName: "메뉴 추가하기",
-                    buttonBackgroundColor: PRIMARY_COLOR,
-                    pageName: ShopMenuPage()),
-                const SizedBox(height: 16.0),
-                const SizedBox(height: 16.0),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: TextButton(
-                    onPressed: () async {
-                      _showDialog();
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: PRIMARY_COLOR,
-                      primary: Body_TEXT_COLOR1,
+                Row(
+                  children: [
+                    Expanded(
+                      child: NumberCustomTextFormField(
+                        onChanged: (value){
+                          joinShopReqDto.opentime = value;
+                        },
+                        hintText: '오픈시간',
+                        obscureText: false,
+                      ),
                     ),
-                    child: Text(
-                      '가게 신청하기',
+                    const SizedBox(height: 16.0),
+                    Expanded(
+                      child: NumberCustomTextFormField(
+                        onChanged: (value){
+                          joinShopReqDto.closetime = value;
+                        },
+                        hintText: '닫는 시간',
+                        obscureText: false,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                const SizedBox(height: 16.0),
+                Row(
+                  children: [
+                    Expanded(
+                      child: NumberCustomTextFormField(
+                        onChanged: (value){
+                          joinShopReqDto.perhour = value;
+                        },
+                        hintText: '예약 받을 간격',
+                        obscureText: false,
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Expanded(
+                      child: NumberCustomTextFormField(
+                        onChanged: (value){
+                          joinShopReqDto.perprice = value;
+                        },
+                        hintText: '예약금',
+                        obscureText: false,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16.0),
+                CustomTextFormField(
+                  onChanged: (value){
+                    joinShopReqDto.information = value;
+                  },
+                  hintText: '가게소개를 입력해주세요.',
+                  obscureText: false,
+                ),
+                _submitButton(),
+                // 가게 신청한 이후부터 신청가능하게 만들기
               ],
             ),
           ),
@@ -104,11 +137,11 @@ class _ShopMyPageState extends State<ShopMyPage> {
       ),
     );
   }
-  
+
   Widget _buildButton(
       {required String buttonName,
-        required Color buttonBackgroundColor,
-        required Widget pageName}) {
+      required Color buttonBackgroundColor,
+      required Widget pageName}) {
     return Container(
       width: double.infinity,
       height: 50,
@@ -143,6 +176,9 @@ class _ShopMyPageState extends State<ShopMyPage> {
         children: [
           Center(
             child: AddressTextFormField(
+              onChanged: (value){
+                joinShopReqDto.address = value;
+              },
               hintText: '가게의 주소를 입력해주세요.',
             ),
           ),
@@ -187,6 +223,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
 
   @override
   Widget AddressTextFormField({
+    ValueChanged<String>? onChanged,
     String? hintText,
     String? errorText,
   }) {
@@ -194,6 +231,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
         borderSide: BorderSide(color: INPUT_BORDER_COLOR, width: 1.0));
 
     return TextFormField(
+      onChanged: onChanged,
       cursorColor: PRIMARY_COLOR,
       controller: _AddressController,
       // 비밀번호 입력할때만 사용 obscureText\
@@ -211,13 +249,34 @@ class _ShopMyPageState extends State<ShopMyPage> {
         filled: true,
         // baseBorder = 모든 Input 상태의 기본 스타일 세팅
         border: baseBorder,
-        enabledBorder: baseBorder, // 선택되지 않는 폼을 색 옅게 하기
+        enabledBorder: baseBorder,
+        // 선택되지 않는 폼을 색 옅게 하기
         focusedBorder: baseBorder.copyWith(
           // copyWith 대상의 모든 속성을 복사하고 이어받음
           borderSide: baseBorder.borderSide.copyWith(
             //baseborder의 borderline 색을 바꾼다.
             color: PRIMARY_COLOR,
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _submitButton(){
+    final cc = ref.read(shopController);
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: TextButton(
+        onPressed: () async {
+          _showDialog(sc: cc);
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: PRIMARY_COLOR,
+          primary: Body_TEXT_COLOR1,
+        ),
+        child: Text(
+          '가게 신청하기',
         ),
       ),
     );
@@ -234,13 +293,14 @@ class _ShopMyPageState extends State<ShopMyPage> {
           imagefile != null
               ? Container(
                   child: Card(
-                  child: Container(
-                    width: double.infinity,
-                    child: Image.file(
-                      File(imagefile!.path),
+                    child: Container(
+                      width: double.infinity,
+                      child: Image.file(
+                        File(imagefile!.path),
+                      ),
                     ),
                   ),
-                ))
+                )
               : Container(),
           Divider(),
 
@@ -260,16 +320,19 @@ class _ShopMyPageState extends State<ShopMyPage> {
       ),
     );
   }
-  void _showDialog() {
+
+  void _showDialog(
+  {required ShopController sc}
+      ) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("확인창"),
-          content: SingleChildScrollView(child:Text("가게 신청을 하시겠습니까?")),
+          content: SingleChildScrollView(child: Text("가게 신청을 하시겠습니까?")),
           actions: [
-             ElevatedButton(
+            ElevatedButton(
               child: Text("닫기"),
               onPressed: () {
                 Navigator.pop(context);
@@ -278,7 +341,7 @@ class _ShopMyPageState extends State<ShopMyPage> {
             ElevatedButton(
               child: Text("신청하기"),
               onPressed: () {
-                Navigator.pop(context);
+                sc.joinShop(joinShopReqDto);
               },
             ),
           ],

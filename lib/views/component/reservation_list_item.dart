@@ -12,10 +12,10 @@ import '../common/const/color.dart';
 
 class ReservationListItem extends ConsumerWidget {
   const ReservationListItem({required this.listIndex,
-    required this.sm, Key? key})
+    required this.rm, Key? key})
       : super(key: key);
   final int listIndex;
-  final List<CustomerMyPageReservationRespDto> sm;
+  final List<CustomerMyPageReservationRespDto> rm;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,11 +28,11 @@ class ReservationListItem extends ConsumerWidget {
               children: [
                 Container(
                   child: Center(
-                    child: Image.memory(
-                        base64.decode(sm[listIndex].shop.imageFileDto.image),
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.fill,),
+                    // child: Image.memory(
+                    //     base64.decode(rm[listIndex].imageFileDto.image),
+                    //   width: 100,
+                    //   height: 100,
+                    //   fit: BoxFit.fill,),
                   ),
                 ),
                 SizedBox(
@@ -45,7 +45,7 @@ class ReservationListItem extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        sm[listIndex].shop.shopName,
+                        rm[listIndex].shopName,
                         style: TextStyle(fontSize: 19),
                       ),
                       SizedBox(height: 7),
@@ -53,12 +53,12 @@ class ReservationListItem extends ConsumerWidget {
                         children: [
                           _IconText(
                             icon: Icons.timelapse_outlined,
-                            label: sm[listIndex].reservationTime,
+                            label: rm[listIndex].reservationTime,
                           ),
                           renderDot(),
                           _IconText(
                             icon: Icons.calendar_month,
-                            label: sm[listIndex].reservationDate,
+                            label: rm[listIndex].reservationDate,
                           ),
                         ],
                       ),
@@ -67,12 +67,12 @@ class ReservationListItem extends ConsumerWidget {
                         children: [
                           _IconText(
                             icon: Icons.home,
-                            label: sm[listIndex].shop.address,
+                            label: rm[listIndex].address,
                           ),
                           renderDot(),
                           _IconText(
                             icon: Icons.phone,
-                            label: sm[listIndex].shop.category,
+                            label: rm[listIndex].category,
                           ),
                         ],
                       ),
