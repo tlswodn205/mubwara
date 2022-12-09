@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Text(
-              '신규 레스토랑을 소개합니다.',
+              '에디터 선정 베스트 맛집!',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700

@@ -3,8 +3,11 @@ import 'package:mubwara/views/common/const/color.dart';
 
 class ReservationTextField extends StatelessWidget {
   final String label;
+  final ValueChanged<String>? onChanged;
+
   const ReservationTextField({
     required this.label,
+    this.onChanged,
     Key? key}) : super(key: key);
 
   @override
@@ -19,6 +22,7 @@ class ReservationTextField extends StatelessWidget {
           ),
         ),
         TextField(
+          onChanged: onChanged,
           cursorColor:Body_TEXT_COLOR,
           decoration: InputDecoration(
             border: InputBorder.none,
