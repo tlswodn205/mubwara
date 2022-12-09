@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:mubwara/dto/request/user_req_dto.dart';
+import 'package:mubwara/provider/auth_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../dto/response/response_dto.dart';
 import '../../views/page/login_page/login_page_model.dart';
 import '../http_connector.dart';
@@ -21,13 +24,24 @@ class UserHttpRepository {
         .toJson());
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
-    String token = response.headers.putIfAbsent('authorization', () => '');
-    print(token);
-    if (token == "") {
-      return "";
-    }
-    _ref.read(httpConnector).AddJWT(token);
-    return response.headers.putIfAbsent('authorization', () => '');
+    String? jwtToken = response.headers['authorization'].toString();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("jwtToken", jwtToken);
+    Logger().d(jwtToken);
+
+    AuthProvider ap = _ref.read(authProvider);
+    ap.jwtToken = jwtToken;
+    ap.isLogin = true;
+    ap.role = responseDto.data;
+
+    return jwtToken;
+
+    // String jwtToken = response.headers.putIfAbsent('authorization', () => '');
+    // if (jwtToken == null) {
+    //   return "";
+    // }
+    // _ref.read(httpConnector).AddJWT(jwtToken);
+    // return response.headers.putIfAbsent('authorization', () => '');
   }
 
   void loginTest() async {

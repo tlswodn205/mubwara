@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 //주의 ★★★★★ file이라는 type에서 바로 import를 넣어주면 dart.html이 import선언 되는데 그러면 에러 걸림.
 
 import 'package:flutter/cupertino.dart';
@@ -20,11 +22,14 @@ class _SingleImageUploaderState extends State<SingleImageUploader> {
 
   shootImages() async {
     try {
-      var pickedfile = await imgpicker.pickImage(source: ImageSource.camera);
+      XFile? pickedfile = await imgpicker.pickImage(source: ImageSource.camera);
       //you can use ImageCourse.camera for Camera capture
       if (pickedfile != null) {
         imagefile = pickedfile;
         setState(() {});
+        Uint8List data = await imagefile!.readAsBytes();
+        base64Encode(data);
+        print(data.toString());
       } else {
         print("No image is selected.");
       }
