@@ -22,7 +22,7 @@ class _ReviewListState extends ConsumerState<ReviewList> {
       child: ListView.builder(
         itemCount: sm.length,
         itemBuilder: (context, index) {
-          return ReviewListItem(listIndex: index, sm: [],);
+          return ReviewListItem(listIndex: index, sm: sm,);
         },
       ),
     );

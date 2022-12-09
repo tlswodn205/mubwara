@@ -15,14 +15,14 @@ class ReservationList extends ConsumerStatefulWidget {
 class _ReservationListState extends ConsumerState<ReservationList> {
   @override
   Widget build(BuildContext context) {
-    final sm = ref.watch(reservationListModel);
-    final sc = ref.read(reservationController);
+    final rm = ref.watch(reservationListModel);
+    final rc = ref.read(reservationController);
     return RefreshIndicator(
-      onRefresh: () => sc.refresh(),
+      onRefresh: () => rc.refresh(),
       child: ListView.builder(
-        itemCount: sm.length,
+        itemCount: rm.length,
         itemBuilder: (context, index) {
-          return ReservationListItem(listIndex: index, sm: [],);
+          return ReservationListItem(listIndex: index, rm: rm,);
         },
       ),
     );

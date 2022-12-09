@@ -1,26 +1,31 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mubwara/controller/menu_controller.dart';
+import 'package:mubwara/dto/request/menu_req_dto.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/reservation_text_field.dart';
 
-class ReservationBottomSheet extends StatefulWidget {
+class ReservationBottomSheet extends ConsumerStatefulWidget {
   const ReservationBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<ReservationBottomSheet> createState() => _ReservationBottomSheetState();
+  ConsumerState<ReservationBottomSheet> createState() =>
+      _ReservationBottomSheetState();
 }
 
-class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
+class _ReservationBottomSheetState
+    extends ConsumerState<ReservationBottomSheet> {
   final ImagePicker imgpicker = ImagePicker();
-  List<XFile>? imagefiles;
+  XFile? imagefile;
+  MenuReqDto menuReqDto = MenuReqDto.origin();
 
   openImages() async {
     try {
-      var pickedfiles = await imgpicker.pickMultiImage();
+      var pickedfile = await imgpicker.pickImage(source: ImageSource.gallery);
       //you can use ImageCourse.camera for Camera capture
-      if (pickedfiles != null) {
-        imagefiles = pickedfiles;
+      if (pickedfile != null) {
+        imagefile = pickedfile;
         setState(() {});
       } else {
         print("No image is selected.");
@@ -32,6 +37,8 @@ class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final cc = ref.read(menuController);
+
     //viewInset : 시스템 상 가려진 화면
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     return Container(
@@ -43,7 +50,27 @@ class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
           padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
           child: Column(
             children: [
-              _menuInfo(),
+              Row(
+                children: [
+                  Expanded(
+                      child: ReservationTextField(
+                    onChanged: (value) {
+                      menuReqDto.name = value;
+                    },
+                    label: '메뉴 이름',
+                  )),
+                  SizedBox(
+                    width: 16.0,
+                  ),
+                  Expanded(
+                      child: ReservationTextField(
+                    onChanged: (value) {
+                      menuReqDto.price = value;
+                    },
+                    label: '메뉴 가격',
+                  )),
+                ],
+              ),
               SizedBox(
                 width: 16.0,
               ),
@@ -51,7 +78,18 @@ class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
               SizedBox(
                 width: 16.0,
               ),
-              _SaveButton(),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        cc.saveMenu(menuReqDto);
+                      },
+                      child: Text('저장'),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -69,20 +107,16 @@ class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
 
           Text("선택한 이미지:"),
           Divider(),
-          imagefiles != null
-              ? Wrap(
-                  children: imagefiles!.map((imageone) {
-                    return Container(
-                        child: Card(
+          imagefile != null
+              ? Container(
+                  child: Card(
                       child: Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.file(
-                          File(imageone.path),
-                        ),
-                      ),
-                    ));
-                  }).toList(),
+                    height: 100,
+                    width: 100,
+                    child: Image.file(
+                      File(imagefile!.path),
+                    ),
+                  )),
                 )
               : Container(),
           Divider(),
@@ -93,47 +127,6 @@ class _ReservationBottomSheetState extends State<ReservationBottomSheet> {
               child: Text("메뉴 이미지 추가")),
         ],
       ),
-    );
-  }
-}
-
-class _menuInfo extends StatelessWidget {
-  const _menuInfo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: ReservationTextField(
-          label: '메뉴 이름',
-        )),
-        SizedBox(
-          width: 16.0,
-        ),
-        Expanded(
-            child: ReservationTextField(
-          label: '메뉴 가격',
-        )),
-      ],
-    );
-  }
-}
-
-class _SaveButton extends StatelessWidget {
-  const _SaveButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('저장'),
-          ),
-        ),
-      ],
     );
   }
 }

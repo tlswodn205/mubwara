@@ -20,6 +20,7 @@ class ReservationController {
   Future<void> refresh() async {
     List<CustomerMyPageReservationRespDto> myReservationDtoList =
     await _ref.read(customerHttpRepository).myPageReservationList();
+    print("밥소세지" + myReservationDtoList.toString());
     _ref.read(reservationListModel.notifier).refresh(myReservationDtoList);
     return null;
   }

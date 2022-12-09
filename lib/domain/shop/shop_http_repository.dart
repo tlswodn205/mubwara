@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/dto/request/shop_req_dto.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import '../../dto/response/response_dto.dart';
 import '../http_connector.dart';
@@ -32,6 +33,12 @@ class ShopHttpRepository {
     return ShopDetailRespDto.fromJson(data);
   }
 
+  Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
+    String body = jsonEncode(joinShopReqDto.toJson());
+    print(joinShopReqDto.phoneNumber);
+    Response response =
+    await _ref.read(httpConnector).post("/shop/save", body);
+  }
 //   await _ref.read(httpConnector).get("/api/product/${id}");
 //   Product product = Product.fromJson(jsonDecode(response.body));
 //   return product;

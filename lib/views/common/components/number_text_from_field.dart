@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class NumberCustomTextFormField extends StatelessWidget {
   final String? hintText;
   final String? errorText;
   final bool obscureText;
@@ -9,27 +10,30 @@ class CustomTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final TextEditingController _controller = TextEditingController();
 
-  CustomTextFormField(
+  NumberCustomTextFormField(
       {this.hintText,
-      this.errorText,
-      this.onChanged,
-      this.autofocus = false,
-      this.obscureText = false,
-      Key? key})
+        this.errorText,
+        this.onChanged,
+        this.autofocus = false,
+        this.obscureText = false,
+        Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController customTextEditingController = TextEditingController();
     final baseBorder = OutlineInputBorder(
         borderSide: BorderSide(color: INPUT_BORDER_COLOR, width: 1.0));
     return TextFormField(
+      controller: _controller,
+
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       cursorColor: PRIMARY_COLOR,
       // 비밀번호 입력할때만 사용 obscureText\
       onChanged: onChanged,
       obscureText: obscureText,
       autofocus: autofocus,
-      maxLines: null,
-      controller: _controller,
       decoration: InputDecoration(
         // 입력폼 데코레이션
         suffixIcon: IconButton(
@@ -57,6 +61,7 @@ class CustomTextFormField extends StatelessWidget {
             color: PRIMARY_COLOR,
           ),
         ),
+
       ),
     );
   }

@@ -66,6 +66,9 @@ class _tableInfo extends StatelessWidget {
       children: [
         Expanded(
             child: ReservationTextField(
+              onChanged: (value){
+
+              },
               label: '인원 수',
             )),
         SizedBox(

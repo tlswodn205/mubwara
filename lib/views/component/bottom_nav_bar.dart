@@ -56,7 +56,6 @@ class _RootTabState extends ConsumerState<RootTab>
   @override
   Widget build(BuildContext context) {
     if (ref.watch(authProvider).isLogin) {
-      print(ref.watch(authProvider).isLogin);
       return DefaultLayout(
         title: '캐치테이블',
         child: TabBarView(
@@ -90,7 +89,6 @@ class _RootTabState extends ConsumerState<RootTab>
         ),
       );
     } else {
-      print(ref.watch(authProvider).isLogin);
       return DefaultLayout(
         title: '캐치테이블',
         child: TabBarView(
