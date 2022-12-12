@@ -25,15 +25,16 @@ class UserHttpRepository {
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     String? jwtToken = response.headers['authorization'].toString();
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString("jwtToken", jwtToken);
-    Logger().d(jwtToken);
 
     AuthProvider ap = _ref.read(authProvider);
     ap.jwtToken = jwtToken;
     ap.isLogin = true;
     ap.role = responseDto.data;
+    ap.initProvider(_ref);
 
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("jwtToken", jwtToken);
+    prefs.setString("role", responseDto.data);
     return jwtToken;
 
     // String jwtToken = response.headers.putIfAbsent('authorization', () => '');

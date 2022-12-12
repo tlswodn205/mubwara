@@ -45,7 +45,7 @@ class CustomerHttpRepository {
     Response response = await _ref.read(httpConnector).get("/user/mypage/reservation");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
-    print("밥소세지" + dataList.toString());
+    print(dataList.toString());
     List<CustomerMyPageReservationRespDto> CustomerMyPageReservationList =
         dataList
             .map((x) => CustomerMyPageReservationRespDto.fromJson(x))
