@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/boundary.dart';
+import 'package:mubwara/views/page/review_write_page/review_write_page.dart';
 
 import '../../dto/response/shop_resp_dto.dart';
 import '../common/const/color.dart';
@@ -44,9 +45,39 @@ class ReservationListItem extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        rm[listIndex].shopName,
-                        style: TextStyle(fontSize: 19),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Text(
+                              rm[listIndex].shopName,
+                              style: TextStyle(fontSize: 19),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            SizedBox(
+                              height: 50,
+                              width: 100,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ReviewWritePage(),
+                                    ),
+                                  );
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor: PRIMARY_COLOR,
+                                  primary: Body_TEXT_COLOR1,
+                                ),
+                                child: Text(
+                                  '리뷰 쓰러가기',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 7),
                       Row(

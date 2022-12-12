@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'dart:io';
 
+import 'package:mubwara/views/layout/default_layout.dart';
+
 class ReviewWritePage extends StatefulWidget {
   const ReviewWritePage({Key? key}) : super(key: key);
 
@@ -33,27 +35,28 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            Text("${shopList[0].shop_name} 리뷰 작성하기",
-                style: TextStyle(fontSize: 20)),
-            SizedBox(height: 10),
-            _builderImageUploader(),
-            SizedBox(height: 10),
-            _buildStar(),
-            SizedBox(height: 10),
-            _buildTextFeild("리뷰내용", "null"),
-            SizedBox(height: 30),
-            _buildButton(
-                buttonName: "리뷰 작성 완료",
-                buttonBackgroundColor: Colors.grey,
-                fontColor: Colors.white,
-                widthSize: 330)
-          ],
+    return DefaultLayout(
+      title: "${shopList[0].shop_name} 리뷰 작성하기",
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              SizedBox(height: 30),
+              SizedBox(height: 10),
+              _builderImageUploader(),
+              SizedBox(height: 10),
+              _buildStar(),
+              SizedBox(height: 10),
+              _buildTextFeild("리뷰내용", "null"),
+              SizedBox(height: 30),
+              _buildButton(
+                  buttonName: "리뷰 작성 완료",
+                  buttonBackgroundColor: Colors.grey,
+                  fontColor: Colors.white,
+                  widthSize: 330)
+            ],
+          ),
         ),
       ),
     );
@@ -65,20 +68,21 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
         children: [
           for (int i = 1; i <= 5; i++)
             (IconButton(
-                onPressed: () {
-                  setState(() {
-                    starCount = i;
-                  });
-                },
-                icon: ((starCount >= i)
-                    ? Icon(
-                        CupertinoIcons.star_fill,
-                        color: Colors.yellow,
-                      )
-                    : Icon(
-                        CupertinoIcons.star,
-                        color: Colors.yellow,
-                      ))))
+              onPressed: () {
+                setState(() {
+                  starCount = i;
+                });
+              },
+              icon: ((starCount >= i)
+                  ? Icon(
+                      CupertinoIcons.star_fill,
+                      color: Colors.yellow,
+                    )
+                  : Icon(
+                      CupertinoIcons.star,
+                      color: Colors.yellow,
+                    )),
+            )),
         ],
       ),
     );
