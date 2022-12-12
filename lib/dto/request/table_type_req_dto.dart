@@ -1,18 +1,26 @@
 class TableReqDto{
-  String? name;
-  String? price;
-  int? recommanded;
+  String? maxPeople;
+  String? qty;
   // String? image;
 
   TableReqDto.origin();
 
   TableReqDto(
       // this.image,
-      this.name, this.price, this.recommanded);
+      this.maxPeople, this.qty,);
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "price": price,
-    "recommanded": recommanded,
-    // "image": image,
+    "maxPeople": maxPeople,
+    "qty": qty,
+  };
+}
+
+class ShopTableUpdateReqDto{
+  List<TableReqDto> tableReqDtoListDto;
+
+  ShopTableUpdateReqDto(
+      this.tableReqDtoListDto
+      );
+  Map<String, dynamic> toJson() => {
+    "shopTableQtyDtoList": tableReqDtoListDto,
   };
 }

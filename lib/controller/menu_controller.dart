@@ -18,7 +18,7 @@ class MenuController {
     _ref.read(menuHttpRepository).savemenu(menuReqDto);
   }
 
-  void myReviewList() async {
+  void myMenuList() async {
     _ref.read(menuListModel.notifier).initViewModel();
   }
 
