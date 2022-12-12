@@ -31,6 +31,13 @@ class ShopHttpRepository {
     print(data);
     return ShopDetailRespDto.fromJson(data);
   }
+  Future<MyShopDetailRespDto> myshopDetail(int id) async {
+    Response response =
+    await _ref.read(httpConnector).get("/myshopdetail");
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    dynamic data = responseDto.data;
+    return MyShopDetailRespDto.fromJson(data);
+  }
 
   Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
     String body = jsonEncode(joinShopReqDto.toJson());

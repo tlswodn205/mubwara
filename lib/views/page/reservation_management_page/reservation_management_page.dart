@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
-import 'package:mubwara/views/page/shop_my_page/checkbox/checkbox.dart';
-
+import 'package:mubwara/views/page/reservation_management_page/component/checkbox/checkbox.dart';
 import 'page/reservation_cancle_page.dart';
 import 'page/reservation_now_page.dart';
 import 'page/schedule_page.dart';

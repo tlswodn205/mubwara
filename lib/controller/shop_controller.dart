@@ -24,7 +24,11 @@ class ShopController {
     _ref.read(searchPageModel.notifier).refresh(shopSearchDtoList);
     return null;
   }
-
+  
+  void myshopDetail() async {
+    _ref.read(searchPageModel.notifier).initViewModel();
+  }
+  
   Future<void> joinShop(JoinShopReqDto joinShopReqDto) async {
     _ref.read(shopHttpRepository).joinshop(joinShopReqDto);
   }

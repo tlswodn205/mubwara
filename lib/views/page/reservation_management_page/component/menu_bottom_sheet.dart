@@ -79,7 +79,7 @@ class _ReservationBottomSheetState
               SizedBox(
                 width: 16.0,
               ),
-              _builderImageUploader(),
+              Expanded(child: _builderImageUploader()),
               SizedBox(
                 width: 16.0,
               ),
