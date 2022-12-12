@@ -1,19 +1,24 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mubwara/controller/table_controller.dart';
+import 'package:mubwara/dto/request/table_type_req_dto.dart';
+import 'package:mubwara/views/common/components/number_text_from_field.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/reservation_text_field.dart';
 
-class TableBottomSheet extends StatefulWidget {
+class TableBottomSheet extends ConsumerStatefulWidget {
   const TableBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<TableBottomSheet> createState() => _TableBottomSheetState();
+  ConsumerState<TableBottomSheet> createState() => _TableBottomSheetState();
 }
 
-class _TableBottomSheetState extends State<TableBottomSheet> {
+class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
   final ImagePicker imgpicker = ImagePicker();
   List<XFile>? imagefiles;
+  TableReqDto tableReqDto = TableReqDto.origin();
 
   openImages() async {
     try {
@@ -32,6 +37,8 @@ class _TableBottomSheetState extends State<TableBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final cc = ref.read(tableController);
+
     //viewInset : 시스템 상 가려진 화면
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     return Container(
@@ -43,60 +50,49 @@ class _TableBottomSheetState extends State<TableBottomSheet> {
           padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
           child: Column(
             children: [
-              _tableInfo(),
+              Row(
+                children: [
+                  Expanded(
+                      child: NumberCustomTextFormField(
+                    onChanged: (value) {
+                      tableReqDto.maxPeople = value;
+                      print(value);
+                    },
+                        hintText: '인원 수',
+                  )),
+                  SizedBox(
+                    width: 16.0,
+                  ),
+                  Expanded(
+                    child: NumberCustomTextFormField(
+                      onChanged: (value) {
+                        tableReqDto.qty = value;
+                      },
+                      hintText: '테이블 갯수',
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
                 width: 30.0,
                 height: 30,
               ),
-              _SaveButton(),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        cc.tableupdate(tableReqDto);
+                      },
+                      child: Text('저장'),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _tableInfo extends StatelessWidget {
-  const _tableInfo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: ReservationTextField(
-              onChanged: (value){
-
-              },
-              label: '인원 수',
-            )),
-        SizedBox(
-          width: 16.0,
-        ),
-        Expanded(
-            child: ReservationTextField(
-              label: '갯수',
-            )),
-      ],
-    );
-  }
-}
-
-class _SaveButton extends StatelessWidget {
-  const _SaveButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('저장'),
-          ),
-        ),
-      ],
     );
   }
 }
