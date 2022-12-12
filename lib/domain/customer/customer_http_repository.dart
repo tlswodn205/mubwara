@@ -23,7 +23,7 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageSubscribeRespDto>> myPageSubscribeList() async {
-    Response response = await _ref.read(httpConnector).get("/customer/mypage/subscribe");
+    Response response = await _ref.read(httpConnector).get("/user/mypage/subscribe");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     List<CustomerMyPageSubscribeRespDto> CustomerMyPageSubscribeList = dataList
@@ -33,7 +33,7 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageReviewRespDto>> myPageReviewList() async {
-    Response response = await _ref.read(httpConnector).get("/customer/mypage/review");
+    Response response = await _ref.read(httpConnector).get("/user/mypage/review");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     List<CustomerMyPageReviewRespDto> CustomerMyPageReviewList =
@@ -42,7 +42,7 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageReservationRespDto>> myPageReservationList() async {
-    Response response = await _ref.read(httpConnector).get("/customer/mypage/reservation");
+    Response response = await _ref.read(httpConnector).get("/user/mypage/reservation");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print("밥소세지" + dataList.toString());

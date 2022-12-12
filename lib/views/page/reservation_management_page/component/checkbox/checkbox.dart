@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
-import 'package:mubwara/views/layout/default_layout.dart';
-import 'package:mubwara/views/page/shop_my_page/checkbox/checkboxlist.dart';
+import 'package:mubwara/views/page/reservation_management_page/component/checkbox/checkboxlist.dart';
 
 class CheckBoxListTileDemo extends StatefulWidget {
   @override

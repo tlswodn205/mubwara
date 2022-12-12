@@ -159,3 +159,38 @@ class ShopDetailRespDto {
         scoreAvg: json["scoreAvg"].toDouble(),
       );
 }
+class MyShopDetailRespDto {
+
+  MyShopDetailRespDto({
+    required this.shop_name,
+    required this.address,
+    required this.phoneNumber,
+    required this.information,
+    required this.perhour,
+    required this.perprice,
+    required this.closetime,
+    required this.opentime,
+});
+  String? shop_name;
+  String? address;
+  String? phoneNumber;
+  String? information;
+  String? opentime;
+  String? closetime;
+  String? perhour;
+  String? perprice;
+
+
+  factory MyShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
+      MyShopDetailRespDto(
+        shop_name: json["shop_name"],
+        address: json["address"],
+        phoneNumber: json["phoneNumber"],
+        information: json["information"],
+        opentime: json["opentime"],
+        perhour: json["closetime"],
+        closetime: json["perhour"],
+        perprice: json["perprice"],
+      );
+}
+

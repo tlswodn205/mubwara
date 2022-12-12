@@ -3,7 +3,7 @@ import 'package:mubwara/views/common/const/color.dart';
 
 class MenuCard extends StatefulWidget {
   final String menu_name;
-  final int menu_price;
+  final String menu_price;
   final Image image;
 
   const MenuCard(
