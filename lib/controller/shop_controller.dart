@@ -17,12 +17,14 @@ class ShopController {
   void searchShopList() async {
     _ref.read(searchPageModel.notifier).initViewModel();
   }
+
   Future<void> searchShopListRefresh() async {
     List<ShopSearchListDto> shopSearchDtoList =
         await _ref.read(shopHttpRepository).searchShopList();
     _ref.read(searchPageModel.notifier).refresh(shopSearchDtoList);
     return null;
   }
+
   Future<void> joinShop(JoinShopReqDto joinShopReqDto) async {
     _ref.read(shopHttpRepository).joinshop(joinShopReqDto);
   }
