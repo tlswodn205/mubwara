@@ -11,15 +11,13 @@ class HttpConnector {
   Map<String, String> headers = {
     "Content-Type": "application/json; charset=utf-8"
   };
-
   final Client _client = Client();
 
   void AddJWT(String authorization) {
     headers = {
       "Content-Type": "application/json; charset=utf-8",
-      "authorization": "${authorization}",
+      "Authorization": "${authorization}",
     };
-    print(headers);
   }
 
   Future<Response> get(String path) async {

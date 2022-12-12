@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,6 +29,9 @@ class _ReservationBottomSheetState
       if (pickedfile != null) {
         imagefile = pickedfile;
         setState(() {});
+        Uint8List data = await imagefile!.readAsBytes();
+        List<String> menuImage = [base64Encode(data)];
+        menuReqDto.imageFile = menuImage;
       } else {
         print("No image is selected.");
       }
