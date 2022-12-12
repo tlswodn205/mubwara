@@ -3,7 +3,8 @@ import 'package:mubwara/domain/customer/customer_http_repository.dart';
 import 'package:mubwara/dto/response/customer_resp_dto.dart';
 
 final reviewListModel =
-StateNotifierProvider<ReviewListModel, List<CustomerMyPageReviewRespDto>>((ref) {
+    StateNotifierProvider<ReviewListModel, List<CustomerMyPageReviewRespDto>>(
+        (ref) {
   return ReviewListModel([], ref)..initViewModel();
 });
 
@@ -13,7 +14,7 @@ class ReviewListModel extends StateNotifier<List<CustomerMyPageReviewRespDto>> {
 
   void initViewModel() async {
     List<CustomerMyPageReviewRespDto> mypageReviewDtoList =
-    await _ref.read(customerHttpRepository).myPageReviewList();
+        await _ref.read(customerHttpRepository).myPageReviewList();
     state = mypageReviewDtoList;
   }
 
