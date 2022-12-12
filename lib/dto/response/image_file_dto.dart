@@ -4,7 +4,7 @@ class ImageFileDto {
     required this.image,
   });
 
-  int id;
+  int? id;
   String image;
 
   factory ImageFileDto.fromJson(Map<String, dynamic> json) => ImageFileDto(

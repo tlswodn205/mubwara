@@ -6,13 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/boundary.dart';
 
-
 import '../../dto/response/shop_resp_dto.dart';
 import '../common/const/color.dart';
 
 class ReservationListItem extends ConsumerWidget {
-  const ReservationListItem({required this.listIndex,
-    required this.rm, Key? key})
+  const ReservationListItem(
+      {required this.listIndex, required this.rm, Key? key})
       : super(key: key);
   final int listIndex;
   final List<CustomerMyPageReservationRespDto> rm;
@@ -28,11 +27,12 @@ class ReservationListItem extends ConsumerWidget {
               children: [
                 Container(
                   child: Center(
-                    // child: Image.memory(
-                    //     base64.decode(rm[listIndex].imageFileDto.image),
-                    //   width: 100,
-                    //   height: 100,
-                    //   fit: BoxFit.fill,),
+                    child: Image.memory(
+                      base64.decode(rm[listIndex].imageFileDto.image),
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 SizedBox(

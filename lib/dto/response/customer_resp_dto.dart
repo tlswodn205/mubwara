@@ -1,4 +1,3 @@
-
 import 'package:mubwara/dto/response/image_file_dto.dart';
 
 class CustomerMyPageSubscribeRespDto {
@@ -38,15 +37,14 @@ class CustomerMyPageReviewRespDto {
 
   factory CustomerMyPageReviewRespDto.fromJson(Map<String, dynamic> json) =>
       CustomerMyPageReviewRespDto(
-        liviewShopDto : LiviewShopDto.fromJson(
-            Map<String, dynamic>.from(json["shop"])),
+        liviewShopDto:
+            LiviewShopDto.fromJson(Map<String, dynamic>.from(json["shop"])),
         score: json["score"],
         content: json["content"],
         // imageFileDto: ImageFileDto.fromJson(
         //     Map<String, dynamic>.from(json["imagefile"])),
       );
 }
-
 
 class CustomerMyPageReservationRespDto {
   CustomerMyPageReservationRespDto({
@@ -72,10 +70,11 @@ class CustomerMyPageReservationRespDto {
         shopName: json["shopName"],
         address: json["address"],
         category: json["category"],
-        imageFileDto: ImageFileDto.fromJson(
-            Map<String, dynamic>.from(json["storeFilename"])),
+        imageFileDto:
+            ImageFileDto.fromJson(Map<String, dynamic>.from(json["imageFile"])),
       );
 }
+
 class LiviewShopDto {
   LiviewShopDto({
     required this.id,
@@ -86,7 +85,7 @@ class LiviewShopDto {
   int id;
 
   factory LiviewShopDto.fromJson(Map<String, dynamic> json) => LiviewShopDto(
-    id: json["id"],
-    shopName: json["shopName"],
-  );
+        id: json["id"],
+        shopName: json["shopName"],
+      );
 }

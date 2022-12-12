@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/menu_controller.dart';
@@ -27,7 +29,7 @@ class _ShopMenuPageState extends ConsumerState<ShopMenuPage> {
           onRefresh: () => mc.refresh(),
           child: ListView.builder(
             itemCount: mr.length,
-            itemBuilder: (context, index){
+            itemBuilder: (context, index) {
               return _buildMenu(index, mr, mc);
             },
           ),
@@ -50,24 +52,24 @@ class _ShopMenuPageState extends ConsumerState<ShopMenuPage> {
       child: Icon(Icons.add),
     );
   }
-  Widget _buildMenu(
-      int ListIndex, List<MenuRespDto> mr, MenuController mc) {
+
+  Widget _buildMenu(int ListIndex, List<MenuRespDto> mr, MenuController mc) {
     return GestureDetector(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: MenuCard(
-              image: Image.asset(
-                'assets/images/review/ddeok_bok_gi.jpg',
-                width: 110,
-                height: 110,
-                fit: BoxFit.cover,
-              ),
-              menu_name: '${mr[ListIndex].name}',
-              menu_price: '${mr[ListIndex].price}',
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: MenuCard(
+            image: Image.memory(
+              base64Decode(mr[ListIndex].imageFileDto.image),
+              width: 110,
+              height: 110,
+              fit: BoxFit.cover,
             ),
+            menu_name: '${mr[ListIndex].name}',
+            menu_price: '${mr[ListIndex].price}',
           ),
         ),
+      ),
     );
   }
 }
