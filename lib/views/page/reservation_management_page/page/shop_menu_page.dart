@@ -29,7 +29,7 @@ class _ShopMenuPageState extends ConsumerState<ShopMenuPage> {
           onRefresh: () => mc.refresh(),
           child: ListView.builder(
             itemCount: mr.length,
-            itemBuilder: (context, index) {
+            itemBuilder: (context, index){
               return _buildMenu(index, mr, mc);
             },
           ),
