@@ -27,6 +27,7 @@ emptyTheTextFormField() {
 
 AppBar searchBar() {
   return AppBar(
+    automaticallyImplyLeading: true,
     backgroundColor: INPUT_BG_COLOR,
     title: TextFormField(
       controller: searchTextEditingController,

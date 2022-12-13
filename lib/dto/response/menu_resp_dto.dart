@@ -17,6 +17,6 @@ class MenuRespDto {
         name: json["name"],
         price: json["price"],
         recommanded: json["recommanded"],
-        imageFileDto: json["imageFile"],
+        imageFileDto: ImageFileDto.fromJson(json["imageFile"]),
       );
 }

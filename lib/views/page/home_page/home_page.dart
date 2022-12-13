@@ -40,10 +40,10 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMainPageButton(icon: "🥘", text: "한식"),
-              _buildMainPageButton(icon: "🍣", text: "일식"),
-              _buildMainPageButton(icon: "🍝", text: "양식"),
-              _buildMainPageButton(icon: "🍜", text: "중식"),
+              _buildMainPageButton(icon: "🥘", text: "한식", onPressed: (){}),
+              _buildMainPageButton(icon: "🍣", text: "일식",onPressed: (){}),
+              _buildMainPageButton(icon: "🍝", text: "양식",onPressed: (){}),
+              _buildMainPageButton(icon: "🍜", text: "중식",onPressed: (){}),
             ],
           ),
           SizedBox(
@@ -52,10 +52,10 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMainPageButton(icon: "⭐", text: "인기"),
-              _buildMainPageButton(icon: "🗺︎", text: "지역"),
-              _buildMainPageButton(icon: "🪙", text: "가격"),
-              _buildMainPageButton(icon: "🗄️", text: "편의"),
+              _buildMainPageButton(icon: "⭐", text: "인기",onPressed: (){}),
+              _buildMainPageButton(icon: "🗺︎", text: "지역",onPressed: (){}),
+              _buildMainPageButton(icon: "🪙", text: "가격",onPressed: (){}),
+              _buildMainPageButton(icon: "🗄️", text: "편의",onPressed: (){}),
             ],
           ),
           SizedBox(
@@ -112,6 +112,7 @@ class HomePage extends StatelessWidget {
   Widget _buildMainPageButton({
     required String icon,
     required String text,
+    required onPressed
   }) {
     return Container(
       height: 70,

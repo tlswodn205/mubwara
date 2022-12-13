@@ -80,6 +80,14 @@ class RestaurantCard extends StatelessWidget {
                     '${review_score}',
                     style: TextStyle(fontSize: 16),
                   ),
+                  SizedBox(width: 10.0),
+                  Text(
+                    tags.join(' · '),
+                    style: TextStyle(
+                      color: Body_TEXT_COLOR,
+                      fontSize: 14.0,
+                    ),
+                  )
                 ],
               ),
               const SizedBox(height: 8.0),
@@ -90,21 +98,13 @@ class RestaurantCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                tags.join(' · '),
-                style: TextStyle(
-                  color: Body_TEXT_COLOR,
-                  fontSize: 14.0,
-                ),
+              _IconText(
+                icon: Icons.home,
+                label: address.toString(),
               ),
               const SizedBox(height: 8.0),
               Row(
                 children: [
-                  _IconText(
-                    icon: Icons.home,
-                    label: address.toString(),
-                  ),
-                  renderDot(),
                   _IconText(
                     icon: Icons.phone,
                     label: telephone.toString(),

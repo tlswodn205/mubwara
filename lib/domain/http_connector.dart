@@ -18,6 +18,7 @@ class HttpConnector {
       "Content-Type": "application/json; charset=utf-8",
       "Authorization": "${jwtToken}",
     };
+    print("${jwtToken}");
   }
 
   void logout() {

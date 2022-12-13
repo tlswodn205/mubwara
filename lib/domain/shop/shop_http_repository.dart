@@ -42,7 +42,7 @@ class ShopHttpRepository {
   Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
     String body = jsonEncode(joinShopReqDto.toJson());
     print(joinShopReqDto.phoneNumber);
-    Response response = await _ref.read(httpConnector).post("/shop/save", body);
+    Response response = await _ref.read(httpConnector).post("/user/save", body);
   }
 //   await _ref.read(httpConnector).get("/api/product/${id}");
 //   Product product = Product.fromJson(jsonDecode(response.body));

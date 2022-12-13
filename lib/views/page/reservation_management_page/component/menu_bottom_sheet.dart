@@ -76,9 +76,6 @@ class _ReservationBottomSheetState
                   )),
                 ],
               ),
-              SizedBox(
-                width: 16.0,
-              ),
               Expanded(child: _builderImageUploader()),
               SizedBox(
                 width: 16.0,

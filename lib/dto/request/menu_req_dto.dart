@@ -11,7 +11,8 @@ class MenuReqDto {
       this.name,
       this.price,
       this.recommanded,
-      this.imageFile);
+      this.imageFile
+      );
 
   Map<String, dynamic> toJson() => {
         "name": name,

@@ -8,6 +8,8 @@ class JoinShopReqDto {
   String? perhour;
   String? perprice;
   String? category;
+  List<String>? imageFile;
+
   JoinShopReqDto.origin();
 
   JoinShopReqDto(
@@ -19,9 +21,11 @@ class JoinShopReqDto {
       this.information,
       this.closetime,
       this.category,
+  this.imageFile,
       this.opentime);
 
   Map<String, dynamic> toJson() => {
+    "image": imageFile,
     "category" : category,
     "perHour" : perhour,
     "perPrice" : perprice,
