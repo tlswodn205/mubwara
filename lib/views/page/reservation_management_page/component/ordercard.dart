@@ -3,7 +3,7 @@ import 'package:mubwara/views/common/const/color.dart';
 
 class OrderCard extends StatelessWidget {
   final String personal;
-  final DateTime reservation_date;
+  final String reservation_date;
   final String reservation_time;
   final String customer_name;
   final Image image;
@@ -22,7 +22,7 @@ class OrderCard extends StatelessWidget {
     return Column(
       children: [
         Text(
-          '${reservation_date.year}.${reservation_date.month.toString().padLeft(2,'0')}.${reservation_date.day.toString().padLeft(2,'0')} 예약완료',
+         '$reservation_date 예약완료',
           style: TextStyle(
             fontSize: 17,
           ),
@@ -55,12 +55,13 @@ class OrderCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '$reservation_time $personal명',
+                  '$reservation_time:00 $personal명',
                   style: TextStyle(
                     color: Body_TEXT_COLOR,
                     fontWeight: FontWeight.w700
                   ),
                 )
+
               ],
             ),
           ],

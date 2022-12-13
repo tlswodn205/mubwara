@@ -37,7 +37,7 @@ class _ReservationNowPageState extends ConsumerState<ReservationNowPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: OrderCard(
-        reservation_date: mr[ListIndex].reservationDate,
+        reservation_date: '${mr[ListIndex].reservationDate}',
         image: Image.asset(
           'assets/images/review/profile.jpg',
           fit: BoxFit.cover,
@@ -45,9 +45,9 @@ class _ReservationNowPageState extends ConsumerState<ReservationNowPage> {
           height: 50,
         ),
         reservation_time: '${mr[ListIndex].reservationTime}',
-        personal: '${mr[ListIndex].maxPeople}',
-        customer_name: '${mr[ListIndex].name}',
-        phone_number: '${mr[ListIndex].phoneNumber}',
+        personal: '${mr[ListIndex].shopTableDto.maxPeople}',
+        customer_name: '${mr[ListIndex].customerDto.name}',
+        phone_number: '${mr[ListIndex].customerDto.phoneNumber}',
       ),
     );
   }

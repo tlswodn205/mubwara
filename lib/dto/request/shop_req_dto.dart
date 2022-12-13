@@ -7,6 +7,7 @@ class JoinShopReqDto {
   String? closetime;
   String? perhour;
   String? perprice;
+  String? category;
   JoinShopReqDto.origin();
 
   JoinShopReqDto(
@@ -17,9 +18,11 @@ class JoinShopReqDto {
       this.phoneNumber,
       this.information,
       this.closetime,
+      this.category,
       this.opentime);
 
   Map<String, dynamic> toJson() => {
+    "category" : category,
     "perHour" : perhour,
     "perPrice" : perprice,
     "shopName": shop_name,
