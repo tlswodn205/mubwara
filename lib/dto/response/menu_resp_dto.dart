@@ -12,6 +12,7 @@ class MenuRespDto {
   int? recommanded;
   ImageFileDto imageFileDto;
 
+
   factory MenuRespDto.fromJson(Map<String, dynamic> json) => MenuRespDto(
         name: json["name"],
         price: json["price"],
