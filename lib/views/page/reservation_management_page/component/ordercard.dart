@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
 class OrderCard extends StatelessWidget {
-  final int personal;
+  final String personal;
   final DateTime reservation_date;
   final String reservation_time;
   final String customer_name;
   final Image image;
+  final String phone_number;
   const OrderCard({
     required this.image,
     required this.customer_name,
     required this.reservation_date,
     required this.reservation_time,
     required this.personal,
+    required this.phone_number,
     Key? key}) : super(key: key);
 
   @override
@@ -34,11 +36,23 @@ class OrderCard extends StatelessWidget {
             const SizedBox(width: 16.0,),
             Column(
               children: [
-                Text(
-                  customer_name,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '$customer_name님',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    const SizedBox(width: 30.0,),
+
+                    Text(
+                        phone_number,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    )
+                  ],
                 ),
                 Text(
                   '$reservation_time $personal명',
