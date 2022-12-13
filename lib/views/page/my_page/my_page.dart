@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/provider/auth_provider.dart';
 import 'package:mubwara/views/page/shop_main_page/shop_main_page.dart';
+import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomnavbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../component/bottom_nav_bar.dart';
 import '../../component/reservation_list.dart';
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
 import '../profile_update_page/profile_update_page.dart';
 
-class MyPage extends StatefulWidget {
+class MyPage extends ConsumerStatefulWidget {
   const MyPage({Key? key}) : super(key: key);
 
   @override
-  State<MyPage> createState() => _MyPageState();
+  ConsumerState<MyPage> createState() => _MyPageState();
 }
 
-class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
+class _MyPageState extends ConsumerState<MyPage>
+    with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -28,14 +33,30 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
     return Column(
       children: [
         _buildButton(
-            buttonName: "프로필 수정",
+            buttonName: "로그아웃",
             buttonBackgroundColor: Colors.red,
-            pageName: ProfileUpdatePage()),
+            onPressed: () {
+              ref.read(authProvider).logout(ref);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RootTab(),
+                ),
+              );
+            }),
         SizedBox(height: 30),
         _buildButton(
-            buttonName: "내 가게 등록",
-            buttonBackgroundColor: Colors.blue,
-            pageName: ShopMain()),
+          buttonName: "내 가게 등록",
+          buttonBackgroundColor: Colors.blue,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ShopMain(),
+              ),
+            );
+          },
+        ),
         SizedBox(height: 30),
         PreferredSize(
           preferredSize: _buildTabBar().preferredSize,
@@ -52,7 +73,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
   Widget _buildButton(
       {required String buttonName,
       required Color buttonBackgroundColor,
-      required Widget pageName}) {
+      required onPressed}) {
     return Container(
       width: double.infinity,
       height: 50,
@@ -60,14 +81,7 @@ class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
         style: TextButton.styleFrom(
           backgroundColor: buttonBackgroundColor,
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => pageName,
-            ),
-          );
-        },
+        onPressed: onPressed,
         child: Text(
           "${buttonName}",
           style: TextStyle(fontSize: 20, color: Colors.white),

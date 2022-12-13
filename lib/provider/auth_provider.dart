@@ -11,6 +11,13 @@ class AuthProvider {
   bool isLogin = false;
   String? role;
 
+  void logout(WidgetRef ref) {
+    ref.read(httpConnector).logout();
+    jwtToken = null;
+    isLogin = false;
+    role = null;
+  }
+
   Future<void> initProvider(Ref ref) async {
     final prefs = await SharedPreferences.getInstance();
     String? JwtToken = prefs.getString("jwtToken");
@@ -20,7 +27,7 @@ class AuthProvider {
       this.jwtToken = JwtToken;
       isLogin = true;
       this.role = Role;
-      ref.read(httpConnector).AddJWT(JwtToken);
+      ref.read(httpConnector).login(JwtToken);
     }
   }
 }

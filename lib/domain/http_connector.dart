@@ -13,11 +13,15 @@ class HttpConnector {
   };
   final Client _client = Client();
 
-  void AddJWT(String authorization) {
+  void login(String jwtToken) {
     headers = {
       "Content-Type": "application/json; charset=utf-8",
-      "Authorization": "${authorization}",
+      "Authorization": "${jwtToken}",
     };
+  }
+
+  void logout() {
+    headers = {"Content-Type": "application/json; charset=utf-8"};
   }
 
   Future<Response> get(String path) async {

@@ -30,7 +30,7 @@ class UserHttpRepository {
     ap.jwtToken = jwtToken;
     ap.isLogin = true;
     ap.role = responseDto.data;
-    ap.initProvider(_ref);
+    _ref.read(httpConnector).login(jwtToken);
 
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("jwtToken", jwtToken);
