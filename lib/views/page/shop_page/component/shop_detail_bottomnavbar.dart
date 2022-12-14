@@ -3,7 +3,9 @@ import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
 
 class bottomNavBar extends StatefulWidget {
-  const bottomNavBar({Key? key}) : super(key: key);
+  const bottomNavBar({required this.shopId, Key? key}) : super(key: key);
+
+  final int shopId;
 
   @override
   State<bottomNavBar> createState() => _bottomNavBarState();
@@ -54,7 +56,8 @@ class _bottomNavBarState extends State<bottomNavBar> {
                 children: <Widget>[
                   _isSelected
                       ? Icon(Icons.notifications, color: Body_TEXT_COLOR1)
-                      : Icon(Icons.notifications_active, color: Body_TEXT_COLOR1),
+                      : Icon(Icons.notifications_active,
+                          color: Body_TEXT_COLOR1),
                   Text(
                     _isSelected ? "구독취소" : "구독하기",
                     style: TextStyle(
@@ -70,7 +73,9 @@ class _bottomNavBarState extends State<bottomNavBar> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => reservationScreen(),
+                    builder: (_) => reservationScreen(
+                      shopId: widget.shopId,
+                    ),
                   ),
                 );
               },

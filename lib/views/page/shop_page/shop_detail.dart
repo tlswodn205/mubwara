@@ -43,7 +43,7 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
     } else {
       return DefaultLayout(
           title: '${sm.shopName}',
-          bottomNavigationBar: bottomNavBar(),
+          bottomNavigationBar: bottomNavBar(shopId: widget.shopId),
           child: Column(
             children: [
               _buildShop(sm),

@@ -66,7 +66,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 open_time: '${sm[ListIndex].openTime}:00',
                 close_time: '${sm[ListIndex].closeTime}:00',
                 review_score: sm[ListIndex].scoreAvg,
-                review_count: shopList[ListIndex].reviewer_count,
+                review_count: 0,
                 information: '${sm[ListIndex].information}',
               ),
             ),

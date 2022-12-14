@@ -12,13 +12,25 @@ class ReservationShopViewAllRespDto {
   String reservationTime;
   DateTime reservationDate;
 
-  factory ReservationShopViewAllRespDto.fromJson(
-      Map<String, dynamic> json) =>
+  factory ReservationShopViewAllRespDto.fromJson(Map<String, dynamic> json) =>
       ReservationShopViewAllRespDto(
         reservationTime: json["reservationTime"],
         phoneNumber: json["phoneNumber"],
         name: json["name"],
         maxPeople: json["maxPeople"],
         reservationDate: json["reservationDate"],
+      );
+}
+
+class ReservationSelectRespDto {
+  List<int>? date;
+  List<dynamic> maxPeopleList;
+
+  ReservationSelectRespDto({required this.date, required this.maxPeopleList});
+
+  factory ReservationSelectRespDto.fromJson(Map<String, dynamic> json) =>
+      ReservationSelectRespDto(
+        date: json["date"],
+        maxPeopleList: json["table"],
       );
 }
