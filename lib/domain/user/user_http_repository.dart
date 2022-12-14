@@ -39,20 +39,18 @@ class UserHttpRepository {
   }
 
   Future<String> kakaoLogin(String accessToken) async {
+    print("aaa");
     _ref.read(httpConnector).kakaoLodin(accessToken);
     Response response = await _ref.read(httpConnector).get("/oauth/kakao");
-    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     String? jwtToken = response.headers['access-token'].toString();
 
     AuthProvider ap = _ref.read(authProvider);
     ap.jwtToken = jwtToken;
     ap.isLogin = true;
-    ap.role = responseDto.data;
     _ref.read(httpConnector).login(jwtToken);
 
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("jwtToken", jwtToken);
-    prefs.setString("role", responseDto.data);
     return jwtToken;
   }
 }

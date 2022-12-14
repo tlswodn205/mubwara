@@ -26,7 +26,11 @@ class Kakaobutton extends ConsumerWidget {
       color: Colors.white,
       child: Center(
         child: TextButton(
-          child: Text("카카오 로그인"),
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child:
+                Image.asset("assets/images/util/kakao_login_medium_wide.png"),
+          ),
           onPressed: () async {
             if (await isKakaoTalkInstalled()) {
               try {
@@ -51,6 +55,7 @@ class Kakaobutton extends ConsumerWidget {
                 print(token.accessToken);
                 print('카카오계정으로 로그인 성공');
                 _get_user_info();
+                print("아리아");
                 ref.read(userController).kakaoLogin(token.accessToken);
               } catch (error) {
                 print('카카오계정으로 로그인 실패 $error 123');

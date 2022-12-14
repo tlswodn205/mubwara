@@ -36,17 +36,19 @@ class _personal extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {onPress;},
-                child: Text('${personal}명'),
+            ElevatedButton(
+              onPressed: () {},
+              onLongPress: () {
+                onPress;
+              },
+              child: Text('${personal}명'),
               style: ButtonStyle(
                 overlayColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.focused))
-                        return Colors.red;
-                      if (states.contains(MaterialState.pressed))
-                        return Colors.red;
-                      return Colors.red;
-                    }),
+                    (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.focused)) return Colors.red;
+                  if (states.contains(MaterialState.pressed)) return Colors.red;
+                  return Colors.red;
+                }),
               ),
               // isReverse: true,
             ),

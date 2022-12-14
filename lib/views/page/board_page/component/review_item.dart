@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -5,10 +7,14 @@ import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'package:mubwara/views/component/review_star_make.dart';
 
 import '../../../../domain/review/review.dart';
+import '../../../../dto/response/review_resp_dto.dart';
+import '../../shop_page/shop_detail.dart';
 
 class ReviewItem extends StatelessWidget {
-  const ReviewItem({required this.listIndex, Key? key}) : super(key: key);
+  const ReviewItem({required this.listIndex, required this.bpm, Key? key})
+      : super(key: key);
   final int listIndex;
+  final List<ReviewListRespDto> bpm;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,8 +25,8 @@ class ReviewItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                child: Image.asset(
-                  'assets/images/review/${reviewList[listIndex].image}',
+                child: Image.memory(
+                  base64Decode(bpm[listIndex].images[0].image),
                   width: 310,
                   height: 200,
                   fit: BoxFit.fill,
@@ -30,23 +36,30 @@ class ReviewItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${shopList[listIndex].shop_name}',
+                    '${bpm[listIndex].reviewAboutShopDto.shopName}',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  ReviewStarMake(
-                      review_score: reviewList[listIndex].review_score)
+                  ReviewStarMake(review_score: bpm[listIndex].score)
                 ],
               ),
-              Text("${reviewList[listIndex].content}"),
+              Text("${bpm[listIndex].content}"),
               SizedBox(
                 height: 10,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => ShopDetailScreen(
+                          shopId: bpm[listIndex].reviewAboutShopDto.id),
+                    ),
+                  );
+                },
                 child: Row(
                   children: [
-                    Image.asset(
-                      'assets/images/shop/${shopList[listIndex].image}',
+                    Image.memory(
+                      base64Decode(
+                          bpm[listIndex].reviewAboutShopDto.imageFileDto.image),
                       width: 35,
                       height: 35,
                       fit: BoxFit.cover,
@@ -59,7 +72,7 @@ class ReviewItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${shopList[listIndex].shop_name}',
+                          '${bpm[listIndex].reviewAboutShopDto.shopName}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
@@ -68,7 +81,7 @@ class ReviewItem extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              '${shopList[listIndex].category}',
+                              '${bpm[listIndex].reviewAboutShopDto.category}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
@@ -82,7 +95,7 @@ class ReviewItem extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '${shopList[listIndex].address}',
+                              '${bpm[listIndex].reviewAboutShopDto.address}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
