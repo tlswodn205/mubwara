@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/dto/request/table_type_req_dto.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/table_bottom_sheet.dart';
 
@@ -19,6 +20,8 @@ class _TableManagementPageState extends ConsumerState<TableManagementPage> {
   Widget build(BuildContext context) {
     final sm = ref.watch(tablePageModel);
     final sc = ref.read(tableController);
+    TableReqDto tableReqDto = TableReqDto.origin();
+
     return DefaultLayout(
       title: '테이블관리',
       child: Scaffold(
@@ -63,7 +66,9 @@ class _TableManagementPageState extends ConsumerState<TableManagementPage> {
                           DataCell(Text('${sm[i].maxPeople}')),
                           DataCell(Text('${sm[i].qty}')),
                           DataCell(IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              sc.tableupdate(tableReqDto);
+                            },
                             icon: Icon(Icons.delete),
                           ))
                         ],
