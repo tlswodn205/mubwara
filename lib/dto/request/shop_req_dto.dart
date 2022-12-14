@@ -8,6 +8,7 @@ class JoinShopReqDto {
   String? perhour;
   String? perprice;
   String? category;
+  List<String>? imageFile;
   JoinShopReqDto.origin();
 
   JoinShopReqDto(
@@ -19,17 +20,33 @@ class JoinShopReqDto {
       this.information,
       this.closetime,
       this.category,
+      this.imageFile,
       this.opentime);
 
   Map<String, dynamic> toJson() => {
-    "category" : category,
-    "perHour" : perhour,
-    "perPrice" : perprice,
-    "shopName": shop_name,
-    "address": address,
-    "phoneNumber": phoneNumber,
-    "openTime" : opentime,
-    "closeTime" : closetime,
-    "information" : information,
-  };
+        "image": imageFile,
+        "category": category,
+        "perHour": perhour,
+        "perPrice": perprice,
+        "shopName": shop_name,
+        "address": address,
+        "phoneNumber": phoneNumber,
+        "openTime": opentime,
+        "closeTime": closetime,
+        "information": information,
+      };
+}
+
+class KeywordReqDto {
+  String? keyword;
+
+  KeywordReqDto.origin();
+
+  KeywordReqDto(
+    this.keyword,
+  );
+
+  Map<String, dynamic> toJson() => {
+        "keyword": keyword,
+      };
 }

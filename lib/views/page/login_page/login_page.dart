@@ -50,7 +50,6 @@ class _loginPage extends ConsumerState<LoginPage> {
               buttonName: "회원 가입",
               buttonBackgroundColor: Colors.grey,
               fontColor: Colors.white),
-          SizedBox(height: 30),
           Kakaobutton(),
         ],
       ),

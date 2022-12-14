@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/shop_controller.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/search_page/component/restaurant_card.dart';
-import 'package:mubwara/views/page/search_page/component/search_bar.dart';
+import 'package:mubwara/views/component/search_bar.dart';
 import 'package:mubwara/views/page/search_page/search_page_model.dart';
 import 'package:mubwara/views/page/shop_page/shop_detail.dart';
 
@@ -26,7 +27,31 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final sc = ref.read(shopController);
 
     return Scaffold(
-      appBar: searchBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        backgroundColor: INPUT_BG_COLOR,
+        title: TextFormField(
+          controller: searchTextEditingController,
+          decoration: InputDecoration(
+              hintText: '검색어를 입력해주세요.',
+              hintStyle: TextStyle(
+                color: Body_TEXT_COLOR,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: INPUT_BORDER_COLOR,)
+              ),
+              filled: true,
+              prefixIcon: Icon(Icons.search_rounded, color: Body_TEXT_COLOR2, size: 30),
+              suffixIcon: IconButton(icon: Icon(Icons.clear, color: Body_TEXT_COLOR,),
+                  onPressed: emptyTheTextFormField)
+          ),
+          style: TextStyle(
+            fontSize: 18,
+            color: Body_TEXT_COLOR2,
+          ),
+          // onFieldSubmitted: controlSearching,
+        ),
+      ),
       body: Center(
         child: RefreshIndicator(
           onRefresh: () => sc.searchShopListRefresh(),

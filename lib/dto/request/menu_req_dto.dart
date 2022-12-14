@@ -1,4 +1,5 @@
 class MenuReqDto {
+  int? id;
   String? name;
   String? price;
   int? recommanded;
@@ -8,6 +9,7 @@ class MenuReqDto {
 
   MenuReqDto(
       // this.image,
+      this.id,
       this.name,
       this.price,
       this.recommanded,
@@ -15,6 +17,7 @@ class MenuReqDto {
 
   Map<String, dynamic> toJson() => {
         "name": name,
+    "id" : id,
         "price": price,
         "recommanded": recommanded,
         "imageFile": imageFile,

@@ -67,6 +67,8 @@ class _ShopMenuPageState extends ConsumerState<ShopMenuPage> {
             ),
             menu_name: '${mr[ListIndex].name}',
             menu_price: '${mr[ListIndex].price}',
+            id: mr[ListIndex].id,
+            mc: mc,
           ),
         ),
       ),

@@ -76,9 +76,6 @@ class _ReservationBottomSheetState
                   )),
                 ],
               ),
-              SizedBox(
-                width: 16.0,
-              ),
               Expanded(child: _builderImageUploader()),
               SizedBox(
                 width: 16.0,
@@ -116,7 +113,7 @@ class _ReservationBottomSheetState
               ? Container(
                   child: Card(
                       child: Container(
-                    height: 100,
+                    height: 70,
                     width: 100,
                     child: Image.file(
                       File(imagefile!.path),

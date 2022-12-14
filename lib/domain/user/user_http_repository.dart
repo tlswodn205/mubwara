@@ -24,7 +24,7 @@ class UserHttpRepository {
         .toJson());
     Response response = await _ref.read(httpConnector).post("/login", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
-    String? jwtToken = response.headers['authorization'].toString();
+    String? jwtToken = response.headers['access-token'].toString();
 
     AuthProvider ap = _ref.read(authProvider);
     ap.jwtToken = jwtToken;

@@ -23,7 +23,15 @@ class ShopHttpRepository {
         dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     return ShopSearchDtoList;
   }
-
+  Future<List<ShopSearchListDto>> shopSearchList(String keyword) async {
+    Response response = await _ref.read(httpConnector).get("/list/search/${keyword}");
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    List<ShopSearchListDto> ShopsearchDtoList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+    print(keyword);
+    return ShopsearchDtoList;
+  }
   Future<ShopDetailRespDto> shopDetail(int id) async {
     Response response = await _ref.read(httpConnector).get("/detail/${id}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
@@ -42,7 +50,7 @@ class ShopHttpRepository {
   Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
     String body = jsonEncode(joinShopReqDto.toJson());
     print(joinShopReqDto.phoneNumber);
-    Response response = await _ref.read(httpConnector).post("/shop/save", body);
+    Response response = await _ref.read(httpConnector).post("/user/save", body);
   }
 //   await _ref.read(httpConnector).get("/api/product/${id}");
 //   Product product = Product.fromJson(jsonDecode(response.body));

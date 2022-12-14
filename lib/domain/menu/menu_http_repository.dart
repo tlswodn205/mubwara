@@ -29,6 +29,13 @@ class MenuHttpRepository {
     List<MenuRespDto> shopMenuList = dataList
         .map((x) => MenuRespDto.fromJson(x))
         .toList();
+    if (shopMenuList == null) {
+      return [];
+    }
     return shopMenuList;
+  }
+  Future<void> deleteMenu(int id) async {
+    Response response = await _ref.read(httpConnector).delete("/shop/menu/${id}");
+    return null;
   }
 }

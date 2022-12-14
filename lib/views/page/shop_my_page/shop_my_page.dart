@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -33,6 +34,9 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
       if (pickedfile != null) {
         imagefile = pickedfile;
         setState(() {});
+        Uint8List data = await imagefile!.readAsBytes();
+        List<String> shopImage = [base64Encode(data)];
+        joinShopReqDto.imageFile = shopImage;
       } else {
         print("No image is selected.");
       }
@@ -208,6 +212,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
             child: AddressTextFormField(
               onChanged: (value) {
                 joinShopReqDto.address = value;
+                print(value);
               },
               hintText: '가게의 주소를 입력해주세요.',
             ),
@@ -369,6 +374,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
             ElevatedButton(
               child: Text("신청하기"),
               onPressed: () {
+                joinShopReqDto.address = _AddressController.text;
                 sc.joinShop(joinShopReqDto);
               },
             ),
