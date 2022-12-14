@@ -4,15 +4,22 @@ import 'package:mubwara/views/common/const/color.dart';
 
 class SceduleCard extends StatelessWidget {
   final String reservation_time;
+  final selectMethod;
 
-  const SceduleCard({required this.reservation_time, Key? key})
+  const SceduleCard(
+      {required this.reservation_time, required this.selectMethod, Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        children: [_Time(reservation_time: reservation_time)],
+        children: [
+          _Time(
+            reservation_time: reservation_time,
+            selectMethod: selectMethod,
+          )
+        ],
       ),
     );
   }
@@ -20,8 +27,10 @@ class SceduleCard extends StatelessWidget {
 
 class _Time extends StatelessWidget {
   final String reservation_time;
-
-  const _Time({required this.reservation_time, Key? key}) : super(key: key);
+  final selectMethod;
+  const _Time(
+      {required this.reservation_time, required this.selectMethod, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +55,9 @@ class _Time extends StatelessWidget {
               backgroundColor: Body_TEXT_COLOR1,
               borderColor: PRIMARY_COLOR,
               borderWidth: 2,
-              onPress: () {},
+              onPress: () {
+                selectMethod;
+              },
             ),
           ],
         ),

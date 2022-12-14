@@ -20,6 +20,7 @@ class SearchPageModel extends StateNotifier<List<ShopSearchListDto>> {
   //
   void refresh(List<ShopSearchListDto> shopSearchDtoList) {
     state = shopSearchDtoList;
+    print(shopSearchDtoList.length);
   }
   //
   // void addProduct(Product productRespDto) {

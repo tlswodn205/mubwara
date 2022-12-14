@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../../controller/customer/reservation_controller.dart';
 
 class Calendar extends StatelessWidget {
   final DateTime? selectedDay;
   final DateTime focusedDay;
   final OnDaySelected? onDaySelected;
+  final selectMethod;
 
   const Calendar(
-      {required this.onDaySelected,
+      {this.selectMethod,
+      required this.onDaySelected,
       required this.selectedDay,
       required this.focusedDay,
       Key? key})

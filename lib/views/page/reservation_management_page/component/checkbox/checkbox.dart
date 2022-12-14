@@ -11,9 +11,10 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
   List<CheckBoxListTileModel> checkBoxListTileModel =
       CheckBoxListTileModel.getUsers();
 
+  late List<int> checklist = [];
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40,
         centerTitle: true,
@@ -25,9 +26,7 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
         ),
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pop(
-                  itemChange
-              ); //뒤로가기
+              Navigator.of(context).pop(itemChange); //뒤로가기
             },
             color: Body_TEXT_COLOR2,
             icon: Icon(Icons.arrow_back)),
@@ -39,7 +38,7 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
               child: Container(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
-                  children:[
+                  children: [
                     CheckboxListTile(
                         activeColor: PRIMARY_COLOR,
                         dense: true,
@@ -62,6 +61,14 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
                         ),
                         onChanged: (bool? val) {
                           itemChange(val!, index);
+                          if (val) {
+                            checklist
+                                .add(checkBoxListTileModel[index].optionId);
+                          } else {
+                            checklist
+                                .remove(checkBoxListTileModel[index].optionId);
+                          }
+                          print(checklist.toString());
                         }),
                   ],
                 ),

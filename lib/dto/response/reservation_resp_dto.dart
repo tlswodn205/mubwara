@@ -4,15 +4,13 @@ class ReservationShopViewAllRespDto {
     required this.reservationDate,
     required this.shopTableDto,
     required this.customerDto,
-
   });
 
   String reservationTime;
   String reservationDate;
   ShopTableDto shopTableDto;
   CustomerDto customerDto;
-  factory ReservationShopViewAllRespDto.fromJson(
-      Map<String, dynamic> json) =>
+  factory ReservationShopViewAllRespDto.fromJson(Map<String, dynamic> json) =>
       ReservationShopViewAllRespDto(
         reservationTime: json["reservationTime"],
         shopTableDto: ShopTableDto.fromJson(json["shopTable"]),
@@ -20,27 +18,39 @@ class ReservationShopViewAllRespDto {
         reservationDate: json["reservationDate"],
       );
 }
-class ShopTableDto{
+
+class ReservationSelectRespDto {
+  List<int>? date;
+  List<dynamic> maxPeopleList;
+
+  ReservationSelectRespDto({required this.date, required this.maxPeopleList});
+
+  factory ReservationSelectRespDto.fromJson(Map<String, dynamic> json) =>
+      ReservationSelectRespDto(
+        date: json["date"],
+        maxPeopleList: json["table"],
+      );
+}
+
+class ShopTableDto {
   ShopTableDto({
     required this.maxPeople,
   });
   int maxPeople;
-  factory ShopTableDto.fromJson(
-      Map<String, dynamic> json) =>
-      ShopTableDto(
+  factory ShopTableDto.fromJson(Map<String, dynamic> json) => ShopTableDto(
         maxPeople: json["maxPeople"],
       );
 }
-class CustomerDto{
+
+class CustomerDto {
   CustomerDto({
     required this.name,
     required this.phoneNumber,
   });
   String name;
   String phoneNumber;
-  factory CustomerDto.fromJson(
-      Map<String, dynamic> json) =>
-      CustomerDto(
+  factory CustomerDto.fromJson(Map<String, dynamic> json) => CustomerDto(
         phoneNumber: json["phoneNumber"],
-        name: json["name"],      );
+        name: json["name"],
+      );
 }

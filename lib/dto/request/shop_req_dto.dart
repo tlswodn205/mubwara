@@ -9,7 +9,6 @@ class JoinShopReqDto {
   String? perprice;
   String? category;
   List<String>? imageFile;
-
   JoinShopReqDto.origin();
 
   JoinShopReqDto(

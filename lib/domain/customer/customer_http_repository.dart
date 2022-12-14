@@ -23,7 +23,8 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageSubscribeRespDto>> myPageSubscribeList() async {
-    Response response = await _ref.read(httpConnector).get("/user/mypage/subscribe");
+    Response response =
+        await _ref.read(httpConnector).get("/auth/mypage/subscribe");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     if (responseDto.data == null) {
       return [];
@@ -36,7 +37,8 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageReviewRespDto>> myPageReviewList() async {
-    Response response = await _ref.read(httpConnector).get("/user/mypage/review");
+    Response response =
+        await _ref.read(httpConnector).get("/auth/mypage/review");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     if (responseDto.data == null) {
       return [];
@@ -48,7 +50,8 @@ class CustomerHttpRepository {
   }
 
   Future<List<CustomerMyPageReservationRespDto>> myPageReservationList() async {
-    Response response = await _ref.read(httpConnector).get("/user/mypage/reservation");
+    Response response =
+        await _ref.read(httpConnector).get("/auth/mypage/reservation");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     if (responseDto.data == null) {
       return [];
