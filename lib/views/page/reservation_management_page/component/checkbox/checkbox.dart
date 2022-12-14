@@ -12,6 +12,7 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
       CheckBoxListTileModel.getUsers();
 
   late List<int> checklist = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,49 +33,47 @@ class CheckBoxListTileDemoState extends State<CheckBoxListTileDemo> {
             icon: Icon(Icons.arrow_back)),
       ),
       body: ListView.builder(
-          itemCount: checkBoxListTileModel.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: Container(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    CheckboxListTile(
-                        activeColor: PRIMARY_COLOR,
-                        dense: true,
-                        //font change
-                        title: Text(
-                          checkBoxListTileModel[index].title,
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.5),
-                        ),
-                        value: checkBoxListTileModel[index].isCheck,
-                        secondary: Container(
-                          height: 50,
-                          width: 50,
-                          child: Image.asset(
-                            checkBoxListTileModel[index].img,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        onChanged: (bool? val) {
-                          itemChange(val!, index);
-                          if (val) {
-                            checklist
-                                .add(checkBoxListTileModel[index].optionId);
-                          } else {
-                            checklist
-                                .remove(checkBoxListTileModel[index].optionId);
-                          }
-                          print(checklist.toString());
-                        }),
-                  ],
+        itemCount: checkBoxListTileModel.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                CheckboxListTile(
+                  activeColor: PRIMARY_COLOR,
+                  dense: true,
+                  //font change
+                  title: Text(
+                    checkBoxListTileModel[index].title,
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5),
+                  ),
+                  value: checkBoxListTileModel[index].isCheck,
+                  secondary: Container(
+                    height: 50,
+                    width: 50,
+                    child: Image.asset(
+                      checkBoxListTileModel[index].img,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  onChanged: (bool? val) {
+                    itemChange(val!, index);
+                    if (val) {
+                      checklist.add(checkBoxListTileModel[index].optionId);
+                    } else {
+                      checklist.remove(checkBoxListTileModel[index].optionId);
+                    }
+                    print(checklist.toString());
+                  },
                 ),
-              ),
-            );
-          }),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

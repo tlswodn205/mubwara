@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/request/shop_req_dto.dart';
+import 'package:mubwara/dto/response/board_resp_dto.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import '../../dto/response/response_dto.dart';
 import '../http_connector.dart';
@@ -46,7 +47,54 @@ class ShopHttpRepository {
     dynamic data = responseDto.data;
     return MyShopDetailRespDto.fromJson(data);
   }
+  Future<List<ShopSearchListDto>> shopPriceList(String value) async {
+    Response response =
+    await _ref.read(httpConnector).get("/list/price/${value}");
+    print(response);
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> PriceList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
 
+    return PriceList;
+
+  }
+
+  Future<List<ShopSearchListDto>> shopCategory(String categoryName) async {
+    Response response =
+    await _ref.read(httpConnector).get("/list/${categoryName}");
+    print(response);
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> categoryList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+    return categoryList;
+  }
+  Future<List<ShopSearchListDto>> shopOption() async {
+    Response response =
+    await _ref.read(httpConnector).get("/list/option");
+    print(response);
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> optionList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+    return optionList;
+  }
+  Future<List<ShopSearchListDto>> shopPopularList() async {
+    Response response =
+    await _ref.read(httpConnector).get("/list/popular");
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> popularList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+
+    return popularList;
+
+  }
   Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
     String body = jsonEncode(joinShopReqDto.toJson());
     print(joinShopReqDto.phoneNumber);

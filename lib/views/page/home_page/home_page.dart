@@ -1,14 +1,23 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/controller/shop_controller.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/home_page/component/new_shop_page.dart';
-import 'package:mubwara/views/page/reservation_page/component/schedule_card.dart';
+import 'package:mubwara/views/page/search_page/search_page_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
   final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
+    final us = ref.watch(searchPageModel);
+    final uc = ref.read(shopController);
     return Container(
       child: ListView(
         children: [
@@ -40,10 +49,20 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMainPageButton(icon: "🥘", text: "한식", onPressed: (){}),
-              _buildMainPageButton(icon: "🍣", text: "일식",onPressed: (){}),
-              _buildMainPageButton(icon: "🍝", text: "양식",onPressed: (){}),
-              _buildMainPageButton(icon: "🍜", text: "중식",onPressed: (){}),
+              _buildMainPageButton(icon: "🥘", text: "한식", onPressed: (){
+                uc.shopCategory("한식");
+              }),
+              _buildMainPageButton(icon: "🍣", text: "일식",onPressed: (){
+                uc.shopCategory("일식");
+
+              }),
+              _buildMainPageButton(icon: "🍝", text: "양식",onPressed: (){
+                uc.shopCategory("양식");
+
+              }),
+              _buildMainPageButton(icon: "🍜", text: "중식",onPressed: (){
+                uc.shopCategory("중식");
+              }),
             ],
           ),
           SizedBox(
@@ -52,10 +71,17 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMainPageButton(icon: "⭐", text: "인기",onPressed: (){}),
+              _buildMainPageButton(icon: "⭐", text: "인기",onPressed: (){
+                uc.shopPopularList();
+              }),
               _buildMainPageButton(icon: "🗺︎", text: "지역",onPressed: (){}),
-              _buildMainPageButton(icon: "🪙", text: "가격",onPressed: (){}),
-              _buildMainPageButton(icon: "🗄️", text: "편의",onPressed: (){}),
+              _buildMainPageButton(icon: "🪙", text: "가격",onPressed: (){
+                uc.shopPriceList("lower");
+              }),
+              _buildMainPageButton(icon: "🗄️", text: "편의",onPressed: (){
+                uc.shopOption();
+
+              }),
             ],
           ),
           SizedBox(
@@ -77,29 +103,34 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   NewShopPage(
-                    image: Image.asset('assets/images/review/ddeok_bok_gi.jpg',
+                    image: Image.asset('assets/images/review/cow.jpg',
                       fit: BoxFit.cover,width: 100, height: 100,),
-                    shop_name: '엽떡',
+                    shop_name: '태백한우',
                   ),
                   NewShopPage(
-                    image: Image.asset('assets/images/review/ddeok_bok_gi.jpg',
+                    image: Image.asset('assets/images/review/duck.jpg',
                       fit: BoxFit.cover,width: 100, height: 100,),
-                    shop_name: '엽떡',
+                    shop_name: '북구오리',
                   ),
                   NewShopPage(
-                    image: Image.asset('assets/images/review/ddeok_bok_gi.jpg',
+                    image: Image.asset('assets/images/review/Foiegras.jpg',
                       fit: BoxFit.cover,width: 100, height: 100,),
-                    shop_name: '엽떡',
+                    shop_name: 'CHOI',
                   ),
                   NewShopPage(
-                    image: Image.asset('assets/images/review/ddeok_bok_gi.jpg',
+                    image: Image.asset('assets/images/review/pasta.jpg',
                       fit: BoxFit.cover,width: 100, height: 100,),
-                    shop_name: '엽떡',
+                    shop_name: 'chefMuseum',
                   ),
                   NewShopPage(
-                    image: Image.asset('assets/images/review/ddeok_bok_gi.jpg',
+                    image: Image.asset('assets/images/review/steak.jpg',
                       fit: BoxFit.cover,width: 100, height: 100,),
-                    shop_name: '엽떡',
+                    shop_name: 'OUTBACK',
+                  ),
+                  NewShopPage(
+                    image: Image.asset('assets/images/review/sushi.jpg',
+                      fit: BoxFit.cover,width: 100, height: 100,),
+                    shop_name: '스시투어',
                   ),
                 ],
               ),
@@ -127,7 +158,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Column(
           children: [
             Text(

@@ -132,7 +132,7 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
               telephone: '${sm.phoneNumber}',
               open_time: '10:00',
               close_time: '22:00',
-              review_score: sm.scoreAvg,
+              scoreAvg: sm.scoreAvg,
               review_count: 1,
               information: '${sm.information}',
             ),

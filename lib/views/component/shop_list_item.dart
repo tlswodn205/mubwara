@@ -44,7 +44,7 @@ class ShopListItem extends StatelessWidget {
                 telephone: '${shopList[ListIndex].telephone}',
                 open_time: '10:00',
                 close_time: '22:00',
-                review_score: shopList[ListIndex].review_score,
+                scoreAvg: shopList[ListIndex].review_score,
                 review_count: shopList[ListIndex].reviewer_count,
                 information: '${shopList[ListIndex].information}',
               ),
