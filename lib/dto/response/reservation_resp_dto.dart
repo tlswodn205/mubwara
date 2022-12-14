@@ -54,3 +54,16 @@ class CustomerDto {
         name: json["name"],
       );
 }
+
+class ReviewAboutCustomerDto {
+  int id;
+  String name;
+
+  ReviewAboutCustomerDto({required this.id, required this.name});
+
+  factory ReviewAboutCustomerDto.fromJson(Map<String, dynamic> json) =>
+      ReviewAboutCustomerDto(
+        id: json["id"],
+        name: json["name"],
+      );
+}

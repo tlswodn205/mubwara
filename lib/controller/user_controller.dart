@@ -34,5 +34,11 @@ class UserController {
 
   void kakaoLogin(String accessToken) {
     _ref.read(userHttpRepository).kakaoLogin(accessToken);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RootTab(),
+      ),
+    );
   }
 }

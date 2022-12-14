@@ -19,7 +19,7 @@ class _ReservationListState extends ConsumerState<ReservationList> {
     final rc = ref.read(reservationController);
     if (rm.length == 0) {
       return Center(
-        child: Text("가게를 예약하지 않았습 니다."),
+        child: Text("가게를 예약하지 않았습니다."),
       );
     }
     return RefreshIndicator(

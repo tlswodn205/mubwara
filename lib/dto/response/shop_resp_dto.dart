@@ -159,8 +159,8 @@ class ShopDetailRespDto {
         scoreAvg: json["scoreAvg"].toDouble(),
       );
 }
-class MyShopDetailRespDto {
 
+class MyShopDetailRespDto {
   MyShopDetailRespDto({
     required this.shop_name,
     required this.address,
@@ -170,7 +170,7 @@ class MyShopDetailRespDto {
     required this.perprice,
     required this.closetime,
     required this.opentime,
-});
+  });
   String? shop_name;
   String? address;
   String? phoneNumber;
@@ -179,7 +179,6 @@ class MyShopDetailRespDto {
   String? closetime;
   String? perhour;
   String? perprice;
-
 
   factory MyShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
       MyShopDetailRespDto(
@@ -194,3 +193,29 @@ class MyShopDetailRespDto {
       );
 }
 
+class ReviewAboutShopDto {
+  int id;
+  String shopName;
+  String category;
+  String address;
+  ImageFileDto imageFileDto;
+  String phoneNumber;
+
+  ReviewAboutShopDto(
+      {required this.id,
+      required this.shopName,
+      required this.category,
+      required this.address,
+      required this.imageFileDto,
+      required this.phoneNumber});
+
+  factory ReviewAboutShopDto.fromJson(Map<String, dynamic> json) =>
+      ReviewAboutShopDto(
+        id: json["id"],
+        shopName: json["shopName"],
+        category: json["category"],
+        address: json["address"],
+        phoneNumber: json["phoneNumber"],
+        imageFileDto: ImageFileDto.fromJson(json["imageFile"]),
+      );
+}

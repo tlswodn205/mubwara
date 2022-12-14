@@ -28,7 +28,7 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
   );
 
   late ReservationSelectReqDto reservationSelectReqDto;
-  late int maxPeople;
+  late int maxPeople = 0;
 
   DateTime focusedDay = DateTime.now();
   @override
@@ -37,6 +37,7 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
     final rc = ref.read(reservationController);
 
     searchTime(int i) {
+      print(maxPeople);
       rc.reservationTime(selectedDay, widget.shopId, rm.reservationPerson[i]);
       maxPeople = rm.reservationPerson[i];
     }

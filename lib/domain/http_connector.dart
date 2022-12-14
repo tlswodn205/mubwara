@@ -19,6 +19,7 @@ class HttpConnector {
       "Content-Type": "application/json; charset=utf-8",
       "Authorization": "${jwtToken}",
     };
+    print("머리임:" + headers.toString());
   }
 
   void logout() {
@@ -28,7 +29,7 @@ class HttpConnector {
   void kakaoLodin(String kakaoToken) {
     headers = {
       "Content-Type": "application/json; charset=utf-8",
-      "access_token": "${kakaoToken}",
+      "access-token": "${kakaoToken}",
     };
   }
 

@@ -24,25 +24,27 @@ class ShopHttpRepository {
         dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     return ShopSearchDtoList;
   }
+
   Future<List<ShopSearchListDto>> shopSearchList(String keyword) async {
-    Response response = await _ref.read(httpConnector).get("/list/search/${keyword}");
+    Response response =
+        await _ref.read(httpConnector).get("/list/search/${keyword}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     List<ShopSearchListDto> ShopsearchDtoList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     print(keyword);
     return ShopsearchDtoList;
   }
+
   Future<ShopDetailRespDto> shopDetail(int id) async {
     Response response = await _ref.read(httpConnector).get("/detail/${id}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     dynamic data = responseDto.data;
-    print(data);
     return ShopDetailRespDto.fromJson(data);
   }
+
   Future<MyShopDetailRespDto> myshopDetail(int id) async {
-    Response response =
-    await _ref.read(httpConnector).get("/myshopdetail");
+    Response response = await _ref.read(httpConnector).get("/myshopdetail");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     dynamic data = responseDto.data;
     return MyShopDetailRespDto.fromJson(data);
