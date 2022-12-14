@@ -12,19 +12,6 @@ emptyTheTextFormField() {
   searchTextEditingController.clear();
 }
 
-// 검색어 입력후 submit하게 되면 DB에서 검색어와 일치하거나 포함하는 결과 가져와서 future변수에 저장
-// 파이어베이스
-// controlSearching(str) {
-//   print(str);
-//   Future<QuerySnapshot> allUsers = userReferece.where('profileName', isGreaterThanOrEqulalTo: str).get();
-//   setState((){
-//     futureSerachResults = allUsers;
-//   });
-// }
-//
-// //DB에서 검색된 사용자를 가져오는데 활용되는 변수
-// Future<QuerySnapshot> futureSerachResults;
-
 AppBar searchBar() {
   return AppBar(
     automaticallyImplyLeading: true,

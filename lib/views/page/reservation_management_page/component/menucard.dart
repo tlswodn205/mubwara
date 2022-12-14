@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mubwara/controller/menu_controller.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
 class MenuCard extends StatefulWidget {
+  final int? id;
   final String menu_name;
   final String menu_price;
   final Image image;
+  final MenuController mc;
 
   const MenuCard(
       {required this.image,
-      required this.menu_name,
+        required this.id,
+        required this.mc,
+        required this.menu_name,
       required this.menu_price,
       Key? key})
       : super(key: key);
@@ -22,6 +27,7 @@ class _MenuCardState extends State<MenuCard> {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Row(
@@ -71,7 +77,9 @@ class _MenuCardState extends State<MenuCard> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.mc.deleteMenu(widget.id!);
+                    },
                     icon: Icon(Icons.delete),
                   ),
                 ],

@@ -24,7 +24,10 @@ class ShopController {
     _ref.read(searchPageModel.notifier).refresh(shopSearchDtoList);
     return null;
   }
-  
+  void shopSearchList() async {
+    _ref.read(searchPageModel.notifier).initViewModel();
+  }
+
   void myshopDetail() async {
     _ref.read(searchPageModel.notifier).initViewModel();
   }

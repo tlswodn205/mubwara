@@ -28,4 +28,7 @@ class MenuController {
     _ref.read(menuListModel.notifier).refresh(shopMenuList);
     return null;
   }
+  void deleteMenu(int id) async {
+    _ref.watch(menuHttpRepository).deleteMenu(id);
+  }
 }
