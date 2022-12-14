@@ -44,20 +44,18 @@ class _Time extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedButton(
-              selectedBackgroundColor: PRIMARY_COLOR,
-              width: 100,
-              text: '${reservation_time}',
-              isReverse: true,
-              selectedTextColor: Body_TEXT_COLOR1,
-              transitionType: TransitionType.LEFT_TO_RIGHT,
-              textStyle: buttonTextStyle,
-              backgroundColor: Body_TEXT_COLOR1,
-              borderColor: PRIMARY_COLOR,
-              borderWidth: 2,
-              onPress: () {
-                selectMethod;
-              },
+            ElevatedButton(onPressed: () {},
+              child: Text('${reservation_time}명'),   style: ButtonStyle(
+                overlayColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.focused))
+                        return Colors.red;
+                      if (states.contains(MaterialState.pressed))
+                        return Colors.red;
+                      return Colors.red;
+                    }),
+              ),
+              // isReverse: true,
             ),
           ],
         ),
