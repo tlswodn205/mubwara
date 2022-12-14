@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'dart:ffi';
 
-class Kakaobutton extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:mubwara/controller/user_controller.dart';
+
+class Kakaobutton extends ConsumerWidget {
   const Kakaobutton({Key? key}) : super(key: key);
 
   void _get_user_info() async {
@@ -16,7 +20,7 @@ class Kakaobutton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     KakaoSdk.init(nativeAppKey: 'd86213d1ba0e68d8b7daa5d3180e75dc');
     return Container(
       color: Colors.white,
@@ -47,6 +51,7 @@ class Kakaobutton extends StatelessWidget {
                 print(token.accessToken);
                 print('카카오계정으로 로그인 성공');
                 _get_user_info();
+                ref.read(userController).kakaoLogin(token.accessToken);
               } catch (error) {
                 print('카카오계정으로 로그인 실패 $error 123');
               }

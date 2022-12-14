@@ -32,7 +32,7 @@ class UserController {
     );
   }
 
-  void LoginTest() {
-    _ref.read(userHttpRepository).loginTest();
+  void kakaoLogin(String accessToken) {
+    _ref.read(userHttpRepository).kakaoLogin(accessToken);
   }
 }

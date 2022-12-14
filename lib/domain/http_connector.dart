@@ -18,11 +18,17 @@ class HttpConnector {
       "Content-Type": "application/json; charset=utf-8",
       "Authorization": "${jwtToken}",
     };
-    print("${jwtToken}");
   }
 
   void logout() {
     headers = {"Content-Type": "application/json; charset=utf-8"};
+  }
+
+  void kakaoLodin(String kakaoToken) {
+    headers = {
+      "Content-Type": "application/json; charset=utf-8",
+      "access_token": "${kakaoToken}",
+    };
   }
 
   Future<Response> get(String path) async {

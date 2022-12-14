@@ -78,27 +78,6 @@ class _loginPage extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _buildLoginTestButton(
-      {required String buttonName,
-      required Color buttonBackgroundColor,
-      required Color fontColor,
-      required UserController userController}) {
-    return Container(
-      width: 330,
-      height: 50,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: buttonBackgroundColor,
-        ),
-        onPressed: () {
-          userController.LoginTest();
-        },
-        child: Text("${buttonName}",
-            style: TextStyle(fontSize: 20, color: fontColor)),
-      ),
-    );
-  }
-
   Widget _buildButton(
       {required String buttonName,
       required Color buttonBackgroundColor,
