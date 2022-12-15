@@ -6,11 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/controller/shop_controller.dart';
 import 'package:mubwara/dto/request/shop_req_dto.dart';
 import 'package:mubwara/views/common/components/custom_text_form_field.dart';
 import 'package:mubwara/views/common/components/number_text_from_field.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
@@ -370,6 +372,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
               child: Text("닫기"),
               onPressed: () {
                 Navigator.pop(context);
+                showCancleToast();
               },
             ),
             ElevatedButton(
@@ -377,6 +380,8 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
               onPressed: () {
                 joinShopReqDto.address = _AddressController.text;
                 sc.joinShop(joinShopReqDto);
+                Navigator.pop(context);
+                showSaveToast();
               },
             ),
           ],

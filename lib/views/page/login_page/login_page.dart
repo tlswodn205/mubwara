@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/user_controller.dart';
 import 'package:mubwara/dto/request/user_req_dto.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/page/login_page/login_page_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,6 +72,7 @@ class _loginPage extends ConsumerState<LoginPage> {
         ),
         onPressed: () {
           userController.Login(loginReqDto: loginReqDto);
+          showLoginToast();
         },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),

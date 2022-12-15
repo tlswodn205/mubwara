@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/controller/menu_controller.dart';
 import 'package:mubwara/dto/request/menu_req_dto.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/reservation_text_field.dart';
 
 class ReservationBottomSheet extends ConsumerStatefulWidget {
@@ -85,7 +86,10 @@ class _ReservationBottomSheetState
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
+                        print(menuReqDto.id);
                         cc.saveMenu(menuReqDto);
+                        Navigator.pop(context);
+                        showSaveToast();
                       },
                       child: Text('저장'),
                     ),

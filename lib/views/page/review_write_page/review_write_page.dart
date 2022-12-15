@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
+import 'package:mubwara/views/common/const/color.dart';
 import 'dart:io';
 
 import 'package:mubwara/views/layout/default_layout.dart';
@@ -38,25 +40,29 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
     return DefaultLayout(
       title: "${shopList[0].shop_name} 리뷰 작성하기",
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Column(
-            children: [
-              SizedBox(height: 30),
-              SizedBox(height: 10),
-              _builderImageUploader(),
-              SizedBox(height: 10),
-              _buildStar(),
-              SizedBox(height: 10),
-              _buildTextFeild("리뷰내용", "null"),
-              SizedBox(height: 30),
-              _buildButton(
-                  buttonName: "리뷰 작성 완료",
-                  buttonBackgroundColor: Colors.grey,
-                  fontColor: Colors.white,
-                  widthSize: 330)
-            ],
-          ),
+        body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 30),
+                  SizedBox(height: 10),
+                  _builderImageUploader(),
+                  SizedBox(height: 10),
+                  _buildStar(),
+                  SizedBox(height: 10),
+                  _buildTextFeild("리뷰내용", "null"),
+                  SizedBox(height: 30),
+                  _buildButton(
+                      buttonName: "리뷰 작성 완료",
+                      buttonBackgroundColor: PRIMARY_COLOR,
+                      fontColor: Colors.white,
+                      widthSize: 330)
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -117,7 +123,10 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
         style: TextButton.styleFrom(
           backgroundColor: buttonBackgroundColor,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+          showSaveToast();
+        },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),
       ),
@@ -155,7 +164,7 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
               onPressed: () {
                 openImages();
               },
-              child: Text("Open Images")),
+              child: Text("사진 업로드")),
         ],
       ),
     );

@@ -83,7 +83,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               },
               child: RestaurantCard(
                 image: Image.memory(
-                    base64.decode(sm[ListIndex].imageFileDto.image)),
+                    base64.decode(sm[ListIndex].imageFileDto.image),
+                  fit: BoxFit.contain,
+                  width: 350,
+                ),
                 shop_name: '${sm[ListIndex].shopName}',
                 tags: [sm[ListIndex].category],
                 address: '${sm[ListIndex].address}',

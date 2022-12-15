@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/provider/auth_provider.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/page/shop_main_page/shop_main_page.dart';
-import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomnavbar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../component/bottom_nav_bar.dart';
 import '../../component/reservation_list.dart';
 import '../../component/review_list.dart';
 import '../../component/shop_list.dart';
-import '../profile_update_page/profile_update_page.dart';
 
 class MyPage extends ConsumerStatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -43,6 +40,7 @@ class _MyPageState extends ConsumerState<MyPage>
                   builder: (context) => RootTab(),
                 ),
               );
+              showLogoutToast();
             }),
         SizedBox(height: 30),
         _buildButton(

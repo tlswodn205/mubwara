@@ -62,7 +62,17 @@ class ShopHttpRepository {
     return PriceList;
 
   }
+  Future<List<ShopSearchListDto>> shopRegionList(String region) async {
+    Response response =
+    await _ref.read(httpConnector).get("/list/location?city=부산&region=${region}");
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> RegionList =
+    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+    return RegionList;
 
+  }
   Future<List<ShopSearchListDto>> shopCategory(String categoryName) async {
     Response response =
     await _ref.read(httpConnector).get("/list/${categoryName}");

@@ -10,6 +10,7 @@ import 'package:mubwara/views/page/home_page/home_page.dart';
 import 'package:mubwara/views/page/login_page/login_page.dart';
 import 'package:mubwara/views/page/map_page/map_page.dart';
 import 'package:mubwara/views/page/my_page/my_page.dart';
+import 'package:mubwara/views/page/review_write_page/review_write_page.dart';
 import 'package:mubwara/views/page/search_page/search_page.dart';
 
 import '../common/components/address_component.dart';
@@ -98,7 +99,7 @@ class _RootTabState extends ConsumerState<RootTab>
             HomePage(),
             MapPage(),
             SearchPage(),
-            BoardPage(),
+            ReviewWritePage(),
             LoginPage(),
           ],
         ),

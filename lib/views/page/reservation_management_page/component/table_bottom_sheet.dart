@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mubwara/controller/table_controller.dart';
 import 'package:mubwara/dto/request/table_type_req_dto.dart';
 import 'package:mubwara/views/common/components/number_text_from_field.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/reservation_text_field.dart';
 
 class TableBottomSheet extends ConsumerStatefulWidget {
@@ -83,6 +84,8 @@ class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
                     child: ElevatedButton(
                       onPressed: () {
                         cc.tableupdate(tableReqDto);
+                        Navigator.pop(context);
+                        showSaveToast();
                       },
                       child: Text('저장'),
                     ),
