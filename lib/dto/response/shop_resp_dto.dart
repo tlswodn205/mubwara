@@ -1,4 +1,5 @@
 import 'package:mubwara/dto/response/review_resp_dto.dart';
+import 'package:mubwara/dto/response/subscribe_resp_dto.dart';
 
 import 'image_file_dto.dart';
 
@@ -117,19 +118,19 @@ class ShopSearchListDto {
 }
 
 class ShopDetailRespDto {
-  ShopDetailRespDto({
-    required this.id,
-    required this.shopName,
-    required this.address,
-    required this.category,
-    required this.information,
-    required this.openTime,
-    required this.closeTime,
-    required this.phoneNumber,
-    required this.imageFileDto,
-    required this.review,
-    required this.scoreAvg,
-  });
+  ShopDetailRespDto(
+      {required this.id,
+      required this.shopName,
+      required this.address,
+      required this.category,
+      required this.information,
+      required this.openTime,
+      required this.closeTime,
+      required this.phoneNumber,
+      required this.imageFileDto,
+      required this.review,
+      required this.scoreAvg,
+      required this.subscribeId});
 
   int? id;
   String shopName;
@@ -142,6 +143,7 @@ class ShopDetailRespDto {
   ImageFileDto imageFileDto;
   List<ReviewRespDto> review;
   double scoreAvg;
+  int subscribeId;
 
   factory ShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
       ShopDetailRespDto(
@@ -157,6 +159,7 @@ class ShopDetailRespDto {
         review: List<ReviewRespDto>.from(
             json["review"].map((x) => ReviewRespDto.fromJson(x))),
         scoreAvg: json["scoreAvg"].toDouble(),
+        subscribeId: json["subscribeId"],
       );
 }
 

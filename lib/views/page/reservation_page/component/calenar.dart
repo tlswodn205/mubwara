@@ -8,7 +8,7 @@ class Calendar extends StatelessWidget {
   final DateTime? selectedDay;
   final DateTime focusedDay;
   final OnDaySelected? onDaySelected;
-  final selectMethod;
+  final void Function()? selectMethod;
 
   const Calendar(
       {this.selectMethod,
@@ -65,6 +65,7 @@ class Calendar extends StatelessWidget {
         if (selectedDay == null) {
           return false;
         }
+        selectMethod!();
         return date.year == selectedDay!.year &&
             date.month == selectedDay!.month &&
             date.day == selectedDay!.day;

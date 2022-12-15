@@ -28,7 +28,8 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
   );
 
   late ReservationSelectReqDto reservationSelectReqDto;
-  late int maxPeople = 0;
+  int maxPeople = 0;
+  int time = 0;
 
   DateTime focusedDay = DateTime.now();
   @override
@@ -36,19 +37,34 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
     final rm = ref.watch(reservationScreenModel);
     final rc = ref.read(reservationController);
 
-    searchTime(int i) {
-      print(maxPeople);
+    void searchTime(int i) {
       rc.reservationTime(selectedDay, widget.shopId, rm.reservationPerson[i]);
       maxPeople = rm.reservationPerson[i];
+      print(maxPeople);
+    }
+
+    void clickTime(int i) {
+      time = rm.reservationTime[i];
+      print(time);
+      print(maxPeople);
     }
 
     return DefaultLayout(
       title: '예약페이지',
-      bottomNavigationBar: reservationBottomBar(),
+      bottomNavigationBar: reservationBottomBar(
+        maxPeople: this.maxPeople,
+        time: this.time,
+        selectDay: this.selectedDay,
+      ),
       child: Column(
         children: [
           Calendar(
-            selectMethod: rc.reservationPerson(selectedDay, widget.shopId),
+            // selectMethod: {
+            //   return rc.reservationPerson(selectedDay, widget.shopId);
+            // },
+            selectMethod: () {
+              rc.reservationPerson(selectedDay, widget.shopId);
+            },
             selectedDay: selectedDay,
             focusedDay: focusedDay,
             onDaySelected: onDaySelected,
@@ -56,7 +72,9 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
           SizedBox(
             height: 8.0,
           ),
-          TodayBanner(selectedDay: selectedDay, scheduleCount: 3),
+          TodayBanner(
+              selectedDay: selectedDay,
+              scheduleCount: rm.reservationTime.length),
           SizedBox(
             height: 8.0,
           ),
@@ -66,8 +84,11 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
             child: Row(children: <Widget>[
               for (int i = 0; i < rm.reservationPerson.length; i++)
                 PersonnelCard(
+                  maxPeople: maxPeople,
                   personal: rm.reservationPerson[i],
-                  onPress: searchTime(i),
+                  onPress: () {
+                    searchTime(i);
+                  },
                 ),
             ]),
           ),
@@ -81,7 +102,10 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
               children: <Widget>[
                 for (int i = 0; i < rm.reservationTime.length; i++)
                   SceduleCard(
-                    reservation_time: '11:00',
+                    onPress: () {
+                      clickTime(i);
+                    },
+                    reservation_time: '${rm.reservationTime[i]}:00',
                     selectMethod: null,
                   ),
               ],

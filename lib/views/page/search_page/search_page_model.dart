@@ -17,50 +17,41 @@ class SearchPageModel extends StateNotifier<List<ShopSearchListDto>> {
         await _ref.read(shopHttpRepository).searchShopList();
     state = shopSearchDtoList;
   }
+
   void categoryOption() async {
     List<ShopSearchListDto> shopSearchDtoList =
-    await _ref.read(shopHttpRepository).shopOption();
+        await _ref.read(shopHttpRepository).shopOption();
     state = shopSearchDtoList;
   }
 
   void categoryModel(String categoryName) async {
     List<ShopSearchListDto> shopSearchDtoList =
-    await _ref.read(shopHttpRepository).shopCategory(categoryName);
+        await _ref.read(shopHttpRepository).shopCategory(categoryName);
     state = shopSearchDtoList;
   }
+
   void popularModel() async {
     List<ShopSearchListDto> shopPopularList =
-    await _ref.read(shopHttpRepository).shopPopularList();
+        await _ref.read(shopHttpRepository).shopPopularList();
     state = shopPopularList;
   }
+
   void ViewModel(String value) async {
     List<ShopSearchListDto> priceList =
-    await _ref.read(shopHttpRepository).shopPriceList(value);
+        await _ref.read(shopHttpRepository).shopPriceList(value);
     print(priceList.toString());
 
     state = priceList;
   }
+
   //
   void refresh(List<ShopSearchListDto> shopSearchDtoList) {
     state = shopSearchDtoList;
     print(shopSearchDtoList.length);
   }
-  //
-  // void addProduct(Product productRespDto) {
-  //   state = [...state, productRespDto];
-  // }
-  //
-  // void removeProduct(int id) {
-  //   state = state.where((product) => product.id != id).toList();
-  // }
-  //
-  // void updateProduct(Product productRespDto) {
-  //   state = state.map((product) {
-  //     if (product.id == productRespDto.id) {
-  //       return productRespDto;
-  //     } else {
-  //       return product;
-  //     }
-  //   }).toList();
-  // }
+
+  void shopSearch(List<ShopSearchListDto> shopSearchDtoList) {
+    state = shopSearchDtoList;
+    print(shopSearchDtoList.length);
+  }
 }

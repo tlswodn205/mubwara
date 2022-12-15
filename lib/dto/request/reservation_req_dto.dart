@@ -14,3 +14,25 @@ class ReservationSelectReqDto {
         "date": date,
       };
 }
+
+class ReservationSaveReqDto {
+  int? shopTableId;
+  int? customerId;
+  String? date;
+  String? time;
+
+  ReservationSaveReqDto.origin();
+
+  ReservationSaveReqDto(
+      {required this.shopTableId,
+      required this.customerId,
+      required this.date,
+      required this.time});
+
+  Map<String, dynamic> toJson() => {
+        "shopTableId": shopTableId,
+        "customerId": customerId,
+        "reservationDate": date,
+        "reservationTime": time,
+      };
+}

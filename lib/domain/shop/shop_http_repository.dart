@@ -49,66 +49,69 @@ class ShopHttpRepository {
     dynamic data = responseDto.data;
     return MyShopDetailRespDto.fromJson(data);
   }
+
   Future<List<ShopSearchListDto>> shopPriceList(String value) async {
     Response response =
-    await _ref.read(httpConnector).get("/list/price/${value}");
+        await _ref.read(httpConnector).get("/list/price/${value}");
     print(response);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print(dataList.toString());
     List<ShopSearchListDto> PriceList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
 
     return PriceList;
-
   }
 
   Future<List<ShopSearchListDto>> shopCategory(String categoryName) async {
     Response response =
-    await _ref.read(httpConnector).get("/list/${categoryName}");
+        await _ref.read(httpConnector).get("/list/${categoryName}");
     print(response);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print(dataList.toString());
     List<ShopSearchListDto> categoryList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     return categoryList;
   }
+
   Future<List<ShopSearchListDto>> shopOption() async {
-    Response response =
-    await _ref.read(httpConnector).get("/list/option");
+    Response response = await _ref.read(httpConnector).get("/list/option");
     print(response);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print(dataList.toString());
     List<ShopSearchListDto> optionList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     return optionList;
   }
+
   Future<List<ShopSearchListDto>> shopPopularList() async {
-    Response response =
-    await _ref.read(httpConnector).get("/list/popular");
+    Response response = await _ref.read(httpConnector).get("/list/popular");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print(dataList.toString());
     List<ShopSearchListDto> popularList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
 
     return popularList;
-
   }
+
+  Future<List<ShopSearchListDto>> shopSearch(String keyword) async {
+    Response response =
+        await _ref.read(httpConnector).get("/list/search/${keyword}");
+    ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    List<dynamic> dataList = responseDto.data;
+    print(dataList.toString());
+    List<ShopSearchListDto> searchList =
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+
+    return searchList;
+  }
+
   Future<void> joinshop(JoinShopReqDto joinShopReqDto) async {
     String body = jsonEncode(joinShopReqDto.toJson());
     print(joinShopReqDto.phoneNumber);
     Response response = await _ref.read(httpConnector).post("/user/save", body);
   }
-//   await _ref.read(httpConnector).get("/api/product/${id}");
-//   Product product = Product.fromJson(jsonDecode(response.body));
-//   return product;
-// }
-//
-// Future<List<Product>> findAll() async {
-//   Response response = await _ref.read(httpConnector).get("/api/product");
-//   List<dynamic> dataList = jsonDecode(response.body)["data"];
-//   return dataList.map((e) => Product.fromJson(e)).toList();
 }

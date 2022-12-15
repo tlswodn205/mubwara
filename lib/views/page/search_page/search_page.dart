@@ -25,12 +25,15 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   Widget build(BuildContext context) {
     final sm = ref.watch(searchPageModel);
     final sc = ref.read(shopController);
-
+    late String keyword;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: INPUT_BG_COLOR,
         title: TextFormField(
+          onChanged: (value) {
+            keyword = value;
+          },
           controller: searchTextEditingController,
           decoration: InputDecoration(
               hintText: '검색어를 입력해주세요.',
@@ -38,13 +41,23 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 color: Body_TEXT_COLOR,
               ),
               enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: INPUT_BORDER_COLOR,)
-              ),
+                  borderSide: BorderSide(
+                color: INPUT_BORDER_COLOR,
+              )),
               filled: true,
-              prefixIcon: Icon(Icons.search_rounded, color: Body_TEXT_COLOR2, size: 30),
-              suffixIcon: IconButton(icon: Icon(Icons.clear, color: Body_TEXT_COLOR,),
-                  onPressed: emptyTheTextFormField)
-          ),
+              prefixIcon: IconButton(
+                icon: Icon(Icons.search_rounded,
+                    color: Body_TEXT_COLOR2, size: 30),
+                onPressed: () {
+                  sc.shopSearch(keyword);
+                },
+              ),
+              suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: Body_TEXT_COLOR,
+                  ),
+                  onPressed: emptyTheTextFormField)),
           style: TextStyle(
             fontSize: 18,
             color: Body_TEXT_COLOR2,
