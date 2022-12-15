@@ -14,6 +14,7 @@ class CheckBoxListTileDemoState extends ConsumerState<CheckBoxListTileDemo> {
       CheckBoxListTileModel.getUsers();
 
   late List<int> checklist = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

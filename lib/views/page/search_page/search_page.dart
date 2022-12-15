@@ -90,7 +90,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 telephone: '${sm[ListIndex].phoneNumber}',
                 open_time: '${sm[ListIndex].openTime}:00',
                 close_time: '${sm[ListIndex].closeTime}:00',
-                review_score: sm[ListIndex].scoreAvg,
+                scoreAvg: sm[ListIndex].scoreAvg,
                 review_count: 0,
                 information: '${sm[ListIndex].information}',
               ),

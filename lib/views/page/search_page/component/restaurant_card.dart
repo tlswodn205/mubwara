@@ -30,7 +30,7 @@ class RestaurantCard extends StatelessWidget {
   // 상세 내용
   final String? detail;
 
-  final double review_score;
+  final double scoreAvg;
 
   final int review_count;
 
@@ -43,7 +43,7 @@ class RestaurantCard extends StatelessWidget {
     required this.open_time,
     required this.close_time,
     required this.information,
-    required this.review_score,
+    required this.scoreAvg,
     required this.review_count,
     this.detail,
     Key? key,
@@ -77,7 +77,7 @@ class RestaurantCard extends StatelessWidget {
                     color: Colors.yellow,
                   ),
                   Text(
-                    '${review_score}',
+                    '${scoreAvg}',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(width: 10.0),
