@@ -5,10 +5,14 @@ import 'package:mubwara/views/common/const/color.dart';
 class SceduleCard extends StatelessWidget {
   final String reservation_time;
   final selectMethod;
+  final onPress;
 
-  const SceduleCard(
-      {required this.reservation_time, required this.selectMethod, Key? key})
-      : super(key: key);
+  const SceduleCard({
+    this.onPress,
+    required this.reservation_time,
+    required this.selectMethod,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class SceduleCard extends StatelessWidget {
           _Time(
             reservation_time: reservation_time,
             selectMethod: selectMethod,
+            onPress: onPress,
           )
         ],
       ),
@@ -28,8 +33,13 @@ class SceduleCard extends StatelessWidget {
 class _Time extends StatelessWidget {
   final String reservation_time;
   final selectMethod;
-  const _Time(
-      {required this.reservation_time, required this.selectMethod, Key? key})
+  final onPress;
+  late bool select = false;
+  _Time(
+      {required this.onPress,
+      required this.reservation_time,
+      required this.selectMethod,
+      Key? key})
       : super(key: key);
 
   @override
@@ -44,19 +54,29 @@ class _Time extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {},
-              child: Text('${reservation_time}명'),   style: ButtonStyle(
-                overlayColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.focused))
-                        return Colors.red;
-                      if (states.contains(MaterialState.pressed))
-                        return Colors.red;
-                      return Colors.red;
-                    }),
-              ),
-              // isReverse: true,
+            ElevatedButton(
+              onPressed: onPress,
+              child: Text('${reservation_time}'),
+              style: ButtonStyle(overlayColor:
+                  MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                if (select) {
+                  if (states.contains(MaterialState.focused))
+                    return PRIMARY_COLOR;
+                  if (states.contains(MaterialState.pressed))
+                    return PRIMARY_COLOR;
+                } else {
+                  if (states.contains(MaterialState.focused)) return Colors.red;
+                  if (states.contains(MaterialState.pressed)) return Colors.red;
+                }
+                return Colors.red;
+              }), backgroundColor: MaterialStateProperty.resolveWith(
+                  (Set<MaterialState> states) {
+                if (select) return Colors.red;
+                if (!select) return PRIMARY_COLOR;
+              })),
             ),
+            // is
           ],
         ),
       ),

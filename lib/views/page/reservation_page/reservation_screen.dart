@@ -10,6 +10,7 @@ import 'package:mubwara/views/page/reservation_page/reservation_screen_model.dar
 import 'package:mubwara/views/page/shop_page/component/reservationbottombar.dart';
 
 import '../../../dto/request/reservation_req_dto.dart';
+import '../payment_page/basket_page.dart';
 import '../shop_page/component/reservationbottombar.dart';
 
 class reservationScreen extends ConsumerStatefulWidget {
@@ -28,7 +29,10 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
   );
 
   late ReservationSelectReqDto reservationSelectReqDto;
-  late int maxPeople = 0;
+  int maxPeople = 0;
+  int time = 0;
+  late bool selectedPerson = false;
+  late bool selectedTime = false;
 
   DateTime focusedDay = DateTime.now();
   @override
@@ -36,19 +40,31 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
     final rm = ref.watch(reservationScreenModel);
     final rc = ref.read(reservationController);
 
-    searchTime(int i) {
-      print(maxPeople);
-      rc.reservationTime(selectedDay, widget.shopId, rm.reservationPerson[i]);
-      maxPeople = rm.reservationPerson[i];
-    }
+    return _buildReservationPage(rc, rm);
+  }
 
+  Widget _buildReservationPage(ReservationController rc, ReservationDmo rm) {
     return DefaultLayout(
       title: '예약페이지',
-      bottomNavigationBar: reservationBottomBar(),
+      bottomNavigationBar: reservationBottomBar(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BasketPage(
+                  maxPeople: maxPeople, selectDay: selectedDay, time: time),
+            ),
+          );
+        },
+      ),
       child: Column(
         children: [
           Calendar(
-            selectMethod: rc.reservationPerson(selectedDay, widget.shopId),
+            // selectMethod: {
+            //   return rc.reservationPerson(selectedDay, widget.shopId);
+            // },
+            selectMethod: () {
+              rc.reservationPerson(selectedDay, widget.shopId);
+            },
             selectedDay: selectedDay,
             focusedDay: focusedDay,
             onDaySelected: onDaySelected,
@@ -56,7 +72,9 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
           SizedBox(
             height: 8.0,
           ),
-          TodayBanner(selectedDay: selectedDay, scheduleCount: 3),
+          TodayBanner(
+              selectedDay: selectedDay,
+              scheduleCount: rm.reservationTime.length),
           SizedBox(
             height: 8.0,
           ),
@@ -66,8 +84,13 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
             child: Row(children: <Widget>[
               for (int i = 0; i < rm.reservationPerson.length; i++)
                 PersonnelCard(
+                  maxPeople: maxPeople,
                   personal: rm.reservationPerson[i],
-                  onPress: searchTime(i),
+                  onPress: () {
+                    rc.reservationTime(
+                        selectedDay, widget.shopId, rm.reservationPerson[i]);
+                    maxPeople = rm.reservationPerson[i];
+                  },
                 ),
             ]),
           ),
@@ -81,7 +104,12 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
               children: <Widget>[
                 for (int i = 0; i < rm.reservationTime.length; i++)
                   SceduleCard(
-                    reservation_time: '11:00',
+                    onPress: () {
+                      time = rm.reservationTime[i];
+                      print(time);
+                      print(maxPeople);
+                    },
+                    reservation_time: '${rm.reservationTime[i]}:00',
                     selectMethod: null,
                   ),
               ],

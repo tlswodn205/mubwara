@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/payment_page/paymentScreen.dart';
 
-class PaymentNavBar extends StatelessWidget {
-  const PaymentNavBar({Key? key}) : super(key: key);
+class PaymentNavBar extends ConsumerWidget {
+  const PaymentNavBar(
+      {required this.maxPeople,
+      required this.selectDay,
+      required this.time,
+      Key? key})
+      : super(key: key);
 
+  final int maxPeople;
+  final DateTime selectDay;
+  final int? time;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(

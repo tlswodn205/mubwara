@@ -25,7 +25,6 @@ class ReservationController {
         shopId: id,
         maxPeople: null,
         date: '${selectTime.year}${selectTime.month}${selectTime.day}');
-    print("복날" + '${reservationSelectReqDto.date}');
     ReservationSelectRespDto reservationSelectRespDto = await _ref
         .read(reservationHttpRepository)
         .reservationPerson(reservationSelectReqDto);
@@ -41,7 +40,9 @@ class ReservationController {
         shopId: id,
         maxPeople: maxPeople,
         date: '${selectTime.year}${selectTime.month}${selectTime.day}');
-    print("장날" + '${reservationSelectReqDto.toString()}');
+    print("장날" + '${reservationSelectReqDto.shopId}');
+    print('${reservationSelectReqDto.maxPeople}');
+    print('${reservationSelectReqDto.date}');
     List<dynamic> timeList = await _ref
         .read(reservationHttpRepository)
         .reservationTime(reservationSelectReqDto);

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/controller/subscribe_controller.dart';
+import 'package:mubwara/provider/auth_provider.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
 
-class bottomNavBar extends StatefulWidget {
+class bottomNavBar extends ConsumerStatefulWidget {
   const bottomNavBar({required this.shopId, Key? key}) : super(key: key);
 
   final int shopId;
 
   @override
-  State<bottomNavBar> createState() => _bottomNavBarState();
+  ConsumerState<bottomNavBar> createState() => _bottomNavBarState();
 }
 
-class _bottomNavBarState extends State<bottomNavBar> {
+class _bottomNavBarState extends ConsumerState<bottomNavBar> {
   late bool _isSelected = false;
 
   @override
@@ -21,6 +24,9 @@ class _bottomNavBarState extends State<bottomNavBar> {
       super.initState();
     }
 
+    final scc = ref.read(subscribeController);
+
+    final ap = ref.read(authProvider);
     return Container(
       height: 56,
       child: Row(
@@ -44,6 +50,7 @@ class _bottomNavBarState extends State<bottomNavBar> {
           ),
           InkWell(
             onTap: () {
+              scc.subscribeButtonClick(_isSelected, widget.shopId);
               setState(() {
                 _isSelected = !_isSelected;
               });

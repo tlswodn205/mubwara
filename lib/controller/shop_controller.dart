@@ -26,6 +26,7 @@ class ShopController {
     _ref.read(searchPageModel.notifier).refresh(shopSearchDtoList);
     return null;
   }
+
   void shopSearchList() async {
     _ref.read(searchPageModel.notifier).initViewModel();
   }
@@ -33,9 +34,9 @@ class ShopController {
   void myshopDetail() async {
     _ref.read(searchPageModel.notifier).initViewModel();
   }
-  void shopPriceList(String value) async{
-    print("헐111");
 
+  void shopPriceList(String value) async {
+    print("헐111");
     _ref.read(searchPageModel.notifier).ViewModel(value);
     Navigator.push(
       context,
@@ -44,7 +45,8 @@ class ShopController {
       ),
     );
   }
-  void shopPopularList() async{
+
+  void shopPopularList() async {
     _ref.read(searchPageModel.notifier).popularModel();
     Navigator.push(
       context,
@@ -53,7 +55,8 @@ class ShopController {
       ),
     );
   }
-  void shopCategory(String categoryName) async{
+
+  void shopCategory(String categoryName) async {
     _ref.read(searchPageModel.notifier).categoryModel(categoryName);
     Navigator.push(
       context,
@@ -71,7 +74,8 @@ class ShopController {
       ),
     );
   }
-  void shopOption() async{
+
+  void shopOption() async {
     _ref.read(searchPageModel.notifier).categoryOption();
     Navigator.push(
       context,
@@ -80,7 +84,15 @@ class ShopController {
       ),
     );
   }
+
   Future<void> joinShop(JoinShopReqDto joinShopReqDto) async {
     _ref.read(shopHttpRepository).joinshop(joinShopReqDto);
+  }
+
+  Future<void> shopSearch(String keyword) async {
+    List<ShopSearchListDto> shopSearchDtoList =
+        await _ref.read(shopHttpRepository).shopSearch(keyword);
+
+    _ref.read(searchPageModel.notifier).shopSearch(shopSearchDtoList);
   }
 }

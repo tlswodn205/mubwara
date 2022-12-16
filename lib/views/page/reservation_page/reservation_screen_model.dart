@@ -17,7 +17,6 @@ class ReservationScreenModel extends StateNotifier<ReservationDmo> {
   void insertReservationPerson(
       ReservationSelectRespDto reservationSelectRespDto) {
     state.reservationPerson = reservationSelectRespDto.maxPeopleList;
-    print(reservationSelectRespDto.maxPeopleList.length);
   }
 
   void insertReservationTime(List<dynamic> timeList) {
