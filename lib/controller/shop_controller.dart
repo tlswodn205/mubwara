@@ -65,6 +65,15 @@ class ShopController {
       ),
     );
   }
+  void shopRegionList(String region) async{
+    _ref.read(searchPageModel.notifier).regionModel(region);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPage(),
+      ),
+    );
+  }
 
   void shopOption() async {
     _ref.read(searchPageModel.notifier).categoryOption();

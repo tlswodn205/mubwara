@@ -22,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     final baseBorder = OutlineInputBorder(
         borderSide: BorderSide(color: INPUT_BORDER_COLOR, width: 1.0));
+    final _formKey = GlobalKey<FormState>();
     return TextFormField(
       cursorColor: PRIMARY_COLOR,
       // 비밀번호 입력할때만 사용 obscureText\

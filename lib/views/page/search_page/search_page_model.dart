@@ -29,7 +29,13 @@ class SearchPageModel extends StateNotifier<List<ShopSearchListDto>> {
         await _ref.read(shopHttpRepository).shopCategory(categoryName);
     state = shopSearchDtoList;
   }
-
+  
+  void regionModel(String region) async {
+    List<ShopSearchListDto> shopSearchDtoList =
+    await _ref.read(shopHttpRepository).shopRegionList(region);
+    state = shopSearchDtoList;
+  }
+  
   void popularModel() async {
     List<ShopSearchListDto> shopPopularList =
         await _ref.read(shopHttpRepository).shopPopularList();

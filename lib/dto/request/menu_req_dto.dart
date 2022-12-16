@@ -17,7 +17,7 @@ class MenuReqDto {
 
   Map<String, dynamic> toJson() => {
         "name": name,
-    "id" : id,
+    "shopId" : id,
         "price": price,
         "recommanded": recommanded,
         "imageFile": imageFile,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/customer/customer_controller.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
 import '../../../dto/request/customer_req_dto.dart';
@@ -185,6 +186,8 @@ class _joinPage extends ConsumerState<JoinPage> {
         ),
         onPressed: () {
           customerController.joinCustomer(joinCustomerReqDto);
+          Navigator.pop(context);
+          showJoinFormToast();
         },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),
