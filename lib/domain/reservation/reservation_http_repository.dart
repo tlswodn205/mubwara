@@ -47,4 +47,11 @@ class ReservationHttpRepository {
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     return responseDto.data;
   }
+
+  Future<void> reservation(ReservationSaveReqDto reservationSaveReqDto) async {
+    print("결제한다" + '${reservationSaveReqDto.time}');
+    String body = jsonEncode(reservationSaveReqDto.toJson());
+    Response response =
+        await _ref.read(httpConnector).post("/auth/reservation", body);
+  }
 }

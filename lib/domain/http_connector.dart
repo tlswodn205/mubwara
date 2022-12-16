@@ -7,7 +7,7 @@ Provider<HttpConnector> httpConnector = Provider<HttpConnector>((ref) {
 });
 
 class HttpConnector {
-  final host = "http://192.168.0.86:8000";
+  final host = "http://192.168.0.125:8000";
   // 다른 아이피 : http://192.168.0.125:8000
   //"http://192.168.0.86:8000"
   Map<String, String> headers = {

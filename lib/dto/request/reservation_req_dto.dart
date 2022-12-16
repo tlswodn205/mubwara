@@ -16,22 +16,22 @@ class ReservationSelectReqDto {
 }
 
 class ReservationSaveReqDto {
-  int? shopTableId;
-  int? customerId;
+  int? shopId;
   String? date;
   String? time;
+  int? maxPeople;
 
   ReservationSaveReqDto.origin();
 
   ReservationSaveReqDto(
-      {required this.shopTableId,
-      required this.customerId,
+      {required this.maxPeople,
+      required this.shopId,
       required this.date,
       required this.time});
 
   Map<String, dynamic> toJson() => {
-        "shopTableId": shopTableId,
-        "customerId": customerId,
+        "maxPeople": maxPeople,
+        "shopId": shopId,
         "reservationDate": date,
         "reservationTime": time,
       };

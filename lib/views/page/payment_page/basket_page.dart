@@ -9,19 +9,25 @@ class BasketPage extends ConsumerWidget {
       {required this.maxPeople,
       required this.selectDay,
       required this.time,
+      required this.shopId,
       Key? key})
       : super(key: key);
 
   final int maxPeople;
   final DateTime selectDay;
   final int? time;
+  final int shopId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
       title: '결제 화면',
-      bottomNavigationBar:
-          PaymentNavBar(maxPeople: maxPeople, selectDay: selectDay, time: time),
+      bottomNavigationBar: PaymentNavBar(
+        maxPeople: maxPeople,
+        selectDay: selectDay,
+        time: time,
+        shopId: shopId,
+      ),
       child: Scaffold(
         body: Column(
           children: [

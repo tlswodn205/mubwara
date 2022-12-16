@@ -56,4 +56,10 @@ class ReservationController {
     _ref.read(shopReservationListModel.notifier).refresh(reservaitonList);
     return null;
   }
+
+  Future<void> reservation(ReservationSaveReqDto reservationSaveReqDto) async {
+    await _ref
+        .read(reservationHttpRepository)
+        .reservation(reservationSaveReqDto);
+  }
 }

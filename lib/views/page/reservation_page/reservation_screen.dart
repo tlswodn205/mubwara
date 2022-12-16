@@ -51,7 +51,10 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) => BasketPage(
-                  maxPeople: maxPeople, selectDay: selectedDay, time: time),
+                  shopId: widget.shopId,
+                  maxPeople: maxPeople,
+                  selectDay: selectedDay,
+                  time: time),
             ),
           );
         },

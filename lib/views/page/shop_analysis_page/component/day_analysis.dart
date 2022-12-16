@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
-class DayAnalysis extends StatefulWidget {
+class DayAnalysis extends ConsumerStatefulWidget {
   // ignore: prefer_const_constructors_in_immutables
   DayAnalysis({Key? key}) : super(key: key);
 
@@ -10,7 +11,7 @@ class DayAnalysis extends StatefulWidget {
   _DayAnalysisState createState() => _DayAnalysisState();
 }
 
-class _DayAnalysisState extends State<DayAnalysis> {
+class _DayAnalysisState extends ConsumerState<DayAnalysis> {
   List<_SalesData> data = [
     _SalesData('11:00', 35),
     _SalesData('12:00', 28),
@@ -25,6 +26,7 @@ class _DayAnalysisState extends State<DayAnalysis> {
     _SalesData('21:00', 36),
     _SalesData('22:00', 36),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,11 +52,11 @@ class _DayAnalysisState extends State<DayAnalysis> {
           child: ListView(children: <Widget>[
             Center(
                 child: Text(
-                  '일일 예약수(도표)',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )),
+              '일일 예약수(도표)',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            )),
             DataTable(
               columns: const <DataColumn>[
                 DataColumn(
