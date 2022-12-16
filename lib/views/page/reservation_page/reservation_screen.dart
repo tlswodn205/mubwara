@@ -10,6 +10,7 @@ import 'package:mubwara/views/page/reservation_page/reservation_screen_model.dar
 import 'package:mubwara/views/page/shop_page/component/reservationbottombar.dart';
 
 import '../../../dto/request/reservation_req_dto.dart';
+import '../payment_page/basket_page.dart';
 import '../shop_page/component/reservationbottombar.dart';
 
 class reservationScreen extends ConsumerStatefulWidget {
@@ -30,6 +31,8 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
   late ReservationSelectReqDto reservationSelectReqDto;
   int maxPeople = 0;
   int time = 0;
+  late bool selectedPerson = false;
+  late bool selectedTime = false;
 
   DateTime focusedDay = DateTime.now();
   @override
@@ -37,24 +40,21 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
     final rm = ref.watch(reservationScreenModel);
     final rc = ref.read(reservationController);
 
-    void searchTime(int i) {
-      rc.reservationTime(selectedDay, widget.shopId, rm.reservationPerson[i]);
-      maxPeople = rm.reservationPerson[i];
-      print(maxPeople);
-    }
+    return _buildReservationPage(rc, rm);
+  }
 
-    void clickTime(int i) {
-      time = rm.reservationTime[i];
-      print(time);
-      print(maxPeople);
-    }
-
+  Widget _buildReservationPage(ReservationController rc, ReservationDmo rm) {
     return DefaultLayout(
       title: '예약페이지',
       bottomNavigationBar: reservationBottomBar(
-        maxPeople: this.maxPeople,
-        time: this.time,
-        selectDay: this.selectedDay,
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BasketPage(
+                  maxPeople: maxPeople, selectDay: selectedDay, time: time),
+            ),
+          );
+        },
       ),
       child: Column(
         children: [
@@ -87,7 +87,9 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
                   maxPeople: maxPeople,
                   personal: rm.reservationPerson[i],
                   onPress: () {
-                    searchTime(i);
+                    rc.reservationTime(
+                        selectedDay, widget.shopId, rm.reservationPerson[i]);
+                    maxPeople = rm.reservationPerson[i];
                   },
                 ),
             ]),
@@ -103,7 +105,9 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
                 for (int i = 0; i < rm.reservationTime.length; i++)
                   SceduleCard(
                     onPress: () {
-                      clickTime(i);
+                      time = rm.reservationTime[i];
+                      print(time);
+                      print(maxPeople);
                     },
                     reservation_time: '${rm.reservationTime[i]}:00',
                     selectMethod: null,
