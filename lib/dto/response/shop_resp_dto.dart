@@ -1,3 +1,4 @@
+import 'package:mubwara/dto/response/menu_resp_dto.dart';
 import 'package:mubwara/dto/response/review_resp_dto.dart';
 import 'package:mubwara/dto/response/subscribe_resp_dto.dart';
 
@@ -129,6 +130,7 @@ class ShopDetailRespDto {
       required this.phoneNumber,
       required this.imageFileDto,
       required this.review,
+        required this.menu,
       required this.scoreAvg,
       required this.subscribeId});
 
@@ -142,11 +144,13 @@ class ShopDetailRespDto {
   String phoneNumber;
   ImageFileDto imageFileDto;
   List<ReviewRespDto> review;
+  List<MenuRespDto> menu;
   double scoreAvg;
   int subscribeId;
 
   factory ShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
       ShopDetailRespDto(
+        menu: List<MenuRespDto>.from(json["menu"].map((x) => MenuRespDto.fromJson(x))),
         id: json["id"],
         shopName: json["shopName"],
         address: json["address"],

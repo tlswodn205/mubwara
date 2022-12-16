@@ -17,5 +17,8 @@ class ShopDetailPageModel extends StateNotifier<ShopDetailRespDto?> {
     ShopDetailRespDto shopDetailRespDto =
         await _ref.read(shopHttpRepository).shopDetail(id);
     state = shopDetailRespDto;
+    if(state?.menu == null){
+      state?.menu = [];
+    }
   }
 }

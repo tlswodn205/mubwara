@@ -84,7 +84,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                 const SizedBox(height: 16.0),
                 DropdownButtonFormField<String?>(
                   decoration: InputDecoration(
-                    labelText: '성별',
+                    labelText: '카테고리',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     labelStyle: TextStyle(
                       fontSize: 15,
