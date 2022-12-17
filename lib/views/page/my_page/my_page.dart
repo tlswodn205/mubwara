@@ -6,7 +6,7 @@ import 'package:mubwara/views/page/shop_main_page/shop_main_page.dart';
 import '../../component/bottom_nav_bar.dart';
 import '../../component/reservation_list.dart';
 import '../../component/review_list.dart';
-import '../../component/shop_list.dart';
+import '../../component/subscribe_list.dart';
 
 class MyPage extends ConsumerStatefulWidget {
   const MyPage({Key? key}) : super(key: key);

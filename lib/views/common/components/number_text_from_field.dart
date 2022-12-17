@@ -16,12 +16,13 @@ class NumberCustomTextFormField extends StatelessWidget {
         this.onChanged,
         this.autofocus = false,
         this.obscureText = false,
-        Key? key})
+        Key? key, required String? Function(dynamic value) validator})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextEditingController customTextEditingController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
     final baseBorder = OutlineInputBorder(
         borderSide: BorderSide(color: INPUT_BORDER_COLOR, width: 1.0));
     return TextFormField(

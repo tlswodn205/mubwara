@@ -14,7 +14,7 @@ class CustomTextFormField extends StatelessWidget {
       this.errorText,
       this.onChanged,
       this.autofocus = false,
-      this.obscureText = false,
+      this.obscureText = false, required String? Function(dynamic value) validator,
       Key? key})
       : super(key: key);
 

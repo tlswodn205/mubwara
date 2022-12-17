@@ -10,7 +10,15 @@ void showSaveToast() {
       textColor: Body_TEXT_COLOR1
   );
 }
-
+void showShopSaveToast() {
+  Fluttertoast.showToast(
+      msg: "추가로 메뉴와 테이블 추가를 해주세요",
+      toastLength: Toast.LENGTH_LONG,
+      fontSize: 18.0,
+      backgroundColor: PRIMARY_COLOR,
+      textColor: Body_TEXT_COLOR1
+  );
+}
 void showCancleToast() {
   Fluttertoast.showToast(
       msg: "취소",

@@ -59,6 +59,12 @@ class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
                       tableReqDto.maxPeople = value;
                       print(value);
                     },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '인원수를 입력해주세요';
+                          }
+                          return null;
+                        },
                         hintText: '인원 수',
                   )),
                   SizedBox(
@@ -68,6 +74,12 @@ class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
                     child: NumberCustomTextFormField(
                       onChanged: (value) {
                         tableReqDto.qty = value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '테이블 갯수를 입력해주세요';
+                        }
+                        return null;
                       },
                       hintText: '테이블 갯수',
                     ),
