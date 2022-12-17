@@ -40,7 +40,9 @@ class ShopHttpRepository {
     Response response = await _ref.read(httpConnector).get("/detail/${id}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     dynamic data = responseDto.data;
-    return ShopDetailRespDto.fromJson(data);
+    ShopDetailRespDto shop = ShopDetailRespDto.fromJson(data);
+    print(shop.review[0].content);
+    return shop;
   }
 
   Future<MyShopDetailRespDto> myshopDetail(int id) async {

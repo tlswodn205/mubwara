@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/controller/option_controller.dart';
+import 'package:mubwara/views/common/components/toastzip.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/checkbox/checkboxlist.dart';
 
@@ -90,6 +91,8 @@ class CheckBoxListTileDemoState extends ConsumerState<CheckBoxListTileDemo> {
               ),
               onPressed: () {
                 ref.read(optionController).optionSave(checklist);
+                Navigator.pop(context);
+                showSaveToast();
               },
               child: Text("편의 시설 저장",
                   style: TextStyle(fontSize: 20, color: Colors.white)),

@@ -75,7 +75,7 @@ class _joinPage extends ConsumerState<JoinPage> {
             SizedBox(height: 30),
             AddressText(),
             SizedBox(height: 10),
-            _buildTextFeild(
+            _buildNumberFeild(
                 feildName: "전화번호",
                 onChanged: (value) {
                   joinCustomerReqDto.phoneNumber = value;
@@ -161,6 +161,25 @@ class _joinPage extends ConsumerState<JoinPage> {
       child: SizedBox(
         width: 330,
         child: TextField(
+          onChanged: onChanged,
+          decoration: InputDecoration(
+            labelText: '${feildName}',
+            hintText: '${feildName}를 입력하세요',
+            border: OutlineInputBorder(),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _buildNumberFeild(
+      {required String feildName,
+        required ValueChanged<String>? onChanged,
+        required String defaultText}) {
+    return Center(
+      child: SizedBox(
+        width: 330,
+        child: TextField(
+          keyboardType: TextInputType.number,
           onChanged: onChanged,
           decoration: InputDecoration(
             labelText: '${feildName}',

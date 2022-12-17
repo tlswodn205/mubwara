@@ -99,6 +99,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     base64.decode(sm[ListIndex].imageFileDto.image),
                   fit: BoxFit.contain,
                   width: 350,
+                  height: 300,
                 ),
                 shop_name: '${sm[ListIndex].shopName}',
                 tags: [sm[ListIndex].category],
