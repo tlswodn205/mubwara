@@ -25,6 +25,7 @@ class ShopMyPage extends ConsumerStatefulWidget {
 }
 
 class _ShopMyPageState extends ConsumerState<ShopMyPage> {
+  final _formKey = GlobalKey<FormState>();
   final ImagePicker imgpicker = ImagePicker();
   XFile? imagefile;
   TextEditingController _AddressController = TextEditingController();
@@ -68,6 +69,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                   onChanged: (value) {
                     joinShopReqDto.shop_name = value;
                   },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '아이디를 입력해주세요';
+                    }
+                    return null;
+                  },
                   hintText: '가게의 상호명을 입력해주세요.',
                   obscureText: false,
                 ),
@@ -75,6 +82,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                 NumberCustomTextFormField(
                   onChanged: (value) {
                     joinShopReqDto.phoneNumber = value;
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '전화번호를 입력해주세요';
+                    }
+                    return null;
                   },
                   hintText: '가게의 전화번호를 입력해주세요.',
                   obscureText: false,
@@ -117,6 +130,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                         onChanged: (value) {
                           joinShopReqDto.opentime = value;
                         },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '오픈시간을 입력해주세요';
+                          }
+                          return null;
+                        },
                         hintText: '오픈시간',
                         obscureText: false,
                       ),
@@ -126,6 +145,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                       child: NumberCustomTextFormField(
                         onChanged: (value) {
                           joinShopReqDto.closetime = value;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '닫는 시간을 입력해주세요';
+                          }
+                          return null;
                         },
                         hintText: '닫는 시간',
                         obscureText: false,
@@ -141,6 +166,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                         onChanged: (value) {
                           joinShopReqDto.perhour = value;
                         },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '예약 받을 간격을 입력해주세요';
+                          }
+                          return null;
+                        },
                         hintText: '예약 받을 간격',
                         obscureText: false,
                       ),
@@ -150,6 +181,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                       child: NumberCustomTextFormField(
                         onChanged: (value) {
                           joinShopReqDto.perprice = value;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '예약금을 입력해주세요';
+                          }
+                          return null;
                         },
                         hintText: '예약금',
                         obscureText: false,
@@ -161,6 +198,12 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                 CustomTextFormField(
                   onChanged: (value) {
                     joinShopReqDto.information = value;
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '가게소개를 입력해주세요';
+                    }
+                    return null;
                   },
                   hintText: '가게소개를 입력해주세요.',
                   obscureText: false,
@@ -307,6 +350,9 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
       height: 50,
       child: TextButton(
         onPressed: () async {
+          if(_formKey.currentState!.validate()){
+            _formKey.currentState!.save();
+          }
           _showDialog(sc: cc);
         },
         style: TextButton.styleFrom(
@@ -359,7 +405,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
     );
   }
 
-  void _showDialog({required ShopController sc}) {
+  void _showDialog({required ShopController sc,}) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -381,7 +427,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
                 joinShopReqDto.address = _AddressController.text;
                 sc.joinShop(joinShopReqDto);
                 Navigator.pop(context);
-                showSaveToast();
+                showShopSaveToast();
               },
             ),
           ],

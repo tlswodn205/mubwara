@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/boundary.dart';
 
 import '../../dto/response/shop_resp_dto.dart';
@@ -8,9 +11,9 @@ import '../page/search_page/component/restaurant_card.dart';
 import '../page/shop_page/shop_detail.dart';
 
 class ShopListItem extends StatelessWidget {
-  const ShopListItem({required this.listIndex, Key? key}) : super(key: key);
+  const ShopListItem({required this.listIndex,required this.rm, Key? key}) : super(key: key);
   final int listIndex;
-
+  final List<CustomerMyPageSubscribeRespDto> rm;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,13 +37,15 @@ class ShopListItem extends StatelessWidget {
                 );
               },
               child: RestaurantCard(
-                image: Image.asset(
-                  'assets/images/shop/${shopList[ListIndex].image}',
-                  fit: BoxFit.cover,
+                image: Image.memory(
+                  base64.decode(rm[listIndex].imageFileDto.image),
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.fill,
                 ),
-                shop_name: '${shopList[ListIndex].shop_name}',
-                tags: ['떡볶이${ListIndex}', '치즈', '매운맛'],
-                address: '${shopList[ListIndex].address}',
+                shop_name: rm[listIndex].shopName,
+                tags: [rm[listIndex].category],
+                address: rm[listIndex].address,
                 telephone: '${shopList[ListIndex].telephone}',
                 open_time: '10:00',
                 close_time: '22:00',

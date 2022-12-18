@@ -19,76 +19,96 @@ class JoinPage extends ConsumerStatefulWidget {
 class _joinPage extends ConsumerState<JoinPage> {
   TextEditingController _AddressController = TextEditingController();
   JoinCustomerReqDto joinCustomerReqDto = JoinCustomerReqDto.origin();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final cc = ref.read(customerController);
     return DefaultLayout(
       title: "회원가입",
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            _buildTextFeild(
-                feildName: "아이디",
-                onChanged: (value) {
-                  joinCustomerReqDto.username = value;
-                },
-                defaultText: "null"),
-            Row(
-              children: [
-                SizedBox(
-                  width: 240,
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.blue,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              _buildTextFeild(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '아이디를 입력해주세요';
+                    }
+                    return null;
+                  },
+                  feildName: "아이디",
+                  onChanged: (value) {
+                    joinCustomerReqDto.username = value;
+                  },
+                  defaultText: "null"),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 240,
                   ),
-                  child: Text(
-                    '아이디 중복 체크',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    child: Text(
+                      '아이디 중복 체크',
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            _buildTextFeild(
-                feildName: "비밀번호",
-                onChanged: (value) {
-                  joinCustomerReqDto.password = value;
-                },
-                defaultText: "null"),
-            SizedBox(height: 30),
-            _buildTextFeild(
-                feildName: "비밀번호 확인",
-                onChanged: (value) {},
-                defaultText: "null"),
-            SizedBox(height: 30),
-            _buildTextFeild(
-                feildName: "이름",
-                onChanged: (value) {
-                  joinCustomerReqDto.name = value;
-                },
-                defaultText: "null"),
-            SizedBox(height: 30),
-            AddressText(),
-            SizedBox(height: 10),
-            _buildNumberFeild(
-                feildName: "전화번호",
-                onChanged: (value) {
-                  joinCustomerReqDto.phoneNumber = value;
-                },
-                defaultText: ""
-                    "null"),
-            SizedBox(height: 30),
-            _buildButton(
-                buttonName: "회원 가입",
-                buttonBackgroundColor: Colors.blue,
-                fontColor: Colors.white,
-                customerController: cc),
-          ],
+                ],
+              ),
+              SizedBox(height: 10),
+              _buildTextFeild(
+                obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '비밀번호를 입력해주세요';
+                    }
+                    return null;
+                  },
+                  feildName: "비밀번호",
+                  onChanged: (value) {
+
+                    joinCustomerReqDto.password = value;
+                  },
+                  defaultText: "null"),
+              SizedBox(height: 30),
+              _buildTextFeild(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '이름을 입력해주세요';
+                    }
+                    return null;
+                  },
+                  feildName: "이름",
+                  onChanged: (value) {
+                    joinCustomerReqDto.name = value;
+                  },
+                  defaultText: "null"),
+              SizedBox(height: 30),
+              AddressText(),
+              SizedBox(height: 10),
+              _buildNumberFeild(
+                  feildName: "전화번호",
+                  onChanged: (value) {
+                    joinCustomerReqDto.phoneNumber = value;
+                  },
+                  defaultText: ""
+                      "null"),
+              SizedBox(height: 30),
+              _buildButton(
+                  buttonName: "회원 가입",
+                  buttonBackgroundColor: Colors.blue,
+                  fontColor: Colors.white,
+                  customerController: cc),
+            ],
+          ),
         ),
       ),
     );
@@ -153,15 +173,20 @@ class _joinPage extends ConsumerState<JoinPage> {
     _AddressController.text = '${model.address!} ${model.buildingName!}';
   }
 
-  Widget _buildTextFeild(
-      {required String feildName,
-      required ValueChanged<String>? onChanged,
-      required String defaultText}) {
+  Widget _buildTextFeild({
+    obscureText = false,
+    required String feildName,
+    required validator,
+    required ValueChanged<String>? onChanged,
+    required String defaultText,
+  }) {
     return Center(
       child: SizedBox(
         width: 330,
-        child: TextField(
+        child: TextFormField(
+          obscureText: obscureText,
           onChanged: onChanged,
+          validator: validator,
           decoration: InputDecoration(
             labelText: '${feildName}',
             hintText: '${feildName}를 입력하세요',
@@ -171,10 +196,11 @@ class _joinPage extends ConsumerState<JoinPage> {
       ),
     );
   }
+
   Widget _buildNumberFeild(
       {required String feildName,
-        required ValueChanged<String>? onChanged,
-        required String defaultText}) {
+      required ValueChanged<String>? onChanged,
+      required String defaultText}) {
     return Center(
       child: SizedBox(
         width: 330,
@@ -199,14 +225,20 @@ class _joinPage extends ConsumerState<JoinPage> {
     return Container(
       width: 330,
       height: 50,
-      child: TextButton(
+      child: ElevatedButton(
         style: TextButton.styleFrom(
           backgroundColor: buttonBackgroundColor,
         ),
         onPressed: () {
           customerController.joinCustomer(joinCustomerReqDto);
+          if (_formKey.currentState!.validate()) {
+            // If the form is valid, display a snackbar. In the real world,
+            // you'd often call a server or save the information in a database.
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('회원가입 완료')),
+            );
+          }
           Navigator.pop(context);
-          showJoinFormToast();
         },
         child: Text("${buttonName}",
             style: TextStyle(fontSize: 20, color: fontColor)),
