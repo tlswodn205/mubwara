@@ -129,8 +129,9 @@ class ShopDetailRespDto {
       required this.closeTime,
       required this.phoneNumber,
       required this.imageFileDto,
+      required this.perPrice,
       required this.review,
-        required this.menu,
+      required this.menu,
       required this.scoreAvg,
       required this.subscribeId});
 
@@ -142,6 +143,7 @@ class ShopDetailRespDto {
   String openTime;
   String closeTime;
   String phoneNumber;
+  int perPrice;
   ImageFileDto imageFileDto;
   List<ReviewRespDto> review;
   List<MenuRespDto> menu;
@@ -163,7 +165,7 @@ class ShopDetailRespDto {
         review: List<ReviewRespDto>.from(
             json["review"].map((x) => ReviewRespDto.fromJson(x))),
         scoreAvg: json["scoreAvg"].toDouble(),
-        subscribeId: json["subscribeId"],
+        subscribeId: json["subscribeId"], perPrice: json["perPrice"],
       );
 }
 
@@ -225,4 +227,28 @@ class ReviewAboutShopDto {
         phoneNumber: json["phoneNumber"],
         imageFileDto: ImageFileDto.fromJson(json["imageFile"]),
       );
+}
+
+class AnalysisDateRespDto {
+  int times;
+  int results;
+
+  AnalysisDateRespDto({required this.times, required this.results});
+
+  factory AnalysisDateRespDto.fromJson(Map<String, dynamic> json) =>
+      AnalysisDateRespDto(
+          times: json["times"],
+          results: json["results"]);
+}
+
+class AnalysisWeekRespDto {
+  String week;
+  int price;
+
+  AnalysisWeekRespDto({required this.week, required this.price});
+
+  factory AnalysisWeekRespDto.fromJson(Map<String, dynamic> json) =>
+      AnalysisWeekRespDto(
+          week: json["week"],
+          price: json["price"]);
 }

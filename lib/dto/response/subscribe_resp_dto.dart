@@ -1,5 +1,5 @@
 class SubscribeDto {
-  int? id;
+  int id;
 
   SubscribeDto({required this.id});
 

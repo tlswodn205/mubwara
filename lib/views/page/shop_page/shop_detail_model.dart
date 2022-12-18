@@ -21,4 +21,8 @@ class ShopDetailPageModel extends StateNotifier<ShopDetailRespDto?> {
       state?.menu = [];
     }
   }
+
+  void subscribe(int subscribeId) async{
+    state?.subscribeId = subscribeId;
+  }
 }

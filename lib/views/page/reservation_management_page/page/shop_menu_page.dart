@@ -7,7 +7,8 @@ import 'package:mubwara/dto/response/menu_resp_dto.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/menu_bottom_sheet.dart';
 import 'package:mubwara/views/page/reservation_management_page/component/menucard.dart';
-import 'package:mubwara/views/page/reservation_management_page/model/menu_model.dart';
+
+import '../model/menu_model.dart';
 
 class ShopMenuPage extends ConsumerStatefulWidget {
   const ShopMenuPage({Key? key}) : super(key: key);
