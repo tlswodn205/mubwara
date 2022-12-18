@@ -50,3 +50,23 @@ class KeywordReqDto {
         "keyword": keyword,
       };
 }
+
+class AnalysisDateReqDto{
+  String date;
+
+  AnalysisDateReqDto({required this.date});
+
+  Map<String, dynamic> toJson() => {
+    "date": date,
+  };
+}
+
+class AnalysisWeekReqDto{
+  String date;
+
+  AnalysisWeekReqDto({required this.date});
+
+  Map<String, dynamic> toJson() => {
+    "date": date,
+  };
+}

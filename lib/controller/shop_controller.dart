@@ -95,4 +95,14 @@ class ShopController {
 
     _ref.read(searchPageModel.notifier).shopSearch(shopSearchDtoList);
   }
+
+  Future<List<AnalysisDateRespDto>> dayAnalysis(AnalysisDateReqDto analysisDateReqDto) async {
+
+    return await _ref.read(shopHttpRepository).dayAnalysis(analysisDateReqDto);
+
+  }
+
+  weekAnalysis(AnalysisWeekReqDto analysisWeekReqDto) async {
+    return await _ref.read(shopHttpRepository).weekAnalysis(analysisWeekReqDto);
+  }
 }

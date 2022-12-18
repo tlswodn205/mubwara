@@ -4,9 +4,10 @@ import 'package:mubwara/controller/subscribe_controller.dart';
 import 'package:mubwara/provider/auth_provider.dart';
 import 'package:mubwara/views/common/const/color.dart';
 import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
+import 'package:mubwara/views/page/shop_page/shop_detail_model.dart';
 
 class bottomNavBar extends ConsumerStatefulWidget {
-  const bottomNavBar({required this.shopId, Key? key}) : super(key: key);
+   bottomNavBar({required this.shopId, Key? key}) : super(key: key);
 
   final int shopId;
 
@@ -17,8 +18,10 @@ class bottomNavBar extends ConsumerStatefulWidget {
 class _bottomNavBarState extends ConsumerState<bottomNavBar> {
   late bool _isSelected = false;
 
+
   @override
   Widget build(BuildContext context) {
+    int? subscribeId = ref.watch(shopDetailPageModel(widget.shopId))?.subscribeId;
     @override
     void initState() {
       super.initState();
@@ -27,6 +30,10 @@ class _bottomNavBarState extends ConsumerState<bottomNavBar> {
     final scc = ref.read(subscribeController);
 
     final ap = ref.read(authProvider);
+    if(subscribeId == 0){
+      _isSelected = false;}else{
+      _isSelected =true;
+    }
     return Container(
       height: 56,
       child: Row(
@@ -50,10 +57,15 @@ class _bottomNavBarState extends ConsumerState<bottomNavBar> {
           ),
           InkWell(
             onTap: () {
-              scc.subscribeButtonClick(_isSelected, widget.shopId);
+              scc.subscribeButtonClick(subscribeId, widget.shopId);
               setState(() {
-                _isSelected = !_isSelected;
+                if(subscribeId == 0){
+                _isSelected = false;}else{
+                  _isSelected =true;
+                }
+
               });
+              print(subscribeId);
             },
             child: Container(
               width: 66,

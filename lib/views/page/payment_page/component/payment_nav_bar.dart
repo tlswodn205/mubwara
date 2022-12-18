@@ -22,7 +22,6 @@ class PaymentNavBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        print("작동함 ㅋㅋ");
         ref.read(reservationController).reservation(ReservationSaveReqDto(
             maxPeople: maxPeople,
             shopId: shopId,

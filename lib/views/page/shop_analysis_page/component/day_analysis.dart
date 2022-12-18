@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
+import '../../../../dto/response/shop_resp_dto.dart';
+import 'day_analysis_model.dart';
+
 class DayAnalysis extends ConsumerStatefulWidget {
   // ignore: prefer_const_constructors_in_immutables
   DayAnalysis({Key? key}) : super(key: key);
@@ -27,8 +30,10 @@ class _DayAnalysisState extends ConsumerState<DayAnalysis> {
     _SalesData('22:00', 36),
   ];
 
+
   @override
   Widget build(BuildContext context) {
+    final da = ref.watch(dayAnalysis);
     return Column(
       children: [
         //Initialize the chart widget
@@ -38,11 +43,11 @@ class _DayAnalysisState extends ConsumerState<DayAnalysis> {
             title: ChartTitle(text: '일일 예약수(차트)'),
             // Enable tooltip
             tooltipBehavior: TooltipBehavior(enable: true),
-            series: <ChartSeries<_SalesData, String>>[
-              LineSeries<_SalesData, String>(
-                  dataSource: data,
-                  xValueMapper: (_SalesData sales, _) => sales.hour,
-                  yValueMapper: (_SalesData sales, _) => sales.sales,
+            series: <ChartSeries<AnalysisDateRespDto, int>>[
+              LineSeries<AnalysisDateRespDto, int>(
+                  dataSource: da,
+                  xValueMapper: (AnalysisDateRespDto sales, _) => sales.times ,
+                  yValueMapper: (AnalysisDateRespDto sales, _) => sales.results ,
                   name: 'Sales',
                   // Enable data label
                   dataLabelSettings: DataLabelSettings(isVisible: true))
@@ -77,11 +82,11 @@ class _DayAnalysisState extends ConsumerState<DayAnalysis> {
                 ),
               ],
               rows: <DataRow>[
-                for (int i = 0; i < data.length; i++)
+                for (int i = 0; i < da.length; i++)
                   (DataRow(
                     cells: <DataCell>[
-                      DataCell(Text('${data[i].hour}')),
-                      DataCell(Text('${data[i].sales}')),
+                      DataCell(Text('${da[i].times}')),
+                      DataCell(Text('${da[i].results}')),
                     ],
                   )),
               ],

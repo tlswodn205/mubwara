@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/views/page/shop_analysis_page/component/week_analysis_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
-class WeekAnalysis extends StatefulWidget {
+import '../../../../dto/response/shop_resp_dto.dart';
+
+class WeekAnalysis extends ConsumerStatefulWidget {
   // ignore: prefer_const_constructors_in_immutables
   WeekAnalysis({Key? key}) : super(key: key);
 
@@ -10,7 +14,7 @@ class WeekAnalysis extends StatefulWidget {
   _WeekAnalysisState createState() => _WeekAnalysisState();
 }
 
-class _WeekAnalysisState extends State<WeekAnalysis> {
+class _WeekAnalysisState extends ConsumerState<WeekAnalysis> {
   List<_SalesData> data = [
     _SalesData('Sun', 35),
     _SalesData('Mon', 28),
@@ -22,6 +26,7 @@ class _WeekAnalysisState extends State<WeekAnalysis> {
   ];
   @override
   Widget build(BuildContext context) {
+    final wa = ref.read(weekAnalysis);
     return Column(
       children: [
         //Initialize the chart widget
@@ -31,11 +36,11 @@ class _WeekAnalysisState extends State<WeekAnalysis> {
           title: ChartTitle(text: '주간 예약수(차트)'),
           // Enable tooltip
           tooltipBehavior: TooltipBehavior(enable: true),
-          series: <ChartSeries<_SalesData, String>>[
-            LineSeries<_SalesData, String>(
-                dataSource: data,
-                xValueMapper: (_SalesData sales, _) => sales.date,
-                yValueMapper: (_SalesData sales, _) => sales.sales,
+          series: <ChartSeries<AnalysisWeekRespDto, String>>[
+            LineSeries<AnalysisWeekRespDto, String>(
+                dataSource: wa,
+                xValueMapper: (AnalysisWeekRespDto sales, _) => sales.week,
+                yValueMapper: (AnalysisWeekRespDto sales, _) => sales.price,
                 name: 'Sales',
                 // Enable data label
                 dataLabelSettings: DataLabelSettings(isVisible: true))
@@ -63,18 +68,18 @@ class _WeekAnalysisState extends State<WeekAnalysis> {
                 DataColumn(
                   label: Expanded(
                     child: Text(
-                      'Sale',
+                      'price',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
                 ),
               ],
               rows: <DataRow>[
-                for (int i = 0; i < data.length; i++)
+                for (int i = 0; i < wa.length; i++)
                   (DataRow(
                     cells: <DataCell>[
-                      DataCell(Text('${data[i].date}')),
-                      DataCell(Text('${data[i].sales}')),
+                      DataCell(Text('${wa[i].week}')),
+                      DataCell(Text('${wa[i].price}')),
                     ],
                   )),
               ],
