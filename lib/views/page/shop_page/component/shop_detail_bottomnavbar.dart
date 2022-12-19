@@ -7,9 +7,16 @@ import 'package:mubwara/views/page/reservation_page/reservation_screen.dart';
 import 'package:mubwara/views/page/shop_page/shop_detail_model.dart';
 
 class bottomNavBar extends ConsumerStatefulWidget {
-   bottomNavBar({required this.shopId, Key? key}) : super(key: key);
+  bottomNavBar(
+      {required this.name,
+      required this.perPrice,
+      required this.shopId,
+      Key? key})
+      : super(key: key);
 
   final int shopId;
+  final String name;
+  final int perPrice;
 
   @override
   ConsumerState<bottomNavBar> createState() => _bottomNavBarState();
@@ -18,10 +25,10 @@ class bottomNavBar extends ConsumerStatefulWidget {
 class _bottomNavBarState extends ConsumerState<bottomNavBar> {
   late bool _isSelected = false;
 
-
   @override
   Widget build(BuildContext context) {
-    int? subscribeId = ref.watch(shopDetailPageModel(widget.shopId))?.subscribeId;
+    int? subscribeId =
+        ref.watch(shopDetailPageModel(widget.shopId))?.subscribeId;
     @override
     void initState() {
       super.initState();
@@ -30,9 +37,10 @@ class _bottomNavBarState extends ConsumerState<bottomNavBar> {
     final scc = ref.read(subscribeController);
 
     final ap = ref.read(authProvider);
-    if(subscribeId == 0){
-      _isSelected = false;}else{
-      _isSelected =true;
+    if (subscribeId == 0) {
+      _isSelected = false;
+    } else {
+      _isSelected = true;
     }
     return Container(
       height: 56,
@@ -59,11 +67,11 @@ class _bottomNavBarState extends ConsumerState<bottomNavBar> {
             onTap: () {
               scc.subscribeButtonClick(subscribeId, widget.shopId);
               setState(() {
-                if(subscribeId == 0){
-                _isSelected = false;}else{
-                  _isSelected =true;
+                if (subscribeId == 0) {
+                  _isSelected = false;
+                } else {
+                  _isSelected = true;
                 }
-
               });
               print(subscribeId);
             },
@@ -94,6 +102,8 @@ class _bottomNavBarState extends ConsumerState<bottomNavBar> {
                   MaterialPageRoute(
                     builder: (_) => reservationScreen(
                       shopId: widget.shopId,
+                      name: widget.name,
+                      perPrice: widget.perPrice,
                     ),
                   ),
                 );

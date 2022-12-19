@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mubwara/domain/reservation/reservation_firestore_repository.dart';
 import 'package:mubwara/domain/reservation/reservation_http_repository.dart';
 import 'package:mubwara/dto/response/reservation_resp_dto.dart';
 import 'package:mubwara/main.dart';
@@ -40,9 +41,6 @@ class ReservationController {
         shopId: id,
         maxPeople: maxPeople,
         date: '${selectTime.year}${selectTime.month}${selectTime.day}');
-    print("장날" + '${reservationSelectReqDto.shopId}');
-    print('${reservationSelectReqDto.maxPeople}');
-    print('${reservationSelectReqDto.date}');
     List<dynamic> timeList = await _ref
         .read(reservationHttpRepository)
         .reservationTime(reservationSelectReqDto);
@@ -62,6 +60,15 @@ class ReservationController {
         .read(reservationHttpRepository)
         .reservation(reservationSaveReqDto);
   }
-  
 
+  Future<void> reservationAlarmCheck(String id) async {
+    await _ref.read(reservationFirestoreRepositoryProvider).update(id);
+  }
+
+  Future<void> reservationAlarm(
+      ReservationAlarmReqDto reservationAlarmReqDto) async {
+    await _ref
+        .read(reservationFirestoreRepositoryProvider)
+        .insert(reservationAlarmReqDto);
+  }
 }

@@ -17,11 +17,6 @@ class _ReservationListState extends ConsumerState<ReservationList> {
   Widget build(BuildContext context) {
     final rm = ref.watch(reservationListModel);
     final rc = ref.read(reservationController);
-    if (rm.length == 0) {
-      return Center(
-        child: Text("가게를 예약하지 않았습니다."),
-      );
-    }
     return RefreshIndicator(
       onRefresh: () => rc.refresh(),
       child: ListView.builder(

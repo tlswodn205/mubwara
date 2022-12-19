@@ -45,6 +45,8 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
           title: '${sm.shopName}',
           bottomNavigationBar: bottomNavBar(
             shopId: widget.shopId,
+            perPrice: sm.perPrice,
+            name: '${sm.shopName}',
           ),
           child: Column(
             children: [
@@ -81,7 +83,13 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
   Widget _buildTabBarView(ShopDetailRespDto sm) {
     return TabBarView(
       controller: _tabController,
-      children: [ShopInfo(), ShopMenu(menuRespDtoList: sm.menu,), ReviewList()],
+      children: [
+        ShopInfo(),
+        ShopMenu(
+          menuRespDtoList: sm.menu,
+        ),
+        ReviewList()
+      ],
     );
   }
 
@@ -127,10 +135,12 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
           padding: const EdgeInsets.all(16.0),
           child: GestureDetector(
             child: RestaurantCard(
-              image: Image.memory(base64Decode(sm.imageFileDto.image),
+              image: Image.memory(
+                base64Decode(sm.imageFileDto.image),
                 fit: BoxFit.contain,
                 width: 350,
-                height: 200,),
+                height: 200,
+              ),
               shop_name: '${sm.shopName}',
               tags: [sm.category],
               address: '${sm.address}',

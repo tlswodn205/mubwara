@@ -6,6 +6,7 @@ import 'package:mubwara/dto/request/user_req_dto.dart';
 import 'package:mubwara/provider/auth_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../dto/response/response_dto.dart';
+import '../../dto/response/user_resp_dto.dart';
 import '../../views/page/login_page/login_page_model.dart';
 import '../http_connector.dart';
 import 'package:http/http.dart';
@@ -29,17 +30,21 @@ class UserHttpRepository {
     AuthProvider ap = _ref.read(authProvider);
     ap.jwtToken = jwtToken;
     ap.isLogin = true;
-    ap.role = responseDto.data;
+    dynamic data = responseDto.data;
+    LoginRespDto loginDto = LoginRespDto.fromJson(data);
+    ap.role = loginDto.role;
+    ap.username = loginDto.username;
     _ref.read(httpConnector).login(jwtToken);
+
+    print(ap.role);
+    print(ap.username);
 
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("jwtToken", jwtToken);
-    prefs.setString("role", responseDto.data);
     return jwtToken;
   }
 
   Future<String> kakaoLogin(String accessToken) async {
-    print("aaa");
     _ref.read(httpConnector).kakaoLodin(accessToken);
     Response response = await _ref.read(httpConnector).get("/oauth/kakao");
     String? jwtToken = response.headers['access-token'].toString();

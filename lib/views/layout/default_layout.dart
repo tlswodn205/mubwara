@@ -1,14 +1,18 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DefaultLayout extends StatelessWidget {
+import '../../domain/reservation/reservation_firestore_repository.dart';
+import '../../dto/response/reservation_resp_dto.dart';
+
+class DefaultLayout extends ConsumerWidget {
   final Color? backgroundColor;
   final Widget child;
   final String? title;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
-
-  const DefaultLayout({
+  late int count;
+  DefaultLayout({
     required this.child,
     this.backgroundColor,
     this.title,
@@ -18,17 +22,28 @@ class DefaultLayout extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dataList = ref.watch(countAlarm);
+    dataList.when(
+        data: (reservationAlarmRespDto) {
+          if (reservationAlarmRespDto.isEmpty) {
+            count = 0;
+          } else {
+            count = reservationAlarmRespDto.length;
+          }
+        },
+        error: (Object error, StackTrace stackTrace) {},
+        loading: () {});
     return Scaffold(
       backgroundColor: backgroundColor ?? Colors.white,
-      appBar: renderAppBar(),
+      appBar: renderAppBar(count: count),
       body: child,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
     );
   }
 
-  AppBar? renderAppBar() {
+  AppBar? renderAppBar({required int count}) {
     if (title == null) {
       return null;
     } else {
@@ -41,10 +56,7 @@ class DefaultLayout extends StatelessWidget {
           Stack(
             children: [
               Container(
-                padding: EdgeInsets.only(
-                  top: 25,
-                  right: 5
-                ),
+                padding: EdgeInsets.only(top: 25, right: 5),
                 child: Icon(
                   Icons.notifications,
                   size: 30,
@@ -60,7 +72,7 @@ class DefaultLayout extends StatelessWidget {
                     5,
                   ),
                   badgeContent: Text(
-                    '2',
+                    '${count}',
                     style: TextStyle(
                       color: Colors.white,
                     ),

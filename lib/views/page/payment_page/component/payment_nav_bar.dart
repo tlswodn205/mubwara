@@ -7,7 +7,8 @@ import 'package:mubwara/views/page/payment_page/paymentScreen.dart';
 
 class PaymentNavBar extends ConsumerWidget {
   const PaymentNavBar(
-      {required this.maxPeople,
+      {required this.username,
+      required this.maxPeople,
       required this.selectDay,
       required this.time,
       required this.shopId,
@@ -17,11 +18,19 @@ class PaymentNavBar extends ConsumerWidget {
   final int shopId;
   final int maxPeople;
   final DateTime selectDay;
-  final int? time;
+  final int time;
+  final String username;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
+        ref.read(reservationController).reservationAlarm(ReservationAlarmReqDto(
+            date: '${selectDay.year}${selectDay.month}${selectDay.day}',
+            isCheck: false,
+            maxPeople: maxPeople,
+            name: username,
+            shopId: shopId,
+            time: time));
         ref.read(reservationController).reservation(ReservationSaveReqDto(
             maxPeople: maxPeople,
             shopId: shopId,

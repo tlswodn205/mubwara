@@ -36,3 +36,29 @@ class ReservationSaveReqDto {
         "reservationTime": time,
       };
 }
+
+class ReservationAlarmReqDto {
+  String date;
+  bool isCheck;
+  int maxPeople;
+  String name;
+  int shopId;
+  int time;
+
+  ReservationAlarmReqDto(
+      {required this.date,
+      required this.isCheck,
+      required this.maxPeople,
+      required this.name,
+      required this.shopId,
+      required this.time});
+
+  Map<String, dynamic> toJson() => {
+        "date": date,
+        "isCheck": isCheck,
+        "maxPeople": maxPeople,
+        "name": name,
+        "shopId": shopId,
+        "time": time
+      };
+}

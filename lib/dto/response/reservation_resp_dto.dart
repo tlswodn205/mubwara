@@ -67,3 +67,34 @@ class ReviewAboutCustomerDto {
         name: json["name"],
       );
 }
+
+class ReservationAlarmRespDto {
+  String alarmId;
+  String date;
+  bool isCheck;
+  int maxPeople;
+  String name;
+  int shopId;
+  int time;
+
+  ReservationAlarmRespDto(
+      {required this.alarmId,
+      required this.date,
+      required this.isCheck,
+      required this.maxPeople,
+      required this.name,
+      required this.shopId,
+      required this.time});
+
+  factory ReservationAlarmRespDto.fromJson(Map<String, dynamic> json,
+          {String? id}) =>
+      ReservationAlarmRespDto(
+        alarmId: id ?? json["id"],
+        date: json["date"],
+        isCheck: json["isCheck"],
+        maxPeople: json["maxPeople"],
+        name: json["name"],
+        shopId: json["shopId"],
+        time: json["time"],
+      );
+}

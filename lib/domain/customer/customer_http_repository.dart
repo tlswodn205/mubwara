@@ -30,6 +30,7 @@ class CustomerHttpRepository {
       return [];
     }
     List<dynamic> dataList = responseDto.data;
+    print(dataList);
     List<CustomerMyPageSubscribeRespDto> CustomerMyPageSubscribeList = dataList
         .map((x) => CustomerMyPageSubscribeRespDto.fromJson(x))
         .toList();

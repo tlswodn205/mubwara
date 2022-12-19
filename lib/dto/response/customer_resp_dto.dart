@@ -18,8 +18,8 @@ class CustomerMyPageSubscribeRespDto {
         shopName: json["shopName"],
         address: json["address"],
         category: json["category"],
-        imageFileDto: ImageFileDto.fromJson(
-            Map<String, dynamic>.from(json["imageFileDto"])),
+        imageFileDto:
+            ImageFileDto.fromJson(Map<String, dynamic>.from(json["imageDto"])),
       );
 }
 

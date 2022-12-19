@@ -14,9 +14,16 @@ import '../payment_page/basket_page.dart';
 import '../shop_page/component/reservationbottombar.dart';
 
 class reservationScreen extends ConsumerStatefulWidget {
-  const reservationScreen({required this.shopId, Key? key}) : super(key: key);
+  const reservationScreen(
+      {required this.perPrice,
+      required this.name,
+      required this.shopId,
+      Key? key})
+      : super(key: key);
 
   final int shopId;
+  final int perPrice;
+  final String name;
   @override
   ConsumerState<reservationScreen> createState() => _reservationScreenState();
 }
@@ -51,10 +58,13 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) => BasketPage(
-                  shopId: widget.shopId,
-                  maxPeople: maxPeople,
-                  selectDay: selectedDay,
-                  time: time),
+                shopId: widget.shopId,
+                maxPeople: maxPeople,
+                selectDay: selectedDay,
+                time: time,
+                perPrice: widget.perPrice,
+                name: widget.name,
+              ),
             ),
           );
         },

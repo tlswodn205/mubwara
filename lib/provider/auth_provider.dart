@@ -10,12 +10,14 @@ class AuthProvider {
   String? jwtToken;
   bool isLogin = false;
   String? role;
+  String? username;
 
   void logout(WidgetRef ref) {
     ref.read(httpConnector).logout();
     jwtToken = null;
     isLogin = false;
     role = null;
+    username = null;
   }
 
   Future<void> initProvider(Ref ref) async {
