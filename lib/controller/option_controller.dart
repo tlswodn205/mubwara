@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/domain/option/option_http_repository.dart';
 import 'package:mubwara/dto/request/option_req_dto.dart';
+import 'package:mubwara/dto/response/option_resp_dto.dart';
 
 import '../main.dart';
 
@@ -15,5 +16,9 @@ class OptionController {
 
   void optionSave(List<int> checkList) {
     _ref.read(optionHttpRepository).optionSave(checkList);
+  }
+
+  Future<List<OptionListRespDto>> optionList(){
+    return _ref.read(optionHttpRepository).optionList();
   }
 }

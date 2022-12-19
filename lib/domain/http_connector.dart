@@ -20,7 +20,6 @@ class HttpConnector {
       "Content-Type": "application/json; charset=utf-8",
       "Authorization": "${jwtToken}",
     };
-    print("머리임:" + headers.toString());
   }
 
   void logout() {
