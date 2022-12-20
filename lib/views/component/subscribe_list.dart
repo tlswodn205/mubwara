@@ -22,14 +22,17 @@ class _ShopListState extends ConsumerState<ShopList> {
         child: Text("등록한 구독이 없습니다."),
       );
     }
-    return ListView.builder(
-      itemCount: sm.length,
-      itemBuilder: (context, index) {
-        return ShopListItem(
-          listIndex: index,
-          rm: sm,
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: () => sc.refresh(),
+      child: ListView.builder(
+        itemCount: sm.length,
+        itemBuilder: (context, index) {
+          return ShopListItem(
+            listIndex: index,
+            rm: sm,
+          );
+        },
+      ),
     );
   }
 }

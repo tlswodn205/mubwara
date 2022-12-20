@@ -62,23 +62,27 @@ class DefaultLayout extends ConsumerWidget {
                   size: 30,
                 ),
               ),
-              Positioned(
-                top: 30,
-                right: -1,
-                child: Badge(
-                  shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(
-                    5,
-                  ),
-                  badgeContent: Text(
-                    '${count}',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+              // count == 0
+              //     ? Container()
+              //     : Container(
+              //         child: Positioned(
+              //           top: 30,
+              //           right: -1,
+              //           child: Badge(
+              //             shape: BadgeShape.circle,
+              //             badgeColor: Colors.red,
+              //             borderRadius: BorderRadius.circular(
+              //               5,
+              //             ),
+              //             badgeContent: Text(
+              //               '${count}',
+              //               style: TextStyle(
+              //                 color: Colors.white,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       )
             ],
           ),
         ],

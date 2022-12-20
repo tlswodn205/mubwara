@@ -58,7 +58,7 @@ class _RootTabState extends ConsumerState<RootTab>
   Widget build(BuildContext context) {
     if (ref.watch(authProvider).isLogin) {
       return DefaultLayout(
-        title: '캐치테이블',
+        title: '무봐라',
         child: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           controller: controller,
@@ -91,7 +91,7 @@ class _RootTabState extends ConsumerState<RootTab>
       );
     } else {
       return DefaultLayout(
-        title: '캐치테이블',
+        title: '무봐라',
         child: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           controller: controller,

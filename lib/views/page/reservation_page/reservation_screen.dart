@@ -120,10 +120,12 @@ class _reservationScreenState extends ConsumerState<reservationScreen> {
                     onPress: () {
                       time = rm.reservationTime[i];
                       print(time);
+                      print(rm.reservationTime[i]);
                       print(maxPeople);
                     },
-                    reservation_time: '${rm.reservationTime[i]}:00',
+                    reservation_time: rm.reservationTime[i],
                     selectMethod: null,
+                    chooseTime: time,
                   ),
               ],
             ),

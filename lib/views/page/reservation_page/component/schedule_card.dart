@@ -3,12 +3,14 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
 class SceduleCard extends StatelessWidget {
-  final String reservation_time;
+  final int reservation_time;
   final selectMethod;
   final onPress;
+  final int chooseTime;
 
   const SceduleCard({
     this.onPress,
+    required this.chooseTime,
     required this.reservation_time,
     required this.selectMethod,
     Key? key,
@@ -23,6 +25,7 @@ class SceduleCard extends StatelessWidget {
             reservation_time: reservation_time,
             selectMethod: selectMethod,
             onPress: onPress,
+            chooseTime: chooseTime,
           )
         ],
       ),
@@ -31,14 +34,16 @@ class SceduleCard extends StatelessWidget {
 }
 
 class _Time extends StatelessWidget {
-  final String reservation_time;
+  final int reservation_time;
   final selectMethod;
   final onPress;
+  final int chooseTime;
   late bool select = false;
   _Time(
       {required this.onPress,
       required this.reservation_time,
       required this.selectMethod,
+      required this.chooseTime,
       Key? key})
       : super(key: key);
 
@@ -48,6 +53,9 @@ class _Time extends StatelessWidget {
       fontSize: 17,
       color: Body_TEXT_COLOR2,
     );
+    if (chooseTime == reservation_time) {
+      select = true;
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -56,7 +64,7 @@ class _Time extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: onPress,
-              child: Text('${reservation_time}'),
+              child: Text('${reservation_time}:00'),
               style: ButtonStyle(overlayColor:
                   MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {

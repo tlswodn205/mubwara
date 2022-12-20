@@ -67,7 +67,8 @@ class _TableManagementPageState extends ConsumerState<TableManagementPage> {
                           DataCell(Text('${sm[i].qty}')),
                           DataCell(IconButton(
                             onPressed: () {
-                              sc.tableupdate(TableReqDto(sm[i].maxPeople, '${(-1)!*(sm[i].qty)}'));
+                              sc.tableupdate(TableReqDto(
+                                  sm[i].maxPeople, '${(-1) * (sm[i].qty)}'));
                             },
                             icon: Icon(Icons.delete),
                           ))

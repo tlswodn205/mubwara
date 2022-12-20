@@ -23,46 +23,44 @@ class Kakaobutton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     KakaoSdk.init(nativeAppKey: 'd86213d1ba0e68d8b7daa5d3180e75dc');
     return Container(
-      color: Colors.white,
-      child: Center(
-        child: TextButton(
-          child: Padding(
-            padding: const EdgeInsets.all(0.0),
-            child:
-                Image.asset("assets/images/util/kakao_login_medium_wide.png"),
-          ),
-          onPressed: () async {
-            if (await isKakaoTalkInstalled()) {
+      width: 330,
+      height: 50,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.yellow,
+        ),
+        onPressed: () async {
+          if (await isKakaoTalkInstalled()) {
+            try {
+              await UserApi.instance.loginWithKakaoTalk();
+              print('카카오톡으로 로그인 성공');
+              _get_user_info();
+            } catch (error) {
+              print('카카오톡으로 로그인 실패 $error 1');
+              // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
               try {
-                await UserApi.instance.loginWithKakaoTalk();
-                print('카카오톡으로 로그인 성공');
-                _get_user_info();
-              } catch (error) {
-                print('카카오톡으로 로그인 실패 $error 1');
-                // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
-                try {
-                  await UserApi.instance.loginWithKakaoAccount();
-                  print('카카오계정으로 로그인 성공');
-                  _get_user_info();
-                } catch (error) {
-                  print('카카오계정으로 로그인 실패 $error 12');
-                }
-              }
-            } else {
-              try {
-                OAuthToken token =
-                    await UserApi.instance.loginWithKakaoAccount();
-                print(token.accessToken);
+                await UserApi.instance.loginWithKakaoAccount();
                 print('카카오계정으로 로그인 성공');
                 _get_user_info();
-                print("아리아");
-                ref.read(userController).kakaoLogin(token.accessToken);
               } catch (error) {
-                print('카카오계정으로 로그인 실패 $error 123');
+                print('카카오계정으로 로그인 실패 $error 12');
               }
             }
-          },
-        ),
+          } else {
+            try {
+              OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+              print(token.accessToken);
+              print('카카오계정으로 로그인 성공');
+              _get_user_info();
+              print("아리아");
+              ref.read(userController).kakaoLogin(token.accessToken);
+            } catch (error) {
+              print('카카오계정으로 로그인 실패 $error 123');
+            }
+          }
+        },
+        child: Text("카카오 로그인",
+            style: TextStyle(fontSize: 20, color: Colors.black)),
       ),
     );
   }

@@ -22,37 +22,41 @@ class _loginPage extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     final us = ref.watch(loginPageModel);
     final uc = ref.read(userController);
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(height: 20),
-          _buildTextFeild(
-              feildName: "아이디",
-              onChanged: (value) {
-                loginReqDto.username = value;
-              },
-              hideText: false),
-          SizedBox(height: 20),
-          _buildTextFeild(
-              feildName: "비밀번호",
-              onChanged: (value) {
-                loginReqDto.password = value;
-              },
-              hideText: true),
-          SizedBox(height: 60),
-          _buildLoginButton(
-              buttonName: "로그인 ",
-              buttonBackgroundColor: Colors.blue,
-              fontColor: Colors.white,
-              userController: uc,
-              loginReqDto: loginReqDto),
-          SizedBox(height: 20),
-          _buildButton(
-              buttonName: "회원 가입",
-              buttonBackgroundColor: Colors.grey,
-              fontColor: Colors.white),
-          Kakaobutton(),
-        ],
+    return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            _buildTextFeild(
+                feildName: "아이디",
+                onChanged: (value) {
+                  loginReqDto.username = value;
+                },
+                hideText: false),
+            SizedBox(height: 20),
+            _buildTextFeild(
+                feildName: "비밀번호",
+                onChanged: (value) {
+                  loginReqDto.password = value;
+                },
+                hideText: true),
+            SizedBox(height: 60),
+            _buildLoginButton(
+                buttonName: "로그인 ",
+                buttonBackgroundColor: Colors.blue,
+                fontColor: Colors.white,
+                userController: uc,
+                loginReqDto: loginReqDto),
+            SizedBox(height: 20),
+            _buildButton(
+                buttonName: "회원 가입",
+                buttonBackgroundColor: Colors.grey,
+                fontColor: Colors.white),
+            SizedBox(height: 20),
+            Kakaobutton(),
+          ],
+        ),
       ),
     );
   }

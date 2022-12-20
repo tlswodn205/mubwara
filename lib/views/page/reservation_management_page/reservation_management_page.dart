@@ -7,10 +7,8 @@ import 'page/shop_menu_page.dart';
 import 'page/table_management_page.dart';
 
 class ReservationManagementPage extends StatelessWidget {
-  const ReservationManagementPage({
+  const ReservationManagementPage({Key? key}) : super(key: key);
 
-    Key? key}) : super(key: key);
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,26 +81,6 @@ class ReservationManagementPage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => SchedulePage(),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: 56,
-                  width: 300,
-                  alignment: Alignment.center,
-                  color: PRIMARY_COLOR,
-                  child: Text("스케쥴 관리",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Body_TEXT_COLOR1)),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
                       builder: (_) => ReservationNowPage(),
                     ),
                   );
@@ -126,4 +104,3 @@ class ReservationManagementPage extends StatelessWidget {
     );
   }
 }
-

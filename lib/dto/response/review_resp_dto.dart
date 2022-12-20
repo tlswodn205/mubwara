@@ -8,17 +8,20 @@ class ReviewRespDto {
     required this.id,
     required this.score,
     required this.content,
+    required this.images,
   });
 
   int id;
   int score;
   String content;
 
+  List<ImageFileDto> images;
   factory ReviewRespDto.fromJson(Map<String, dynamic> json) => ReviewRespDto(
-        id: json["id"],
-        score: json["score"],
-        content: json["content"],
-      );
+      id: json["id"],
+      score: json["score"],
+      content: json["content"],
+      images: List<ImageFileDto>.from(
+          json["images"].map((x) => ImageFileDto.fromJson(x))));
 }
 
 class ReviewListRespDto {

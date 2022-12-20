@@ -41,7 +41,6 @@ class ShopHttpRepository {
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     dynamic data = responseDto.data;
     ShopDetailRespDto shop = ShopDetailRespDto.fromJson(data);
-    print(shop.review[0].content);
     return shop;
   }
 
@@ -64,17 +63,19 @@ class ShopHttpRepository {
 
     return PriceList;
   }
+
   Future<List<ShopSearchListDto>> shopRegionList(String region) async {
-    Response response =
-    await _ref.read(httpConnector).get("/list/location?city=부산&region=${region}");
+    Response response = await _ref
+        .read(httpConnector)
+        .get("/list/location?city=부산&region=${region}");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     print(dataList.toString());
     List<ShopSearchListDto> RegionList =
-    dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
+        dataList.map((x) => ShopSearchListDto.fromJson(x)).toList();
     return RegionList;
-
   }
+
   Future<List<ShopSearchListDto>> shopCategory(String categoryName) async {
     Response response =
         await _ref.read(httpConnector).get("/list/${categoryName}");
@@ -126,7 +127,8 @@ class ShopHttpRepository {
         await _ref.read(httpConnector).post("/user/shop/save", body);
   }
 
-  Future<List<AnalysisDateRespDto>> dayAnalysis (AnalysisDateReqDto analysisDateReqDto) async{
+  Future<List<AnalysisDateRespDto>> dayAnalysis(
+      AnalysisDateReqDto analysisDateReqDto) async {
     print('작동됨');
     String body = jsonEncode(analysisDateReqDto.toJson());
     Response response =
@@ -134,19 +136,20 @@ class ShopHttpRepository {
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     List<AnalysisDateRespDto> analysisDateRespDto =
-     dataList.map((x) => AnalysisDateRespDto.fromJson(x)).toList();
+        dataList.map((x) => AnalysisDateRespDto.fromJson(x)).toList();
     return analysisDateRespDto;
   }
 
-  Future<List<AnalysisDateRespDto>> weekAnalysis (AnalysisWeekReqDto analysisWeekReqDto) async{
+  Future<List<AnalysisDateRespDto>> weekAnalysis(
+      AnalysisWeekReqDto analysisWeekReqDto) async {
     print('작동됨');
     String body = jsonEncode(analysisWeekReqDto.toJson());
     Response response =
-    await _ref.read(httpConnector).post("/shop/analysis/week", body);
+        await _ref.read(httpConnector).post("/shop/analysis/week", body);
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
     List<dynamic> dataList = responseDto.data;
     List<AnalysisDateRespDto> analysisDateRespDto =
-    dataList.map((x) => AnalysisDateRespDto.fromJson(x)).toList();
+        dataList.map((x) => AnalysisDateRespDto.fromJson(x)).toList();
     return analysisDateRespDto;
   }
 }

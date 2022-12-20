@@ -15,7 +15,12 @@ class ReviewListModel extends StateNotifier<List<CustomerMyPageReviewRespDto>> {
   void initViewModel() async {
     List<CustomerMyPageReviewRespDto> mypageReviewDtoList =
         await _ref.read(customerHttpRepository).myPageReviewList();
-    state = mypageReviewDtoList;
+    print(mypageReviewDtoList[0].score);
+    if (mypageReviewDtoList.isEmpty) {
+      state = [];
+    } else {
+      state = mypageReviewDtoList;
+    }
   }
 
   //

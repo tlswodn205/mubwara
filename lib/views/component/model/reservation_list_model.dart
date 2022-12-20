@@ -15,6 +15,7 @@ class ReservationListModel
   void initViewModel() async {
     List<CustomerMyPageReservationRespDto> mypageReservationDtoList =
         await _ref.read(customerHttpRepository).myPageReservationList();
+    print("빠밤");
     state = mypageReservationDtoList;
   }
 

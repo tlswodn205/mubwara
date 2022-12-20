@@ -16,12 +16,12 @@ class WeekAnalysis extends ConsumerStatefulWidget {
 
 class _WeekAnalysisState extends ConsumerState<WeekAnalysis> {
   List<_SalesData> data = [
-    _SalesData('Sun', 35),
-    _SalesData('Mon', 28),
-    _SalesData('Thus', 34),
-    _SalesData('Wed', 32),
-    _SalesData('Thur', 40),
-    _SalesData('Fri', 30),
+    _SalesData('Sun', 350000),
+    _SalesData('Mon', 280000),
+    _SalesData('Thus', 340000),
+    _SalesData('Wed', 320000),
+    _SalesData('Thur', 400000),
+    _SalesData('Fri', 300000),
     _SalesData('Sat', 0),
   ];
   @override
@@ -36,11 +36,11 @@ class _WeekAnalysisState extends ConsumerState<WeekAnalysis> {
           title: ChartTitle(text: '주간 예약수(차트)'),
           // Enable tooltip
           tooltipBehavior: TooltipBehavior(enable: true),
-          series: <ChartSeries<AnalysisWeekRespDto, String>>[
-            LineSeries<AnalysisWeekRespDto, String>(
-                dataSource: wa,
-                xValueMapper: (AnalysisWeekRespDto sales, _) => sales.week,
-                yValueMapper: (AnalysisWeekRespDto sales, _) => sales.price,
+          series: <ChartSeries<_SalesData, String>>[
+            LineSeries<_SalesData, String>(
+                dataSource: data,
+                xValueMapper: (_SalesData sales, _) => sales.date,
+                yValueMapper: (_SalesData sales, _) => sales.sales,
                 name: 'Sales',
                 // Enable data label
                 dataLabelSettings: DataLabelSettings(isVisible: true))
@@ -75,11 +75,11 @@ class _WeekAnalysisState extends ConsumerState<WeekAnalysis> {
                 ),
               ],
               rows: <DataRow>[
-                for (int i = 0; i < wa.length; i++)
+                for (int i = 0; i < data.length; i++)
                   (DataRow(
                     cells: <DataCell>[
-                      DataCell(Text('${wa[i].week}')),
-                      DataCell(Text('${wa[i].price}')),
+                      DataCell(Text('${data[i].date}')),
+                      DataCell(Text('${data[i].sales}')),
                     ],
                   )),
               ],

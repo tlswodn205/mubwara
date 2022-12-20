@@ -6,13 +6,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/response/customer_resp_dto.dart';
 import 'package:mubwara/views/component/review_star_make.dart';
 
-import '../../domain/review/review.dart';
+import '../../../../dto/response/review_resp_dto.dart';
 
-class ReviewListItem extends ConsumerWidget {
-  const ReviewListItem({required this.listIndex, required this.sm, Key? key})
+class ShopReviewListItem extends ConsumerWidget {
+  const ShopReviewListItem(
+      {required this.listIndex, required this.reviewList, Key? key})
       : super(key: key);
   final int listIndex;
-  final List<CustomerMyPageReviewRespDto> sm;
+  final List<ReviewRespDto> reviewList;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,8 +26,8 @@ class ReviewListItem extends ConsumerWidget {
               Container(
                 child: Center(
                   child: Image.memory(
-                    base64.decode(sm[listIndex].imageFileDto[0].image),
-                    width: 104,
+                    base64.decode(reviewList[listIndex].images[0].image),
+                    width: 100,
                     height: 100,
                     fit: BoxFit.fill,
                   ),
@@ -41,9 +42,9 @@ class ReviewListItem extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ReviewStarMake(review_score: sm[listIndex].score),
+                    ReviewStarMake(review_score: reviewList[listIndex].score),
                     Text(
-                      sm[listIndex].content,
+                      reviewList[listIndex].content,
                       style: TextStyle(fontSize: 15),
                     ),
                   ],

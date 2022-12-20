@@ -12,10 +12,10 @@ class MonthAnalysis extends StatefulWidget {
 
 class _MonthAnalysisState extends State<MonthAnalysis> {
   List<_SalesData> data = [
-    _SalesData('1 Week', 150),
-    _SalesData('2 Week', 180),
-    _SalesData('3 Week', 160),
-    _SalesData('4 Week', 240),
+    _SalesData('1 Week', 140000),
+    _SalesData('2 Week', 172000),
+    _SalesData('3 Week', 156000),
+    _SalesData('4 Week', 199000),
   ];
   @override
   Widget build(BuildContext context) {

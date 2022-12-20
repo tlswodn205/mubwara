@@ -17,12 +17,20 @@ class ShopDetailPageModel extends StateNotifier<ShopDetailRespDto?> {
     ShopDetailRespDto shopDetailRespDto =
         await _ref.read(shopHttpRepository).shopDetail(id);
     state = shopDetailRespDto;
-    if(state?.menu == null){
+    if (state?.menu == null) {
       state?.menu = [];
+    }
+
+    if (state?.option == null) {
+      state?.option = [];
+    }
+
+    if (state?.review == null) {
+      state?.review = [];
     }
   }
 
-  void subscribe(int subscribeId) async{
+  void subscribe(int subscribeId) async {
     state?.subscribeId = subscribeId;
   }
 }

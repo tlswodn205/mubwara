@@ -16,20 +16,20 @@ class DayAnalysis extends ConsumerStatefulWidget {
 
 class _DayAnalysisState extends ConsumerState<DayAnalysis> {
   List<_SalesData> data = [
-    _SalesData('11:00', 35),
-    _SalesData('12:00', 28),
-    _SalesData('13:00', 34),
-    _SalesData('14:00', 32),
-    _SalesData('15:00', 40),
-    _SalesData('16:00', 30),
-    _SalesData('17:00', 45),
-    _SalesData('18:00', 35),
-    _SalesData('19:00', 20),
-    _SalesData('20:00', 31),
-    _SalesData('21:00', 36),
-    _SalesData('22:00', 36),
+    _SalesData('10:00', 40000),
+    _SalesData('11:00', 30000),
+    _SalesData('12:00', 80000),
+    _SalesData('13:00', 100000),
+    _SalesData('14:00', 50000),
+    _SalesData('15:00', 10000),
+    _SalesData('16:00', 20000),
+    _SalesData('17:00', 50000),
+    _SalesData('18:00', 90000),
+    _SalesData('19:00', 80000),
+    _SalesData('20:00', 70000),
+    _SalesData('21:00', 20000),
+    _SalesData('22:00', 30000),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +43,11 @@ class _DayAnalysisState extends ConsumerState<DayAnalysis> {
             title: ChartTitle(text: '일일 예약수(차트)'),
             // Enable tooltip
             tooltipBehavior: TooltipBehavior(enable: true),
-            series: <ChartSeries<AnalysisDateRespDto, int>>[
-              LineSeries<AnalysisDateRespDto, int>(
-                  dataSource: da,
-                  xValueMapper: (AnalysisDateRespDto sales, _) => sales.times ,
-                  yValueMapper: (AnalysisDateRespDto sales, _) => sales.results ,
+            series: <ChartSeries<_SalesData, String>>[
+              LineSeries<_SalesData, String>(
+                  dataSource: data,
+                  xValueMapper: (_SalesData sales, _) => sales.hour,
+                  yValueMapper: (_SalesData sales, _) => sales.sales,
                   name: 'Sales',
                   // Enable data label
                   dataLabelSettings: DataLabelSettings(isVisible: true))
@@ -82,11 +82,11 @@ class _DayAnalysisState extends ConsumerState<DayAnalysis> {
                 ),
               ],
               rows: <DataRow>[
-                for (int i = 0; i < da.length; i++)
+                for (int i = 0; i < data.length; i++)
                   (DataRow(
                     cells: <DataCell>[
-                      DataCell(Text('${da[i].times}')),
-                      DataCell(Text('${da[i].results}')),
+                      DataCell(Text('${data[i].hour}')),
+                      DataCell(Text('${data[i].sales}')),
                     ],
                   )),
               ],

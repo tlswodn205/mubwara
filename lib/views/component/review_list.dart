@@ -17,11 +17,6 @@ class _ReviewListState extends ConsumerState<ReviewList> {
   Widget build(BuildContext context) {
     final sm = ref.watch(reviewListModel);
     final sc = ref.read(reviewController);
-    if (sm.length == 0) {
-      return Center(
-        child: Text("작성한 리뷰가 없습니다."),
-      );
-    }
     return RefreshIndicator(
       onRefresh: () => sc.refresh(),
       child: ListView.builder(

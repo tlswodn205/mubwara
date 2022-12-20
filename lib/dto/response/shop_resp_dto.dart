@@ -3,6 +3,7 @@ import 'package:mubwara/dto/response/review_resp_dto.dart';
 import 'package:mubwara/dto/response/subscribe_resp_dto.dart';
 
 import 'image_file_dto.dart';
+import 'option_resp_dto.dart';
 
 class shopListRespDto {
   int shop_id;
@@ -34,12 +35,12 @@ List<shopListRespDto> shopList = [
       shop_id: 1,
       image: "ddeok_bok_gi.jpg",
       shop_name: "쉐프의 떡볶이",
-      information: "어린이 간식, 아빠 술 안주로 좋아요!",
-      review_score: 5.0,
+      information: "60년 전통의 부산 돼지국밥",
+      review_score: 4.5,
       reviewer_count: 140,
       category: "화명동",
       address: "부산어딘가",
-      telephone: 01024102957,
+      telephone: 01011113333,
       price: 40000),
   shopListRespDto(
       shop_id: 2,
@@ -132,6 +133,7 @@ class ShopDetailRespDto {
       required this.perPrice,
       required this.review,
       required this.menu,
+      required this.option,
       required this.scoreAvg,
       required this.subscribeId});
 
@@ -147,12 +149,14 @@ class ShopDetailRespDto {
   ImageFileDto imageFileDto;
   List<ReviewRespDto> review;
   List<MenuRespDto> menu;
+  List<OptionListRespDto> option;
   double scoreAvg;
   int subscribeId;
 
   factory ShopDetailRespDto.fromJson(Map<String, dynamic> json) =>
       ShopDetailRespDto(
-        menu: List<MenuRespDto>.from(json["menu"].map((x) => MenuRespDto.fromJson(x))),
+        menu: List<MenuRespDto>.from(
+            json["menu"].map((x) => MenuRespDto.fromJson(x))),
         id: json["id"],
         shopName: json["shopName"],
         address: json["address"],
@@ -161,11 +165,14 @@ class ShopDetailRespDto {
         openTime: json["openTime"],
         closeTime: json["closeTime"],
         phoneNumber: json["phoneNumber"],
+        option: List<OptionListRespDto>.from(
+            json["options"].map((x) => OptionListRespDto.fromJson(x))),
         imageFileDto: ImageFileDto.fromJson(json["imageFile"]),
         review: List<ReviewRespDto>.from(
             json["review"].map((x) => ReviewRespDto.fromJson(x))),
         scoreAvg: json["scoreAvg"].toDouble(),
-        subscribeId: json["subscribeId"], perPrice: json["perPrice"],
+        subscribeId: json["subscribeId"],
+        perPrice: json["perPrice"],
       );
 }
 
@@ -236,9 +243,7 @@ class AnalysisDateRespDto {
   AnalysisDateRespDto({required this.times, required this.results});
 
   factory AnalysisDateRespDto.fromJson(Map<String, dynamic> json) =>
-      AnalysisDateRespDto(
-          times: json["times"],
-          results: json["results"]);
+      AnalysisDateRespDto(times: json["times"], results: json["results"]);
 }
 
 class AnalysisWeekRespDto {
@@ -248,7 +253,5 @@ class AnalysisWeekRespDto {
   AnalysisWeekRespDto({required this.week, required this.price});
 
   factory AnalysisWeekRespDto.fromJson(Map<String, dynamic> json) =>
-      AnalysisWeekRespDto(
-          week: json["week"],
-          price: json["price"]);
+      AnalysisWeekRespDto(week: json["week"], price: json["price"]);
 }

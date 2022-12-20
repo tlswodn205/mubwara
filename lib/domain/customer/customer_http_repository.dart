@@ -54,6 +54,7 @@ class CustomerHttpRepository {
     Response response =
         await _ref.read(httpConnector).get("/auth/mypage/reservation");
     ResponseDto responseDto = ResponseDto.fromJson(jsonDecode(response.body));
+    print("빠밤");
     if (responseDto.data == null) {
       return [];
     }

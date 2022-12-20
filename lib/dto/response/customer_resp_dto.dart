@@ -27,23 +27,22 @@ class CustomerMyPageReviewRespDto {
   CustomerMyPageReviewRespDto({
     required this.score,
     required this.content,
-    // required this.imageFileDto,
+    required this.imageFileDto,
     required this.liviewShopDto,
   });
   LiviewShopDto liviewShopDto;
   int score;
   String content;
-  // ImageFileDto imageFileDto;
+  List<ImageFileDto> imageFileDto;
 
   factory CustomerMyPageReviewRespDto.fromJson(Map<String, dynamic> json) =>
       CustomerMyPageReviewRespDto(
-        liviewShopDto:
-            LiviewShopDto.fromJson(Map<String, dynamic>.from(json["shop"])),
-        score: json["score"],
-        content: json["content"],
-        // imageFileDto: ImageFileDto.fromJson(
-        //     Map<String, dynamic>.from(json["imagefile"])),
-      );
+          liviewShopDto:
+              LiviewShopDto.fromJson(Map<String, dynamic>.from(json["shop"])),
+          score: json["score"],
+          content: json["content"],
+          imageFileDto: List<ImageFileDto>.from(
+              json["imagefile"].map((x) => ImageFileDto.fromJson(x))));
 }
 
 class CustomerMyPageReservationRespDto {

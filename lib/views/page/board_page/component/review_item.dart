@@ -105,16 +105,6 @@ class ReviewItem extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
-                      width: 150,
-                    ),
-                    Text(
-                      '>',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w200),
-                    ),
                   ],
                 ),
                 style: TextButton.styleFrom(backgroundColor: Colors.grey),

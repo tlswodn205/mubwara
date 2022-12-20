@@ -52,7 +52,9 @@ class _joinPage extends ConsumerState<JoinPage> {
                     width: 240,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showUsernameCheckToast();
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
@@ -65,7 +67,7 @@ class _joinPage extends ConsumerState<JoinPage> {
               ),
               SizedBox(height: 10),
               _buildTextFeild(
-                obscureText: true,
+                  obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return '비밀번호를 입력해주세요';
@@ -74,7 +76,6 @@ class _joinPage extends ConsumerState<JoinPage> {
                   },
                   feildName: "비밀번호",
                   onChanged: (value) {
-
                     joinCustomerReqDto.password = value;
                   },
                   defaultText: "null"),
@@ -127,6 +128,9 @@ class _joinPage extends ConsumerState<JoinPage> {
             child: SizedBox(
               width: 330,
               child: TextField(
+                onChanged: (value) {
+                  joinCustomerReqDto.address = value;
+                },
                 decoration: InputDecoration(
                   labelText: '주소',
                   border: OutlineInputBorder(),
@@ -171,6 +175,8 @@ class _joinPage extends ConsumerState<JoinPage> {
       ),
     );
     _AddressController.text = '${model.address!} ${model.buildingName!}';
+
+    joinCustomerReqDto.address = '${model.address!} ${model.buildingName!}';
   }
 
   Widget _buildTextFeild({

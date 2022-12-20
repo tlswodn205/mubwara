@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mubwara/dto/response/shop_resp_dto.dart';
 import 'package:mubwara/views/layout/default_layout.dart';
 import 'package:mubwara/views/page/search_page/component/restaurant_card.dart';
+import 'package:mubwara/views/page/shop_page/component/review_list.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_detail_bottomnavbar.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_info.dart';
 import 'package:mubwara/views/page/shop_page/component/shop_menu.dart';
@@ -84,11 +85,13 @@ class _ShopDetailScreenState extends ConsumerState<ShopDetailScreen>
     return TabBarView(
       controller: _tabController,
       children: [
-        ShopInfo(),
+        ShopInfo(
+          optionList: sm.option,
+        ),
         ShopMenu(
           menuRespDtoList: sm.menu,
         ),
-        ReviewList()
+        ShopReviewList(reviewList: sm.review)
       ],
     );
   }

@@ -3,30 +3,38 @@ import 'package:mubwara/views/common/const/color.dart';
 
 void showSaveToast() {
   Fluttertoast.showToast(
-    msg: "저장완료",
-    toastLength: Toast.LENGTH_LONG,
-    fontSize: 18.0,
+      msg: "저장완료",
+      toastLength: Toast.LENGTH_LONG,
+      fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
+
 void showShopSaveToast() {
   Fluttertoast.showToast(
       msg: "추가로 메뉴와 테이블 추가를 해주세요",
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
+
+void showUsernameCheckToast() {
+  Fluttertoast.showToast(
+      msg: "중복되는 아이디가 없습니다.",
+      toastLength: Toast.LENGTH_LONG,
+      fontSize: 18.0,
+      backgroundColor: PRIMARY_COLOR,
+      textColor: Body_TEXT_COLOR1);
+}
+
 void showCancleToast() {
   Fluttertoast.showToast(
       msg: "취소",
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
 
 void showLogoutToast() {
@@ -35,8 +43,7 @@ void showLogoutToast() {
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
 
 void showLoginToast() {
@@ -45,8 +52,7 @@ void showLoginToast() {
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
 
 void showJoinFormToast() {
@@ -55,15 +61,14 @@ void showJoinFormToast() {
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }
+
 void showHomeButtonToast() {
   Fluttertoast.showToast(
       msg: "분류 완료",
       toastLength: Toast.LENGTH_LONG,
       fontSize: 18.0,
       backgroundColor: PRIMARY_COLOR,
-      textColor: Body_TEXT_COLOR1
-  );
+      textColor: Body_TEXT_COLOR1);
 }

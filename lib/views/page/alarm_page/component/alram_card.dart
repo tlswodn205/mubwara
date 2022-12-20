@@ -46,6 +46,7 @@ class _AlramCardState extends ConsumerState<AlramCard> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     '예약자 성함 : ${widget.customer_name}',
