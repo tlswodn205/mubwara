@@ -60,8 +60,8 @@ class ReviewItem extends StatelessWidget {
                     Image.memory(
                       base64Decode(
                           bpm[listIndex].reviewAboutShopDto.imageFileDto.image),
-                      width: 35,
-                      height: 35,
+                      width: 50,
+                      height: 50,
                       fit: BoxFit.cover,
                     ),
                     SizedBox(
@@ -74,8 +74,8 @@ class ReviewItem extends StatelessWidget {
                         Text(
                           '${bpm[listIndex].reviewAboutShopDto.shopName}',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
+                            color: Colors.black,
+                            fontSize: 15,
                           ),
                         ),
                         Row(
@@ -83,21 +83,21 @@ class ReviewItem extends StatelessWidget {
                             Text(
                               '${bpm[listIndex].reviewAboutShopDto.category}',
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
+                                color: Colors.black,
+                                fontSize: 11,
                               ),
                             ),
                             Text(
                               ' ㆍ ',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 10,
                               ),
                             ),
                             Text(
                               '${bpm[listIndex].reviewAboutShopDto.address}',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 10,
                               ),
                             ),
@@ -111,13 +111,13 @@ class ReviewItem extends StatelessWidget {
                     Text(
                       '>',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 30,
                           fontWeight: FontWeight.w200),
                     ),
                   ],
                 ),
-                style: TextButton.styleFrom(backgroundColor: Colors.grey),
+                style: TextButton.styleFrom(backgroundColor: Colors.white),
               ),
               SizedBox(
                 height: 20,

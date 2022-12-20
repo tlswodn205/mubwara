@@ -65,6 +65,7 @@ class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
                           }
                           return null;
                         },
+                        errorText: '인원수를 입력해주세요',
                         hintText: '인원 수',
                   )),
                   SizedBox(
@@ -81,6 +82,7 @@ class _TableBottomSheetState extends ConsumerState<TableBottomSheet> {
                         }
                         return null;
                       },
+                      errorText: '테이블 갯수를 입력해주세요',
                       hintText: '테이블 갯수',
                     ),
                   ),

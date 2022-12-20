@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mubwara/views/common/const/color.dart';
 
-class AlramCard extends StatelessWidget {
+class AlramCard extends StatefulWidget {
 
   // 예약자 이름
   final String customer_name;
-
-  // 레스토랑 태그
-  final String customer_phone;
 
   // 주소
   final String reservation_date;
@@ -20,14 +17,25 @@ class AlramCard extends StatelessWidget {
 
   const AlramCard({
     required this.customer_name,
-    required this.customer_phone,
     required this.reservation_date,
     required this.reservation_time,
     required this.table_max_people,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<AlramCard> createState() => _AlramCardState();
+}
+
+class _AlramCardState extends State<AlramCard> {
+  late bool _isSelected = false;
+
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+    }
     return Column(
       children: [
         Padding(
@@ -35,36 +43,61 @@ class AlramCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                '예약자 성함 : $customer_name',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '예약자 성함 : ${widget.customer_name}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isSelected = !_isSelected;
+                      });
+                    },
+                    child: Container(
+                      width: 66,
+                      color: _isSelected ? SELECTED_COLOR : PRIMARY_COLOR,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _isSelected
+                              ? Icon(Icons.notifications, color: Body_TEXT_COLOR1)
+                              : Icon(Icons.notifications_active,
+                              color: Body_TEXT_COLOR1),
+                          Text(
+                            _isSelected ? "읽음" : "안읽음",
+                            style: TextStyle(
+                              color: Body_TEXT_COLOR1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                '전화번호 : $customer_phone',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+
               const SizedBox(height: 8.0),
               Row(
                 children: [
                   _IconText(
                     icon: Icons.calendar_month_outlined,
-                    label: '예약 날짜 : $reservation_date',
+                    label: '예약 날짜 : ${widget.reservation_date}',
                   ),
                   renderDot(),
                   _IconText(
                     icon: Icons.timelapse_outlined,
-                    label: '예약 시간 : $reservation_time ',
+                    label: '예약 시간 : ${widget.reservation_time} ',
                   ),
                   renderDot(),
                   _IconText(
                     icon: Icons.people,
-                    label: '$table_max_people 명',
+                    label: '${widget.table_max_people} 명',
                   ),
                 ],
               ),

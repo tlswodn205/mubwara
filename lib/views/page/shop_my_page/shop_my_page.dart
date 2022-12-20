@@ -349,7 +349,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
       width: double.infinity,
       height: 50,
       child: TextButton(
-        onPressed: () async {
+        onPressed: () {
           if(_formKey.currentState!.validate()){
             _formKey.currentState!.save();
           }
@@ -424,6 +424,7 @@ class _ShopMyPageState extends ConsumerState<ShopMyPage> {
             ElevatedButton(
               child: Text("신청하기"),
               onPressed: () {
+
                 joinShopReqDto.address = _AddressController.text;
                 sc.joinShop(joinShopReqDto);
                 Navigator.pop(context);

@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:mubwara/views/common/const/color.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Color? backgroundColor;
@@ -20,7 +21,7 @@ class DefaultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor ?? Colors.white,
+      backgroundColor: backgroundColor ?? INPUT_BG_COLOR,
       appBar: renderAppBar(),
       body: child,
       bottomNavigationBar: bottomNavigationBar,
@@ -35,7 +36,7 @@ class DefaultLayout extends StatelessWidget {
       return AppBar(
         toolbarHeight: 80,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: INPUT_BG_COLOR,
         elevation: 0,
         actions: [
           Stack(
@@ -55,14 +56,14 @@ class DefaultLayout extends StatelessWidget {
                 right: -1,
                 child: Badge(
                   shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
+                  badgeColor: BADGE_COLOR,
                   borderRadius: BorderRadius.circular(
                     5,
                   ),
                   badgeContent: Text(
-                    '2',
+                    '0',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: INPUT_BG_COLOR,
                     ),
                   ),
                 ),

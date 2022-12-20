@@ -24,11 +24,11 @@ class ReviewListItem extends ConsumerWidget {
             children: [
               Container(
                 child: Center(
-                  // child: Image.memory(
-                  //   base64.decode(sm[listIndex].imageFileDto.image),
-                  //   width: 100,
-                  //   height: 100,
-                  //   fit: BoxFit.fill,),
+                  child: Image.memory(
+                    base64.decode(sm[listIndex].imageFileDto.image),
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.fill,),
                 ),
               ),
               SizedBox(
